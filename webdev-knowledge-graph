@@ -1,0 +1,394 @@
+nodes:
+1. HTML: Hypertext Markup Language
+2. CSS: Cascading Style Sheets
+3. JavaScript: Programming language for web
+4. DOM: Document Object Model
+5. HTTP: Hypertext Transfer Protocol
+6. Node.js: JavaScript runtime
+7. Express: Web framework for Node.js
+8. React: JavaScript UI library
+9. Vue: Progressive JavaScript framework
+10. Angular: TypeScript web framework
+11. TypeScript: Typed superset of JavaScript
+12. Webpack: Module bundler
+13. Babel: JavaScript transpiler
+14. NPM: Node package manager
+15. Git: Version control system
+16. GitHub: Git repository hosting
+17. VS Code: Code editor
+18. Chrome DevTools: Browser debugging tools
+19. REST API: Representational State Transfer
+20. GraphQL: Query language for APIs
+21. JSON: JavaScript Object Notation
+22. XML: Extensible Markup Language
+23. AJAX: Asynchronous JavaScript and XML
+24. Fetch API: Modern HTTP request interface
+25. Promises: Asynchronous programming pattern
+26. Async/Await: Syntactic sugar for promises
+27. ES6+: Modern JavaScript features
+28. Arrow Functions: Concise function syntax
+29. Destructuring: Extract values from objects/arrays
+30. Template Literals: String interpolation
+31. Modules: Code organization system
+32. Closures: Function scope concept
+33. Prototypes: JavaScript inheritance
+34. Event Loop: JavaScript concurrency model
+35. Hoisting: Variable/function declaration behavior
+36. Scope: Variable accessibility rules
+37. This Keyword: Context reference in JavaScript
+38. Flexbox: CSS layout method
+39. Grid: CSS 2D layout system
+40. Media Queries: Responsive design technique
+41. Mobile First: Design approach
+42. Progressive Enhancement: Development strategy
+43. Accessibility: Web content for all users
+44. SEO: Search Engine Optimization
+45. Performance: Web optimization techniques
+46. Lazy Loading: Deferred resource loading
+47. Code Splitting: Bundle optimization
+48. Tree Shaking: Dead code elimination
+49. Minification: Code size reduction
+50. Compression: File size optimization
+51. Caching: Data storage for performance
+52. CDN: Content Delivery Network
+53. PWA: Progressive Web Application
+54. Service Workers: Background scripts
+55. Web Workers: Parallel JavaScript execution
+56. LocalStorage: Client-side data storage
+57. SessionStorage: Session-based storage
+58. IndexedDB: Browser database
+59. Cookies: HTTP state management
+60. CORS: Cross-Origin Resource Sharing
+61. XSS: Cross-Site Scripting security
+62. CSRF: Cross-Site Request Forgery
+63. HTTPS: Secure HTTP protocol
+64. SSL/TLS: Encryption protocols
+65. Authentication: User identity verification
+66. Authorization: Access control
+67. JWT: JSON Web Tokens
+68. OAuth: Authorization framework
+69. Sessions: Server-side state management
+70. MongoDB: NoSQL database
+71. MySQL: Relational database
+72. PostgreSQL: Advanced relational database
+73. Redis: In-memory data store
+74. SQL: Structured Query Language
+75. NoSQL: Non-relational databases
+76. Database Design: Data modeling
+77. Normalization: Database optimization
+78. Indexing: Database performance
+79. CRUD: Create Read Update Delete operations
+80. ORM: Object-Relational Mapping
+81. Mongoose: MongoDB ODM for Node.js
+82. Sequelize: SQL ORM for Node.js
+83. Docker: Containerization platform
+84. Kubernetes: Container orchestration
+85. AWS: Amazon Web Services
+86. Azure: Microsoft cloud platform
+87. Google Cloud: Google cloud services
+88. Heroku: Platform as a Service
+89. Netlify: Static site hosting
+90. Vercel: Frontend deployment platform
+91. CI/CD: Continuous Integration/Deployment
+92. Testing: Code quality assurance
+93. Unit Testing: Individual component testing
+94. Integration Testing: Component interaction testing
+95. E2E Testing: End-to-end testing
+96. Jest: JavaScript testing framework
+97. Cypress: E2E testing tool
+98. Selenium: Web automation framework
+99. Debugging: Error identification and fixing
+100. Logging: Application monitoring
+101. Error Handling: Exception management
+102. Try/Catch: Error handling syntax
+103. Command Line: Terminal interface
+104. Bash: Unix shell
+105. Package.json: Node.js project configuration
+106. Semantic Versioning: Version numbering scheme
+107. API Design: Interface architecture
+108. Microservices: Distributed architecture
+109. Monolith: Single-tier architecture
+110. MVC: Model-View-Controller pattern
+111. MVVM: Model-View-ViewModel pattern
+112. Component Architecture: UI building blocks
+113. State Management: Application data flow
+114. Redux: Predictable state container
+115. Vuex: Vue state management
+116. Context API: React state sharing
+117. Routing: Navigation management
+118. React Router: React navigation library
+119. Vue Router: Vue navigation system
+120. Single Page Application: SPA architecture
+121. Server-Side Rendering: SSR technique
+122. Static Site Generation: Pre-built pages
+123. Next.js: React production framework
+124. Nuxt.js: Vue production framework
+125. Gatsby: Static site generator
+126. Svelte: Compile-time framework
+127. Sass: CSS preprocessor
+128. LESS: CSS preprocessor
+129. PostCSS: CSS transformation tool
+130. Tailwind CSS: Utility-first CSS framework
+131. Bootstrap: CSS component framework
+132. Material Design: Google design system
+133. Design Systems: Consistent UI guidelines
+134. UI/UX: User Interface/Experience design
+135. Figma: Design collaboration tool
+136. Sketch: Digital design platform
+137. Adobe XD: UX design software
+138. Wireframing: Low-fidelity design
+139. Prototyping: Interactive design mockups
+140. User Stories: Feature requirements
+141. Agile: Iterative development methodology
+142. Scrum: Agile framework
+143. Kanban: Visual workflow management
+144. Code Reviews: Peer code evaluation
+145. Pair Programming: Collaborative coding
+146. Documentation: Code explanation
+147. Technical Writing: Clear communication
+148. Clean Code: Readable code principles
+149. DRY: Don't Repeat Yourself principle
+150. SOLID: Object-oriented design principles
+151. Design Patterns: Reusable solutions
+152. Algorithms: Problem-solving procedures
+153. Data Structures: Data organization
+154. Big O Notation: Complexity analysis
+155. Recursion: Self-calling functions
+156. Regular Expressions: Pattern matching
+157. Functional Programming: Programming paradigm
+158. Object-Oriented Programming: OOP paradigm
+159. Event-Driven Programming: Event-based architecture
+160. Asynchronous Programming: Non-blocking execution
+161. Synchronous Programming: Sequential execution
+162. Callback Functions: Function parameters
+163. Higher-Order Functions: Function manipulation
+164. Pure Functions: Predictable functions
+165. Immutability: Unchangeable data
+166. Side Effects: External state changes
+167. Memoization: Caching optimization
+168. Debouncing: Event rate limiting
+169. Throttling: Execution frequency control
+170. Web Components: Custom HTML elements
+171. Shadow DOM: Encapsulated DOM tree
+172. Custom Elements: User-defined HTML tags
+173. HTML Templates: Reusable markup
+174. Web Standards: Browser specifications
+175. Browser Compatibility: Cross-browser support
+176. Polyfills: Feature compatibility shims
+177. Feature Detection: Capability checking
+178. Graceful Degradation: Fallback functionality
+179. Cross-Browser Testing: Multi-browser validation
+180. Responsive Images: Adaptive image delivery
+181. Image Optimization: File size reduction
+182. SVG: Scalable Vector Graphics
+183. Canvas API: 2D drawing interface
+184. WebGL: 3D graphics API
+185. Web Audio API: Audio processing
+186. WebRTC: Real-time communication
+187. WebSockets: Bidirectional communication
+188. Server-Sent Events: Real-time updates
+189. Geolocation API: Location services
+190. File API: File system access
+191. Drag and Drop API: Interaction interface
+192. History API: Navigation control
+193. Notification API: System notifications
+194. Payment Request API: Web payments
+195. Web Animations API: Animation control
+196. Intersection Observer: Visibility detection
+197. Mutation Observer: DOM change detection
+198. Performance API: Timing measurements
+199. Network Information API: Connection details
+200. Battery API: Device battery status
+     
+edges:
+1:4. creates: HTML creates DOM structure
+2:4. styles: CSS styles DOM elements
+3:4. manipulates: JavaScript manipulates DOM
+5:6. enables: HTTP enables server communication
+6:7. runs: Node.js runs Express framework
+3:8. uses: JavaScript uses React library
+3:9. uses: JavaScript uses Vue framework
+11:10. compiles-to: TypeScript compiles to JavaScript for Angular
+3:11. extends: TypeScript extends JavaScript
+12:3. bundles: Webpack bundles JavaScript
+13:3. transpiles: Babel transpiles JavaScript
+14:6. manages: NPM manages Node.js packages
+15:16. hosts: Git hosts code on GitHub
+17:3. edits: VS Code edits JavaScript
+18:4. debugs: Chrome DevTools debugs DOM
+19:5. uses: REST API uses HTTP protocol
+20:21. returns: GraphQL returns JSON data
+3:21. parses: JavaScript parses JSON
+23:24. replaced-by: AJAX replaced by Fetch API
+24:25. returns: Fetch API returns Promises
+25:26. simplified-by: Promises simplified by Async/Await
+27:3. enhances: ES6+ enhances JavaScript
+28:27. part-of: Arrow Functions part of ES6+
+29:27. part-of: Destructuring part of ES6+
+30:27. part-of: Template Literals part of ES6+
+31:27. part-of: Modules part of ES6+
+32:3. concept-in: Closures concept in JavaScript
+33:3. concept-in: Prototypes concept in JavaScript
+34:3. concept-in: Event Loop concept in JavaScript
+35:3. concept-in: Hoisting concept in JavaScript
+36:3. concept-in: Scope concept in JavaScript
+37:3. concept-in: This Keyword concept in JavaScript
+38:2. layout-method: Flexbox CSS layout method
+39:2. layout-method: Grid CSS layout method
+40:2. technique: Media Queries CSS technique
+41:40. approach: Mobile First approach with Media Queries
+42:1. strategy: Progressive Enhancement strategy with HTML
+43:1. applies-to: Accessibility applies to HTML
+44:1. optimizes: SEO optimizes HTML
+45:3. optimizes: Performance optimizes JavaScript
+46:45. technique: Lazy Loading performance technique
+47:45. technique: Code Splitting performance technique
+48:45. technique: Tree Shaking performance technique
+49:45. technique: Minification performance technique
+50:45. technique: Compression performance technique
+51:45. technique: Caching performance technique
+52:51. implements: CDN implements Caching
+53:54. uses: PWA uses Service Workers
+54:55. related-to: Service Workers related to Web Workers
+3:56. uses: JavaScript uses LocalStorage
+3:57. uses: JavaScript uses SessionStorage
+3:58. uses: JavaScript uses IndexedDB
+5:59. manages: HTTP manages Cookies
+60:5. extends: CORS extends HTTP
+61:3. attacks: XSS attacks JavaScript
+62:5. attacks: CSRF attacks HTTP
+63:5. secures: HTTPS secures HTTP
+64:63. implements: SSL/TLS implements HTTPS
+65:66. enables: Authentication enables Authorization
+67:65. implements: JWT implements Authentication
+68:65. implements: OAuth implements Authentication
+69:5. manages: Sessions manage HTTP state
+70:75. type-of: MongoDB type of NoSQL
+71:74. uses: MySQL uses SQL
+72:74. uses: PostgreSQL uses SQL
+73:51. implements: Redis implements Caching
+76:70. applies-to: Database Design applies to MongoDB
+76:71. applies-to: Database Design applies to MySQL
+77:76. optimizes: Normalization optimizes Database Design
+78:71. optimizes: Indexing optimizes MySQL
+79:70. operations: CRUD operations on MongoDB
+80:74. abstracts: ORM abstracts SQL
+81:70. connects: Mongoose connects to MongoDB
+82:71. connects: Sequelize connects to MySQL
+83:6. containerizes: Docker containerizes Node.js
+84:83. orchestrates: Kubernetes orchestrates Docker
+85:88. cloud-service: AWS cloud service
+86:88. cloud-service: Azure cloud service
+87:88. cloud-service: Google Cloud service
+88:6. hosts: Heroku hosts Node.js
+89:1. hosts: Netlify hosts HTML
+90:8. deploys: Vercel deploys React
+91:15. automates: CI/CD automates Git workflows
+92:3. validates: Testing validates JavaScript
+93:92. type-of: Unit Testing type of Testing
+94:92. type-of: Integration Testing type of Testing
+95:92. type-of: E2E Testing type of Testing
+96:93. framework: Jest framework for Unit Testing
+97:95. tool: Cypress tool for E2E Testing
+98:95. framework: Selenium framework for E2E Testing
+99:3. debugs: Debugging debugs JavaScript
+100:6. monitors: Logging monitors Node.js
+101:3. manages: Error Handling manages JavaScript
+102:101. syntax: Try/Catch syntax for Error Handling
+103:15. interface: Command Line interface for Git
+104:103. shell: Bash shell for Command Line
+105:6. configures: Package.json configures Node.js
+106:14. schemes: Semantic Versioning schemes NPM
+107:19. designs: API Design designs REST API
+108:109. alternative-to: Microservices alternative to Monolith
+110:8. pattern: MVC pattern in React
+111:9. pattern: MVVM pattern in Vue
+112:8. architecture: Component Architecture in React
+113:8. manages: State Management manages React
+114:113. implements: Redux implements State Management
+115:9. implements: Vuex implements State Management for Vue
+116:8. implements: Context API implements State Management for React
+117:121. manages: Routing manages Single Page Application
+118:8. implements: React Router implements Routing for React
+119:9. implements: Vue Router implements Routing for Vue
+120:8. architecture: Single Page Application architecture with React
+121:120. renders: Server-Side Rendering renders Single Page Application
+122:1. generates: Static Site Generation generates HTML
+123:8. framework: Next.js framework for React
+124:9. framework: Nuxt.js framework for Vue
+125:122. implements: Gatsby implements Static Site Generation
+126:3. compiles: Svelte compiles JavaScript
+127:2. preprocesses: Sass preprocesses CSS
+128:2. preprocesses: LESS preprocesses CSS
+129:2. transforms: PostCSS transforms CSS
+130:2. framework: Tailwind CSS framework
+131:2. framework: Bootstrap CSS framework
+132:133. implements: Material Design implements Design Systems
+133:134. guides: Design Systems guide UI/UX
+134:135. designs: UI/UX designs in Figma
+135:138. tool: Figma design tool
+136:138. tool: Sketch design tool
+137:138. tool: Adobe XD design tool
+138:139. creates: Wireframing creates Prototyping
+139:134. validates: Prototyping validates UI/UX
+140:141. defines: User Stories define Agile requirements
+141:142. methodology: Agile methodology
+142:141. framework: Scrum framework for Agile
+143:141. manages: Kanban manages Agile workflow
+144:15. reviews: Code Reviews review Git commits
+145:144. collaborates: Pair Programming collaborates on Code Reviews
+146:3. documents: Documentation documents JavaScript
+147:146. writes: Technical Writing writes Documentation
+148:3. principles: Clean Code principles for JavaScript
+149:148. principle: DRY principle of Clean Code
+150:148. principle: SOLID principle of Clean Code
+151:148. implements: Design Patterns implement Clean Code
+152:3. solves: Algorithms solve JavaScript problems
+153:152. organizes: Data Structures organize Algorithms
+154:152. analyzes: Big O Notation analyzes Algorithms
+155:152. technique: Recursion technique in Algorithms
+156:3. matches: Regular Expressions match JavaScript patterns
+157:3. paradigm: Functional Programming paradigm in JavaScript
+158:3. paradigm: Object-Oriented Programming paradigm in JavaScript
+159:3. architecture: Event-Driven Programming architecture in JavaScript
+160:3. execution: Asynchronous Programming execution in JavaScript
+161:160. opposite-of: Synchronous Programming opposite of Asynchronous Programming
+162:160. implements: Callback Functions implement Asynchronous Programming
+163:162. manipulates: Higher-Order Functions manipulate Callback Functions
+164:157. concept: Pure Functions concept in Functional Programming
+165:157. concept: Immutability concept in Functional Programming
+166:164. avoids: Side Effects avoided by Pure Functions
+167:45. optimizes: Memoization optimizes Performance
+168:3. limits: Debouncing limits JavaScript events
+169:168. controls: Throttling controls Debouncing frequency
+170:1. extends: Web Components extend HTML
+171:170. encapsulates: Shadow DOM encapsulates Web Components
+172:170. defines: Custom Elements define Web Components
+173:1. templates: HTML Templates template HTML
+174:1. specifies: Web Standards specify HTML
+175:174. ensures: Browser Compatibility ensures Web Standards
+176:175. provides: Polyfills provide Browser Compatibility
+177:176. detects: Feature Detection detects Polyfills need
+178:177. implements: Graceful Degradation implements Feature Detection
+179:175. validates: Cross-Browser Testing validates Browser Compatibility
+180:40. implements: Responsive Images implement Media Queries
+181:180. optimizes: Image Optimization optimizes Responsive Images
+182:1. graphics: SVG graphics in HTML
+183:3. draws: Canvas API draws with JavaScript
+184:183. extends: WebGL extends Canvas API
+185:3. processes: Web Audio API processes with JavaScript
+186:5. enables: WebRTC enables real-time HTTP communication
+187:5. enables: WebSockets enable bidirectional HTTP communication
+188:187. alternative: Server-Sent Events alternative to WebSockets
+189:3. accesses: Geolocation API accesses with JavaScript
+190:3. accesses: File API accesses with JavaScript
+191:4. interacts: Drag and Drop API interacts with DOM
+192:3. controls: History API controls JavaScript navigation
+193:3. sends: Notification API sends JavaScript notifications
+194:5. processes: Payment Request API processes HTTP payments
+195:2. animates: Web Animations API animates CSS
+196:4. observes: Intersection Observer observes DOM
+197:4. observes: Mutation Observer observes DOM changes
+198:45. measures: Performance API measures Performance
+199:5. detects: Network Information API detects HTTP connection
+200:3. accesses: Battery API accesses with JavaScript

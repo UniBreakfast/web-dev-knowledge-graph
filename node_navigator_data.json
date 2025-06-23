@@ -1,0 +1,50 @@
+{
+  "nodes": [
+    {
+      "id": "3f41cebe-ece7-4bac-9981-e80a9152f14c",
+      "name": "CSS",
+      "description": "Cascade Style Sheet"
+    },
+    {
+      "id": "4f32c2d7-28dd-4216-9b6a-2c4e722ef875",
+      "name": "Триада языков Web-разработки",
+      "description": "HTMl, CSS, JS"
+    },
+    {
+      "id": "a0d025dc-64e3-41a9-8cbd-222b8b597cbb",
+      "name": "HTML",
+      "description": "Hypertext Markup Language"
+    },
+    {
+      "id": "hXYcjexnoEPThcdFfyZD",
+      "name": "Токены кода HTML",
+      "description": "Составляющие кода HTML разметки"
+    }
+  ],
+  "edges": [
+    {
+      "id": "20ca2b94-5edb-4450-8a20-d192e5ce4edf",
+      "source": "3f41cebe-ece7-4bac-9981-e80a9152f14c",
+      "target": "4f32c2d7-28dd-4216-9b6a-2c4e722ef875",
+      "description": "CSS - один из языков триады Web-разработки"
+    },
+    {
+      "id": "64458e5e-ff31-4199-af55-4f6c7fe11ee1",
+      "source": "4f32c2d7-28dd-4216-9b6a-2c4e722ef875",
+      "target": "a0d025dc-64e3-41a9-8cbd-222b8b597cbb",
+      "description": "Первым в триаде традиционно стоит HTML "
+    },
+    {
+      "id": "b8561391-6294-4d81-9ab1-70bbd9b943d0",
+      "source": "a0d025dc-64e3-41a9-8cbd-222b8b597cbb",
+      "target": "4f32c2d7-28dd-4216-9b6a-2c4e722ef875",
+      "description": "HTML - основной из языков базовой триады Web-разработки"
+    },
+    {
+      "id": "bFlAQNyrC3xbPsE3FE0i",
+      "source": "a0d025dc-64e3-41a9-8cbd-222b8b597cbb",
+      "target": "hXYcjexnoEPThcdFfyZD",
+      "description": "HTML состоит из токенов кода"
+    }
+  ]
+}
