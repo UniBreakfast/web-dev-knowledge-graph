@@ -1,0 +1,33 @@
+aside {
+  padding: 14px;
+
+  ul {
+    display: grid;
+    gap: 11px;
+    padding: 7px 9px !important;
+
+    li {
+      border-radius: var(--r1) var(--r3) var(--r3) var(--r1);
+      padding: 12px;
+
+      h3 {
+        margin-bottom: 9px;
+      }
+
+      .slot {
+        float: right;
+        margin: -4px -4px 0 4px;
+     
+        &:last-of-type {
+          margin-top: 4px;
+          margin-bottom: 0;
+        }
+      }
+    
+      p {
+        min-height: 27px;
+      }
+    }
+  }
+}
+

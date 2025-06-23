@@ -1,0 +1,54 @@
+article {
+  padding: 14px;
+
+  >.slot, .buttons {
+    float: right;
+    margin-left: 10px;
+  }
+
+  &:not([data-id]) :is(.slot:has(.edit, .delete), h2) {
+    display: none;
+  }
+
+  h2 {
+    margin-block: 5px;
+    min-height: 30px;
+  }
+
+  .buttons {
+    display: grid;
+    gap: 6px;
+    place-items: end;
+  }
+
+  p {
+    min-height: 56px;
+  }
+
+  ul {
+    border: 1px solid var(--ink);
+    border-radius: var(--r3);
+    margin-top: 30px;
+    display: flex;
+    flex-flow: wrap;
+    gap: 7px 9px;
+    background: var(--bg);
+    padding: 7px 9px;
+    justify-content: right;
+
+    &:empty {
+      display: none !important;
+    }
+    
+    .button {
+      display: inline-block;
+      user-select: none;
+      border: 1px solid var(--ink);
+
+      &:has(:checked) {
+        background: var(--bg);
+      }
+    }
+  }
+}
+

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Graph</title>
+  
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+  
+<body hidden>
+  <datalist id="node-list">
+    <option>Alpha</option>
+    <option>Beta</option>
+  </datalist>
+  
+  <header>
+    <div>
+      <button id="add-node">+&nbsp;Node</button>
+      <input type="search" list="node-list">
+    </div>
+    <div>
+      <h1>Graph</h1>
+      <button>Menu</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <article data-id="1">
+        <div class="slot">
+          <button class="edit">🖉 Node</button>
+        </div>
+        
+        <h2>Node name</h2>
+        
+        <div class="buttons">
+          <div class="slot">
+            <button class="delete">— Node</button>
+          </div>
+          
+          <div class="slot">
+            <button class="link">+ Link</button>
+          </div>
+        </div>
+            
+        <p>Node description with long and detailed text about everything this node represents.</p>
+        
+        <ul>
+          <li>
+            <label class="button outgoing">
+              <input type="radio" name="node" hidden>
+              <span>Node 2</span>
+            </label>
+          </li>
+          
+          <li>
+            <label class="button incoming">
+              <input type="radio" name="node" hidden checked>
+              <span>Node 3</span>
+            </label>
+          </li>
+          
+          <li>
+            <label class="button two-way">
+              <input type="radio" name="node" hidden>
+              <span>Node 4</span>
+            </label>
+          </li>
+        </ul>
+      </article>
+    </section>
+
+    <hr>
+
+    <section>
+      <aside>
+        <ul class="slot">
+          <li class="outgoing" data-from="1" data-to="2">
+            <div class="slot">
+              <button class="edit">🖉 Link</button>
+            </div>
+              
+            <h3><span>Node name</span></h3>
+              
+            <div class="slot">
+              <button class="delete">— Link</button>
+            </div>
+              
+            <p>Link description</p>
+          </li>
+          
+          <li class="incoming" data-from="2" data-to="1">
+            <div class="slot">
+              <button class="edit">🖉 Link</button>
+            </div>
+              
+            <h3><span>Node name</span></h3>
+              
+            <div class="slot">
+              <button class="delete">— Link</button>
+            </div>
+              
+            <p>Link description</p>
+          </li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <div id="dialogs">
+    <dialog id="new-node">
+      <h3>New Node</h3>
+      
+      <form method="dialog">
+        <input type="hidden" name="id">
+        <div class="rows">
+          <label>
+            <span>Name:</span>
+            <input type="search" name="name" list="node-list" required>
+          </label>
+  
+          <label>
+            <span>Description:</span>
+            <textarea name="description"></textarea>
+          </label>
+        </div>
+
+        <div class="slot">
+          <button>Add</button>
+          <button type="button" class="cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="new-link">
+      <h3>New Link</h3>
+      
+      <form method="dialog">
+        <input type="hidden" name="from">
+        <input type="hidden" name="to">
+
+        <div class="rows">
+          <label>
+            <span>From node:</span>
+            <input type="search" name="fname" list="node-list" required>
+          </label>
+          
+          <label>
+            <span>To node:</span>
+            <input type="search" name="tname" list="node-list" required>
+          </label>
+          
+          <label>
+            <span>Description:</span>
+            <textarea name="description"></textarea>
+          </label>
+        </div>
+
+        <div class="slot">
+          <button>Add</button>
+          <button type="button" class="cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="edit-node">
+      <h3>Edit Node</h3>
+      
+      <form method="dialog">
+        <input type="hidden" name="id">
+        
+        <div class="rows">
+          <label>
+            <span>Name:</span>
+            <input type="search" name="name" list="node-list" required>
+          </label>
+  
+          <label>
+            <span>Description:</span>
+            <textarea name="description"></textarea>
+          </label>
+        </div>
+
+        <div class="slot">
+          <button>Save</button>
+          <button type="button" class="cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="edit-link">
+      <h3>Edit Link</h3>
+      
+      <form method="dialog">
+        <input type="hidden" name="from">
+        <input type="hidden" name="to">
+
+        <div class="rows">
+          <label>
+            <span>From node:</span>
+            <input type="search" name="fname" list="node-list" required>
+          </label>
+          
+          <label>
+            <span>To node:</span>
+            <input type="search" name="tname" list="node-list" required>
+          </label>
+          
+          <label>
+            <span>Description:</span>
+            <textarea name="description"></textarea>
+          </label>
+        </div>
+
+        <div class="slot">
+          <button>Save</button>
+          <button type="button" class="cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="delete-node">
+      <h3>Delete Node</h3>
+      
+      <form method="dialog">
+        <input type="hidden" name="id">
+        
+        <p>Are you sure you want to delete "<output name="name"></output>" and all its links?</p>
+
+        <div class="slot">
+          <button>Delete</button>
+          <button type="button" class="cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="delete-link">
+      <h3>Delete Link</h3>
+      
+      <form method="dialog">
+        <input type="hidden" name="from">
+        <input type="hidden" name="to">
+        
+        <p>Are you sure you want to delete the link from "<output name="fname"></output>" to "<output name="tname"></output>"?</p>
+
+        <div class="slot">
+          <button>Delete</button>
+          <button type="button" class="cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="inform">
+      <h3>Heading</h3>
+      
+      <form method="dialog">
+        <p>Consider yourself informed</p>
+        
+        <div class="slot">
+          <button>OK</button>
+        </div>
+      </form>
+    </dialog>
+  </div>
+</body>
+  
+</html>

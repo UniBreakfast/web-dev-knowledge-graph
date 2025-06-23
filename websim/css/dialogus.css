@@ -1,0 +1,90 @@
+dialog {
+  border: 1px solid var(--ink);
+  border-radius: var(--r3);
+  padding: 20px;
+  background: var(--fg);
+  flex-flow: column;
+
+  &:has(.rows) {
+    height: 70vh;
+  }
+
+  &[open] {
+    display: flex;
+  }
+
+  h3 {
+    text-align: center;
+    margin-block: -8px;
+  }
+
+  form {
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+
+    p {
+      margin: 20px;
+    }
+    
+    .rows {
+      flex: 1;
+      display: flex;
+      flex-flow: column;
+      gap: 5px;
+      max-width: 1000px;
+      width: 80vw;
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      border-radius: var(--r2);
+      padding: 4px 8px 7px;
+      margin-block: 20px;
+  
+      label {
+        display: grid;
+        
+        span {
+          padding-left: 10px;
+        }
+      }
+
+      input[readonly] {
+        background: var(--bg);
+      }
+
+      label:has(textarea) {
+        flex: 1;
+        display: flex;
+        flex-flow: column;
+      }
+  
+      textarea {
+        flex: 1;
+        resize: none;
+      }
+    }
+
+    .slot {
+      text-align: right;
+      max-width: 300px;
+      width: 100%;
+      align-self: center;
+    }
+  }
+
+  .warning {
+    color: darkred;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px;
+  }
+
+  .node-name {
+    font-style: italic;
+  }
+}
+
+::backdrop {
+  background: none;
+  backdrop-filter: blur(1px) contrast(0.2) brightness(1.45);
+}
