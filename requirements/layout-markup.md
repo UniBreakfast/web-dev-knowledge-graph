@@ -17,7 +17,7 @@ Article and aside should be grouped together in a main, each one wrapped in a se
 Header should have 4 elements (left to right):
 
 1. "Add Node" button
-2. Search input
+2. Select current node input (search input, list of existing nodes)
 3. GRAPH app title
 4. "Menu" button
 
@@ -48,5 +48,143 @@ Alternatively (if no node is currently selected) there should be a list of all t
 [Back to top](#page-layout-markup-requirements)
 
 ## [Dialogs requirements](#dialogs-requirements)
+
+There should be dialogs for:
+1. [Adding a node](#new-node-dialog)
+2. [Adding a link](#new-link-dialog)
+3. [Editing a node](#edit-node-dialog)
+4. [Editing a link](#edit-link-dialog)
+5. [Deleting a node](#delete-node-dialog)
+6. [Deleting a link](#delete-link-dialog)
+7. [Informing about a problem](#informer-dialog)
+8. [Presenting a menu](#menu-dialog)
+9. [Presenting stats](#stats-dialog)
+10. [Splash screen with GRAPH app logo](#splash-screen)
+
+All dialogs should be positioned in the middle of the page, have width set as minimum of 1000px and 85vw, have height set as 70vh (with exceptions: splash screen, delete dialogs, and informer should have height max-content), be scrollable if needed, have a heading with the dialog title, buttons grouped horizontally at the bottom, and have a gray semi-transparent bluring backdrop.
+
+[Back to top](#page-layout-markup-requirements)
+
+### New Node dialog
+
+Dialog should have a title "New Node" and a form with the following fields:
+
+1. Name (search input, list of existing nodes, required)
+2. Description (textarea, non-resizable, vertically greedy, optional)
+
+and buttons "Add" and "Cancel".
+
+[Back to top](#page-layout-markup-requirements)
+
+### New Link dialog
+
+Dialog should have a title "New Link" and a form with the following fields:
+
+1. From-node Name (search input, list of existing nodes, required)
+2. To-node Name (search input, list of existing nodes, required)
+3. Description (textarea, non-resizable, vertically greedy, optional)
+
+and buttons "Add" and "Cancel".
+
+There also should be a switch direction button positioned between the inputs, with two-way arrows.
+
+[Back to top](#page-layout-markup-requirements)
+
+### Edit Node dialog
+
+Dialog should have a title "Edit Node" and a form with the following fields:
+
+1. Name (search input, list of existing nodes, required)
+2. Description (textarea, non-resizable, vertically greedy, optional)
+
+and buttons "Save" and "Cancel".
+
+[Back to top](#page-layout-markup-requirements)
+
+### Edit Link dialog
+
+Dialog should have a title "Edit Link" and a form with the following fields:
+
+1. From-node Name (search input, list of existing nodes, required)
+2. To-node Name (search input, list of existing nodes, required)
+3. Description (textarea, non-resizable, vertically greedy, optional)
+
+and buttons "Save" and "Cancel".
+
+There also should be a switch direction button positioned between the inputs, with two-way arrows.
+
+[Back to top](#page-layout-markup-requirements)
+
+### Delete Node Dialog
+
+Dialog should have a title "Delete Node" and a form with a paragraph warning about the non-recoverable deletion of the node and all of its links. Node name and the number of links should be shown with output elements in bold.
+
+Buttons should be "Delete" and "Cancel".
+
+[Back to top](#page-layout-markup-requirements)
+
+### Delete Link Dialog
+
+Dialog should have a title "Delete Link" and a form with a paragraph warning about the non-recoverable deletion of the link. From-node name, and To-node name should be shown with output element in bold.
+
+Buttons should be "Delete" and "Cancel".
+
+[Back to top](#page-layout-markup-requirements)
+
+### Informer Dialog
+
+Dialog should have a title and a paragraph (both will be provided elsewhere).
+
+Single "OK" button.
+
+[Back to top](#page-layout-markup-requirements)
+
+### Menu Dialog
+
+Dialog should have a vertical list of buttons with the menu items:
+
+- "Show all nodes and links"
+- "Export Graph"
+- "Import Graph"
+- "Stats"
+- "About"
+
+- "Node without description"
+- "Link without description"
+- "Least linked node"
+- "Most linked node"
+- "Random node"
+- "Random link"
+
+Single "Cancel" button.
+
+[Back to top](#page-layout-markup-requirements)
+
+### Stats Dialog
+
+Dialog should have a title "Stats" and a table with two columns:
+
+1. Stat name
+2. Stat value
+
+Stat rows should be:
+
+- Number of nodes
+- Number of links
+- Number of nodes without description
+- Number of links without description
+- Minimum number of links a node has
+- Maximum number of links a node has
+- Average number of links a node has
+
+Single "OK" button.
+
+[Back to top](#page-layout-markup-requirements)
+
+### Splash Screen
+
+Splash screen should have a logo of GRAPH app, version numbers, and copyright notice.
+
+Single "Continue" button.
 
 [Back to top](#page-layout-markup-requirements)
