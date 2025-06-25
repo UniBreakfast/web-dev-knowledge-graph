@@ -35,6 +35,8 @@ Below the description there should be a list of links to other nodes. Each link 
 
 Alternatively (if no node is currently selected) there should be a vertical list of nodes represented with list items holding a header with the node name, followed by a description. Each node item should have a vertically stacked block floating to the right with a "Go to Node" button and counters for incoming/outgoing links shown with arrows next to the numbers.
 
+Lastly (if there's no nodes at all) article should show a paragraph with a message "No nodes in the graph. Add some using the 'Add Node' button in the top left corner".
+
 [Back to top](#page-layout-markup-requirements)
 
 ## [Aside requirements](#aside-requirements)
