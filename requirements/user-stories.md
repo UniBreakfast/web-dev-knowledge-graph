@@ -275,7 +275,7 @@ Steps:
   6. Current node name and possibly description are pre-filled in the Edit Node form fields. 
   7. User changes the name and/or adds/edits/removes the description.
   8. User clicks the "Save" button.
-  9. Current node is updated.
+  9. Current node is updated in the graph structure.
   10. Edit Node dialog is closed.
   11. Left panel now shows that node updated name and description, if any was entered.
    
@@ -335,7 +335,7 @@ Steps:
   9. User chooses or inputs manually the name of the To-node.
   10. User optionally adds a description for the new link.
   11. User clicks the "Add" button.
-  12. New link is added.
+  12. New link is added to the graph structure.
   13. New Link dialog is closed.
   14. Left panel now shows the selected To-node name in the list of linked nodes below the current node description.
   15. It is selected with a clear visual indication.
@@ -403,7 +403,7 @@ Steps:
   4. User clicks the "Add" button.
   5. Informer dialog is opened.
   6. Dialog is titled "Link already exists".
-  7. There's a message saying that there is maximum of two links between any two specific nodes, and they should be in the opposite directions. And there's already a link from "node_name_1" to "node_name_2".
+  7. There's a message saying that there is maximum of two links between any two specific nodes, and they should be in the opposite directions. And there's already a link from "from_node_name" to "to_node_name".
   8. User clicks the "OK" button.
   9. Informer dialog is closed.
    
@@ -420,51 +420,86 @@ Steps:
    
 [Back to top](#user-stories)
 
-##
+## Existing link editing
 
 Steps:
 
-  1. 
+  1. User gets to the main page presenting a specific node with a linked node selected.
+  2. User clicks the "Edit Link" button in the right panel in the specific link item. 
+  3. Edit Link dialog is opened with that link information pre-filled in the form.
+  4. User changes the To/From node, and/or the description.
+  5. User clicks the "Save" button.
+  6. Link is updated in the graph structure.
+  7. Edit Link dialog is closed.
+  8. If only the description is changed, panels show the same "current" node and "selected" node links information with the updated description.
+  9. If only the direction is changed (the To-node and From-node names are swapped), arrows in both panels are updated.
+  10. If To/From-node is changed, and it was the "selected" node, the linked list in the left panel is updated and the new To/From-node is selected.
+  11. If To/From-node is changed, and it was the "current" node, the left panel is updated and now presents the new "current" node information.
    
 [Back to top](#user-stories)
 
-##
+## Two nodes are required for link to persist
 
 Steps:
 
-  1. 
+  1. User gets to the Edit Link dialog.
+  2. User removes the name(s) from node name input(s).
+  3. User clicks the "Save" button.
+  4. Notification is shown saying that node names are required.
    
 [Back to top](#user-stories)
 
-##
+## Link needs existing nodes to persist
 
 Steps:
 
-  1. 
+  1. User gets to the Edit Link dialog.
+  2. User inputs node names, one or both of which do not exist.
+  3. User clicks the "Save" button.
+  4. Informer dialog is opened.
+  5. Dialog is titled "Node not found".
+  6. There's a message saying that only existing nodes can be linked, but there's no node with name "node_name".
+  7. User clicks the "OK" button.
+  8. Informer dialog is closed.
+  9. User can change the name to an existing one and try again or close the dialog. 
    
 [Back to top](#user-stories)
 
-##
+## Edit Link dialog can be closed
 
 Steps:
 
-  1. 
+  1. User gets to the Edit Link dialog.
+  2. User changes the name(s) and/or the description.
+  3. User clicks the "Cancel" button.
+  4. Edit Link dialog is closed without updating the link.
+  5. Both panels state is unchanged.
    
 [Back to top](#user-stories)
 
-##
+## Link cap for a pair prevents change
 
 Steps:
 
-  1. 
+  1. User gets to the Edit Link dialog.
+  2. User inputs or selects the names of nodes.
+  3. There's already a link between those nodes in the same direction.
+  4. User clicks the "Save" button.
+  5. Informer dialog is opened.
+  6. Dialog is titled "Link already exists there".
+  7. There's a message saying that there is maximum of two links between any two specific nodes, and they should be in the opposite directions. And there's already a link from "from_node_name" to "to_node_name".
+  8. User clicks the "OK" button.
+  9. Informer dialog is closed.
    
 [Back to top](#user-stories)
 
-##
+## Direction switch in Edit Link dialog
 
 Steps:
 
-  1. 
+  1. User gets to the Edit Link dialog. 
+  2. User clicks the button with bi-directional arrows.
+  3. Values of the To-node and From-node inputs are swapped.
    
 [Back to top](#user-stories)
 
