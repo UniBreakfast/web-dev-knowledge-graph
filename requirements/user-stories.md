@@ -3,8 +3,11 @@
   -  [Initial Splash Screen on first visit](#initial-splash-screen-on-first-visit)
   -  [Subsequent Visits](#subsequent-visits)
   -  [Initial view of all premade nodes and links](#initial-view-of-all-premade-nodes-and-links)
-  -  [Specific node view](#specific-node-view)
-  -  [Specific link view](#specific-link-view)
+  -  [Jump to a specific node](#jump-to-a-specific-node)
+  -  [Jump to a specific link](#jump-to-a-specific-link)
+  -  [Link direction arrows in both panels](#link-direction-arrows-in-both-panels)
+  -  [Node removal](#node-removal)
+  -  [Link removal](#link-removal)
   -  [Main page without any nodes](#main-page-without-any-nodes)
   -  [Right panel without any links](#right-panel-without-any-links)
   -  [Query for nodes from the header](#query-for-nodes-from-the-header)
@@ -12,12 +15,19 @@
   -  [Name is required in New Node dialog](#name-is-required-in-new-node-dialog)
   -  [New Node dialog can be closed](#new-node-dialog-can-be-closed)
   -  [New Node dialog with name pre-filled](#new-node-dialog-with-name-pre-filled)
-  -  [New node name pre-filling only if it doesn't exist](#new-node-name-pre-filling-only-if-it-doesnt-exist)
+  -  [New node name pre-filling skip](#new-node-name-pre-filling-skip)
   -  [New node with non-unique name](#new-node-with-non-unique-name)
   -  [Existing node editing](#existing-node-editing)
+  -  [Name is required in Edit Node dialog](#name-is-required-in-edit-node-dialog)
   -  [Edit Node dialog can be closed](#edit-node-dialog-can-be-closed)
   -  [Change name to a non-unique name](#change-name-to-a-non-unique-name)
   -  [New link addition](#new-link-addition)
+  -  [Two nodes are required to create a link](#two-nodes-are-required-to-create-a-link)
+  -  [Names are required in New Link dialog](#names-are-required-in-new-link-dialog)
+  -  [Only existing nodes can be linked](#only-existing-nodes-can-be-linked)
+  -  [New Link dialog can be closed](#new-link-dialog-can-be-closed)
+  -  [Link cap for a pair of nodes](#link-cap-for-a-pair-of-nodes)
+  -  [Direction switch in New Link dialog](#direction-switch-in-new-link-dialog)
 
 ## Initial Splash Screen on first visit
    
@@ -54,7 +64,7 @@ Steps:
    
 [Back to top](#user-stories)
 
-## Specific node view
+## Jump to a specific node
 
 Steps:
 
@@ -63,12 +73,36 @@ Steps:
   3. User wants to view a specific node and/or work with it or its links.
   4. User clicks the "Go to Node" button next to the specific node.
   5. That node becomes "current".
-  6. Left panel now shows that node name, description and list of names of nodes having links to and from it.
+  6. Left panel now shows that node name, description and the list of names of nodes having links to and from it.
   7. There's also a stack of buttons at the right side of the left panel with "Edit Node", "Delete Node" and "Add Link" buttons.
   8. If list of linked nodes is not empty, a random one of them becomes "selected".
   9. Right panel now shows the list of link(s) to/from the selected node from/to the current node.
    
 [Back to top](#user-stories)
+
+## Jump to a specific link
+
+Steps:
+
+  1. User gets to the main page of the application presenting all nodes and links.
+  2. User clicks the "Go to Link" button next to the specific link in the right panel.
+  3. From-node of that link becomes "current".
+  4. Left panel now shows that node name, possibly description and the list of names of nodes having links to and from it.
+  5. To-node of that link becomes "selected" in that list.
+  6. Right panel now shows the list of link(s) to/from the selected node from/to the current node.
+
+## Link direction arrows in both panels
+
+Steps:
+
+  1. User jumps between premade nodes and links by any means.
+  2. Left panel shows the list of nodes and links to/from the current node.
+  3. Node names for outgoing links are prefixed with right arrow.
+  4. Node names for incoming links are prefixed with left arrow.
+  5. Names of nodes linked in both directions are prefixed with two-way arrows.
+  6. Right panel shows the list of links between the "current" and "selected" nodes.
+  7. To-node names are prefixed with right arrow for outgoing links.
+  8. From-node names are prefixed with left arrow for incoming links.
 
 ## Node removal
 
@@ -77,16 +111,34 @@ Steps:
   1. User gets to the main page presenting a specific node.
   2. Left panel now shows that node name and description with "Delete Node" button on the right.
   3. User clicks the "Delete Node" button.
-  4. Delete node dialog is opened with warning about the non-recoverable deletion of the node and all of its links.
+  4. Delete node confirmation dialog is opened with warning about the non-recoverable deletion of the "node_name" and all of its links.
   5. User clicks the "Cancel" button.
   6. Delete node dialog is closed without deleting the node.
   7. User clicks the "Delete Node" button again.
-  8. Delete node dialog is opened with the same warning.
+  8. Delete node confirmation dialog is opened with the same warning.
   9. User clicks the "Delete" button.
   10. That node and all of its links are deleted from the graph structure.
   11. Page now shows the list of all remaining nodes and links.
    
 [Back to top](#user-stories)
+
+## Link removal
+
+Steps:
+
+  1. User gets to the main page presenting a specific node with a specific linked node selected.
+  2. Right panel now shows the list of links to/from the selected node from/to the current node.
+  3. User clicks the "Delete Link" button next to the specific link.
+  4. Delete link confirmation dialog is opened.
+  5. The warning there is about the non-recoverable deletion of the link from "from_node_name" to "to_node_name".
+  6. User clicks the "Cancel" button.
+  7. Delete link dialog is closed without deleting the link.
+  8. User clicks the "Delete Link" button again.
+  9. Delete link confirmation dialog is opened with the same warning.
+  10. User clicks the "Delete" button.
+  11. That link is deleted from the graph structure.
+  12. Left panel still shows the current node information.
+  13. The deleted link is no longer present in the right panel.
 
 ## Main page without any nodes
 
@@ -121,7 +173,7 @@ Steps:
   7. User may select a node name from the list.
   8. User makes input value the exact name of a node by typing, pasting or selecting it from the list.
   9. As soon as that happen the node with that name becomes "current".
-  10. Left panel now shows that node name, description and list of names of nodes having links to and from it.
+  10. Left panel now shows that node name, description and the list of names of nodes having links to and from it.
   11. Change of input value to something other than a node name doesn't change the current node. 
    
 [Back to top](#user-stories)
@@ -150,7 +202,7 @@ Steps:
   1. User gets to the New Node dialog.
   2. Name input is empty.
   3. User clicks the "Add" button.
-  4. Notification is shown that the name is required.
+  4. Notification is shown saying that the name is required.
    
 [Back to top](#user-stories)
 
@@ -179,7 +231,7 @@ Steps:
    
 [Back to top](#user-stories)
 
-## New node name pre-filling only if it doesn't exist
+## New node name pre-filling skip
 
 Steps:
 
@@ -204,7 +256,7 @@ Steps:
   4. User clicks the "Add" button.
   5. Informer dialog is opened.
   6. Dialog is titled "Node already exists".
-  7. There's a message that only nodes with unique names can be added.
+  7. There's a message saying that only nodes with unique names can be added.
   8. User clicks the "OK" button.
   9. Informer dialog is closed.
   10. User can change the name in the input and try again.
@@ -236,7 +288,7 @@ Steps:
   1. User gets to the Edit Node dialog.
   2. User removes the name from the input.
   3. User clicks the "Save" button.
-  4. Notification is shown that the name is required.
+  4. Notification is shown saying that the name is required.
    
 [Back to top](#user-stories)
 
@@ -261,7 +313,7 @@ Steps:
   3. User clicks the "Save" button.
   4. Informer dialog is opened.
   5. Dialog is titled "Node name is occupied".
-  6. There's a message that only nodes with unique names can exist in the graph.
+  6. There's a message saying that only nodes with unique names can exist in the graph.
   7. User clicks the "OK" button.
   8. Informer dialog is closed.
   9. User can change the name to a unique one and try again or close the dialog.
@@ -288,6 +340,267 @@ Steps:
   14. Left panel now shows the selected To-node name in the list of linked nodes below the current node description.
   15. It is selected with a clear visual indication.
   16. Right panel now shows the list of link(s) to/from the selected node from/to the current node. 
+   
+[Back to top](#user-stories)
+
+## Two nodes are required to create a link
+
+Steps:
+
+  1. User gets to the main page presenting a specific node.
+  2. There's an "Add Link" button in the left panel on the right side.
+  3. User clicks the "Add Link" button.
+  4. Informer dialog is opened.
+  5. Dialog is titled "Two nodes are required".
+  6. There's a message saying that links can be created only between two distinct existing nodes.
+
+## Names are required in New Link dialog
+
+Steps:
+
+  1. User gets to the New Link dialog.
+  2. User removes the name(s) from the inputs or leaves them empty.
+  3. User clicks the "Add" button.
+  4. Notification is shown saying that the names are required.
+   
+[Back to top](#user-stories)
+
+## Only existing nodes can be linked
+
+Steps:
+
+  1. User gets to the New Link dialog.
+  2. User inputs node names, one or both of which do not exist.
+  3. User clicks the "Add" button.
+  4. Informer dialog is opened.
+  5. Dialog is titled "Node not found".
+  6. There's a message saying that only existing nodes can be linked, but there's no node with name "node_name".
+  7. User clicks the "OK" button.
+  8. Informer dialog is closed.
+  9. User can change the name to an existing one and try again or close the dialog.
+   
+[Back to top](#user-stories)
+
+## New Link dialog can be closed
+
+Steps:
+
+  1. User gets to the New Link dialog.
+  2. User changes the name(s) and/or the description.
+  3. User clicks the "Cancel" button.
+  4. New Link dialog is closed without adding the link.
+  5. Left panel shows the unchanged current node information. 
+   
+[Back to top](#user-stories)
+
+## Link cap for a pair of nodes
+
+Steps:
+
+  1. User gets to the New Link dialog.
+  2. User inputs or selects the names of nodes.
+  3. There's already a link between those nodes in the same direction.
+  4. User clicks the "Add" button.
+  5. Informer dialog is opened.
+  6. Dialog is titled "Link already exists".
+  7. There's a message saying that there is maximum of two links between any two specific nodes, and they should be in the opposite directions. And there's already a link from "node_name_1" to "node_name_2".
+  8. User clicks the "OK" button.
+  9. Informer dialog is closed.
+   
+[Back to top](#user-stories)
+
+## Direction switch in New Link dialog
+
+Steps:
+
+  1. User gets to the New Link dialog.
+  2. User inputs or selects the names of nodes.
+  3. User clicks the button with bi-directional arrows.
+  4. Values of the To-node and From-node inputs are swapped.
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
+   
+[Back to top](#user-stories)
+
+##
+
+Steps:
+
+  1. 
    
 [Back to top](#user-stories)
 
