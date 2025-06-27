@@ -151,10 +151,10 @@ Dialog should have a vertical list of buttons with the menu items:
 - "Stats"
 - "About"
 
-- "Node without description"
-- "Link without description"
-- "Least linked node"
-- "Most linked node"
+- "Nodes without description"
+- "Links without description"
+- "Least linked nodes"
+- "Most linked nodes"
 - "Random node"
 - "Random link"
 

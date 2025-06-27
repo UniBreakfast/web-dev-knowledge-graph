@@ -503,95 +503,154 @@ Steps:
    
 [Back to top](#user-stories)
 
-##
+## Linked node item interaction
 
 Steps:
 
-  1. 
+  1. User gets to the main page presenting a specific node with some linked nodes.
+  2. In the left panel there's a current node name, possibly a description, and a horizontal list of linked nodes below.
+  3. If not all the node names can fit, the rest of them are wrapped on the next line(s).
+  4. User clicks on one of the linked node items.
+  5. The item becomes "selected" with clear visual indication.
+  6. Right panel shows the list of link(s) between the current node and the selected node.
+  7. User clicks on another linked node item.
+  8. The item becomes "selected" with clear visual indication.
+  9. Right panel shows the list of link(s) between the current node and the selected node.
+  10. User clicks on the same selected node item.
+  11. That node becomes "current".
+  12. Left panel now shows that node information.
+  13. Node that was "current" previously becomes "selected" in the list of linked nodes below.
+  14. Right panel shows the list of link(s) between the current node and the selected node but direction is reversed because of the opposite point of view.
    
 [Back to top](#user-stories)
 
-##
+## Show all nodes and links on demand
 
 Steps:
 
-  1. 
+  1. User gets to the main page presenting a specific node.
+  2. User clicks the "Menu" button in the header.
+  3. Menu dialog is opened.
+  4. User clicks the "Show all nodes and links" button.
+  5. Menu dialog is closed.
+  6. Left panel shows all nodes with their names and descriptions if any.
+  7. Right panel shows all links with names of both linked nodes and descriptions if any.
+  8. User can get back to viewing a specific node by clicking "Go to Node/Link" button.
    
 [Back to top](#user-stories)
 
-##
+## Export Graph
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. User clicks the "Export Graph" button.
+  3. OS Save file dialog is opened with "graph.json" as the suggested file name.
+  4. User chooses the desired location and name of the file.
+  5. User clicks the "Save" button or "Enter".
+  6. File is saved.
+  7. Both Save file dialog and Menu dialog are closed.
    
 [Back to top](#user-stories)
 
-##
+## Import Graph
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. User clicks the "Import Graph" button.
+  3. OS Open file dialog is opened.
+  4. User chooses the previously saved json-file.
+  5. User clicks the "Open" button or "Enter".
+  6. File is opened, parsed and validated, and graph structure is loaded.
+  7. Both Open file dialog and Menu dialog are closed.
+  8. Main page is now presenting all nodes and links in the graph.
    
 [Back to top](#user-stories)
 
-##
+## View stats
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. User clicks the "Stats" button.
+  3. Stats dialog is opened.
+  4. Stats dialog shows the number of nodes and links total, descriptionless, minumum, maximum and average number of links per node.
+  5. User clicks the "OK" button.
+  6. Stats dialog is closed.
    
 [Back to top](#user-stories)
 
-##
+## Finding all nodes without description
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. User clicks the "Nodes without description" button.
+  3. Main page is now presenting all nodes without descriptions.
+  4. User can use "Go to Node" and "Edit Node" buttons to make the node current and add a description.
+  5. Then user can fill in a description through the "Edit Node" dialog.
    
 [Back to top](#user-stories)
 
-##
+## Finding a single node without description
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. The button is labeled "Node without description" instead of plural because there is only one node without description in the graph structure.
+  3. User clicks the "Node without description" button.
+  4. Main page is now presenting the node without description.
+  5. User can click "Edit Node" and fill in a description through the "Edit Node" dialog.
    
 [Back to top](#user-stories)
 
-##
+## All nodes have a description
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. The button is labeled "No nodes without description" instead because all nodes have a description at this point.
+  3. It is disabled.
    
 [Back to top](#user-stories)
 
-##
+## Finding all links without description
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. User clicks the "Links without description" button.
+  3. Right panel is now presenting all links without descriptions.
+  4. Left panel is empty.
+  5. User can use "Go to Link" and "Edit Link" buttons to jump to linked nodes and add a link description.
    
 [Back to top](#user-stories)
 
-##
+## Finding a single link without description
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. The button is labeled "Link without description" instead of plural because there is only one link without description in the graph structure.
+  3. User clicks the "Link without description" button.
+  4. Right panel is now presenting the link without description.
+  5. Left panel is presenting the From-Node and the To-Node name is selected in the linked nodes list.
+  6. User can click "Edit Link" and fill in a description through the "Edit Link" dialog.
    
 [Back to top](#user-stories)
 
-##
+## All links have a description
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. The button is labeled "No links without description" instead because all links have a description at this point.
+  3. It is disabled.
    
 [Back to top](#user-stories)
 
-##
+## 
 
 Steps:
 
