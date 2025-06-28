@@ -28,6 +28,24 @@
   -  [New Link dialog can be closed](#new-link-dialog-can-be-closed)
   -  [Link cap for a pair of nodes](#link-cap-for-a-pair-of-nodes)
   -  [Direction switch in New Link dialog](#direction-switch-in-new-link-dialog)
+  -  [Linked node item interaction](#linked-node-item-interaction)
+  -  [Show all nodes and links on demand](#show-all-nodes-and-links-on-demand)
+  -  [Export Graph](#export-graph)
+  -  [Import Graph](#import-graph)
+  -  [View stats](#view-stats)
+  -  [Finding all nodes without description](#finding-all-nodes-without-description)
+  -  [Finding a single node without description](#finding-a-single-node-without-description)
+  -  [All nodes have a description](#all-nodes-have-a-description)
+  -  [Finding all links without description](#finding-all-links-without-description)
+  -  [Finding a single link without description](#finding-a-single-link-without-description)
+  -  [All links have a description](#all-links-have-a-description)
+  -  [Least/Most linked nodes](#leastmost-linked-nodes)
+  -  [Least/Most linked node](#leastmost-linked-node)
+  -  [Random node](#random-node)
+  -  [Random link](#random-link)
+  -  [No nodes to find](#no-nodes-to-find)
+  -  [No links to find](#no-links-to-find)
+  -  [Menu dialog can be closed](#menu-dialog-can-be-closed)
 
 ## Initial Splash Screen on first visit
    
@@ -549,7 +567,7 @@ Steps:
   4. User chooses the desired location and name of the file.
   5. User clicks the "Save" button or "Enter".
   6. File is saved.
-  7. Both Save file dialog and Menu dialog are closed.
+  7. Save file dialog is closed.
    
 [Back to top](#user-stories)
 
@@ -587,9 +605,10 @@ Steps:
 
   1. User gets to the Menu dialog.
   2. User clicks the "Nodes without description" button.
-  3. Main page is now presenting all nodes without descriptions.
-  4. User can use "Go to Node" and "Edit Node" buttons to make the node current and add a description.
-  5. Then user can fill in a description through the "Edit Node" dialog.
+  3. Menu dialog is closed.
+  4. Main page is now presenting all nodes without descriptions.
+  5. User can use "Go to Node" and "Edit Node" buttons to make the node current and add a description.
+  6. Then user can fill in a description through the "Edit Node" dialog.
    
 [Back to top](#user-stories)
 
@@ -600,8 +619,9 @@ Steps:
   1. User gets to the Menu dialog.
   2. The button is labeled "Node without description" instead of plural because there is only one node without description in the graph structure.
   3. User clicks the "Node without description" button.
-  4. Main page is now presenting the node without description.
-  5. User can click "Edit Node" and fill in a description through the "Edit Node" dialog.
+  4. Menu dialog is closed.
+  5. Main page is now presenting the node without description.
+  6. User can click "Edit Node" and fill in a description through the "Edit Node" dialog.
    
 [Back to top](#user-stories)
 
@@ -621,9 +641,10 @@ Steps:
 
   1. User gets to the Menu dialog.
   2. User clicks the "Links without description" button.
-  3. Right panel is now presenting all links without descriptions.
-  4. Left panel is empty.
-  5. User can use "Go to Link" and "Edit Link" buttons to jump to linked nodes and add a link description.
+  3. Menu dialog is closed.
+  4. Right panel is now presenting all links without descriptions.
+  5. Left panel is empty.
+  6. User can use "Go to Link" and "Edit Link" buttons to jump to linked nodes and add a link description.
    
 [Back to top](#user-stories)
 
@@ -634,9 +655,10 @@ Steps:
   1. User gets to the Menu dialog.
   2. The button is labeled "Link without description" instead of plural because there is only one link without description in the graph structure.
   3. User clicks the "Link without description" button.
-  4. Right panel is now presenting the link without description.
-  5. Left panel is presenting the From-Node and the To-Node name is selected in the linked nodes list.
-  6. User can click "Edit Link" and fill in a description through the "Edit Link" dialog.
+  4. Menu dialog is closed.
+  5. Right panel is now presenting the link without description.
+  6. Left panel is presenting the From-Node and the To-Node name is selected in the linked nodes list.
+  7. User can click "Edit Link" and fill in a description through the "Edit Link" dialog.
    
 [Back to top](#user-stories)
 
@@ -650,59 +672,83 @@ Steps:
    
 [Back to top](#user-stories)
 
-## 
+## Least/Most linked nodes
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. Button "Least linked nodes" and "Most linked nodes" are changed based on the current graph structure.
+  3. At the end the number of links is displayed in parentheses, like "(0 links)", "(1 link)", "(2 links)" etc.
+  4. User clicks the "Least linked nodes" or "Most linked nodes" button.
+  5. Menu dialog is closed.
+  6. Left panel now presents all the nodes with that specific number of links.
+  7. Right panel is empty.
    
 [Back to top](#user-stories)
 
-##
+## Least/Most linked node
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. Button "Least linked node" and "Most linked node" are changed based on the current graph structure.
+  3. Number of links is displayed in parentheses, but also the word is "node" instead of "nodes" because there is only one node with that number of links.
+  4. User clicks the "Least linked node" or "Most linked node" button.
+  5. Menu dialog is closed.
+  6. Left panel now presents the node with that specific number of links.
+  7. If the list of linked nodes is not empty, one of the nodes is selected in the list.
+  8. Is so the Right panel then presents the link(s) to/from that node.
    
 [Back to top](#user-stories)
 
-##
+## Random node
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. User clicks the "Random node" button.
+  3. Menu dialog is closed.
+  4. One of the nodes is chosen randomly and its information is displayed in the left panel.
+  5. If it has any links, one of the linked nodes is selected in the list and the link(s) are displayed in the right panel.
    
 [Back to top](#user-stories)
 
-##
+## Random link
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog.
+  2. User clicks the "Random link" button.
+  3. Menu dialog is closed.
+  4. Random link is selected, left panel now presents the From-Node and the To-Node name is selected in the linked nodes list.
+  5. Right panel now presents the link(s) between the two nodes. 
+[Back to top](#user-stories)
+
+## No nodes to find
+
+Steps:
+
+  1. User gets to the Menu dialog when there are no nodes in the graph.
+  2. buttons "Least linked nodes", "Most linked nodes", "Random node" are disabled.
    
 [Back to top](#user-stories)
 
-##
+## No links to find
 
 Steps:
 
-  1. 
+  1. User gets to the Menu dialog when there are no links in the graph.
+  2. button "Random link" is disabled.
    
 [Back to top](#user-stories)
 
-##
+## Menu dialog can be closed
 
 Steps:
 
-  1. 
-   
-[Back to top](#user-stories)
-
-##
-
-Steps:
-
-  1. 
+  1. User gets to the Menu dialog.
+  2. User clicks the "Cancel" button.
+  3. Menu dialog is closed.
    
 [Back to top](#user-stories)
 
