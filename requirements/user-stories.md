@@ -162,6 +162,8 @@ Steps:
   11. That link is deleted from the graph structure.
   12. Left panel still shows the current node information.
   13. The deleted link is no longer present in the right panel.
+   
+[Back to top](#user-stories)
 
 ## Main page without any nodes
 
