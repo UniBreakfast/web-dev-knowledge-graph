@@ -109,6 +109,8 @@ Steps:
   4. Left panel now shows that node name, possibly description and the list of names of nodes having links to and from it.
   5. To-node of that link becomes "selected" in that list.
   6. Right panel now shows the list of link(s) to/from the selected node from/to the current node.
+   
+[Back to top](#user-stories)
 
 ## Link direction arrows in both panels
 
@@ -122,6 +124,8 @@ Steps:
   6. Right panel shows the list of links between the "current" and "selected" nodes.
   7. To-node names are prefixed with right arrow for outgoing links.
   8. From-node names are prefixed with left arrow for incoming links.
+   
+[Back to top](#user-stories)
 
 ## Node removal
 
@@ -372,6 +376,8 @@ Steps:
   4. Informer dialog is opened.
   5. Dialog is titled "Two nodes are required".
   6. There's a message saying that links can be created only between two distinct existing nodes.
+   
+[Back to top](#user-stories)
 
 ## Names are required in New Link dialog
 
