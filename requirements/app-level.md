@@ -28,7 +28,7 @@ App should have a set of functions:
 Function should initialize the application. Have to be called only once on each page load after all the event handlers are registered, for the side effects only. It should run the following in that order:
 
 - [`isFirstRun()`](#isfirstrun)
-- [`headus.init()`](headus#init)
+- [`headus.init()`](./headus#init)
 - `nodus.init()`
 - `linkus.init()`
 - `dialogus.init()`
