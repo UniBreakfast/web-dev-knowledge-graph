@@ -28,15 +28,15 @@ App should have a set of functions:
 Function should initialize the application. Have to be called only once on each page load after all the event handlers are registered, for the side effects only. It should run the following in that order:
 
 - [`isFirstRun()`](#isfirstrun)
-- [`headus.init()`](./headus.html#init)
-- [`nodus.init()`](./nodus/#init)
+- [`headus.init()`](./headus#init)
+- [`nodus.init()`](./nodus#init)
 - [`linkus.init()`](./linkus#init)
 - [`dialogus.init()`](./dialogus#init)
 - [`graphus.init(data)`](./graphus#init)
 
 If the app is running for the first time, `data` should be fetched from the `example_graph.json` file. Otherwise, it should be loaded from the `localStorage`, checked for validity with `graphus.isValidGraph(data)` to make sure the data is of expected shape, and passed to `graphus.init(data)`.
 
-Also, if the app is running for the first time, it should call `dialogus.open('about', {version, canClose: true})`
+Also, if the app is running for the first time, it should call `dialogus.open('splash', {version, canClose: true})`
    
 [Back to top](#application-level-requirements)
 
