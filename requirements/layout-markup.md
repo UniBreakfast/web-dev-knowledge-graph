@@ -74,7 +74,7 @@ Dialog should have a title "New Node" and a form with the following fields:
 1. Name (search input, list of existing nodes, required)
 2. Description (textarea, non-resizable, vertically greedy, optional)
 
-and buttons "Add" and "Cancel".
+and buttons "Add" and "Cancel" (class "`close`").
 
 [Back to top](#page-layout-markup-requirements)
 
@@ -86,7 +86,7 @@ Dialog should have a title "New Link" and a form with the following fields:
 2. To-node Name (search input, list of existing nodes, required)
 3. Description (textarea, non-resizable, vertically greedy, optional)
 
-and buttons "Add" and "Cancel".
+and buttons "Add" and "Cancel" (class "`close`").
 
 There also should be a switch direction button positioned between the inputs, with two-way arrows.
 
@@ -99,7 +99,7 @@ Dialog should have a title "Edit Node" and a form with the following fields:
 1. Name (search input, list of existing nodes, required)
 2. Description (textarea, non-resizable, vertically greedy, optional)
 
-and buttons "Save" and "Cancel".
+and buttons "Save" and "Cancel" (class "`close`").
 
 [Back to top](#page-layout-markup-requirements)
 
@@ -111,7 +111,7 @@ Dialog should have a title "Edit Link" and a form with the following fields:
 2. To-node Name (search input, list of existing nodes, required)
 3. Description (textarea, non-resizable, vertically greedy, optional)
 
-and buttons "Save" and "Cancel".
+and buttons "Save" and "Cancel" (class "`close`").
 
 There also should be a switch direction button positioned between the inputs, with two-way arrows.
 
@@ -121,7 +121,7 @@ There also should be a switch direction button positioned between the inputs, wi
 
 Dialog should have a title "Delete Node" and a form with a paragraph warning about the non-recoverable deletion of the node and all of its links. Node name and the number of links should be shown with output elements in bold.
 
-Buttons should be "Delete" and "Cancel".
+Buttons should be "Delete" and "Cancel" (class "`close`").
 
 [Back to top](#page-layout-markup-requirements)
 
@@ -129,7 +129,7 @@ Buttons should be "Delete" and "Cancel".
 
 Dialog should have a title "Delete Link" and a form with a paragraph warning about the non-recoverable deletion of the link. From-node name, and To-node name should be shown with output element in bold.
 
-Buttons should be "Delete" and "Cancel".
+Buttons should be "Delete" and "Cancel" (class "`close`").
 
 [Back to top](#page-layout-markup-requirements)
 
@@ -137,7 +137,7 @@ Buttons should be "Delete" and "Cancel".
 
 Dialog should have a title and a paragraph (both will be provided elsewhere).
 
-Single "OK" button.
+Single "OK" button (class "`close`").
 
 [Back to top](#page-layout-markup-requirements)
 
@@ -158,7 +158,7 @@ Dialog should have a vertical list of buttons with the menu items:
 - "Random node"
 - "Random link"
 
-Single "Cancel" button.
+Single "Cancel" button (class "`close`").
 
 [Back to top](#page-layout-markup-requirements)
 
@@ -179,7 +179,7 @@ Stat rows should be:
 - Maximum number of links a node has
 - Average number of links a node has
 
-Single "OK" button.
+Single "OK" button (class "`close`").
 
 [Back to top](#page-layout-markup-requirements)
 
@@ -187,6 +187,6 @@ Single "OK" button.
 
 Splash screen should have a logo of GRAPH app, version numbers, and copyright notice.
 
-Single "Continue" button.
+Single "Continue" button (class "`close`").
 
 [Back to top](#page-layout-markup-requirements)

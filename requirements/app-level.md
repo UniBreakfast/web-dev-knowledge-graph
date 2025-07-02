@@ -20,6 +20,8 @@ App should have a set of functions:
 - [`listenForLinkusEvents()`](#listenforlinkusevents)
 - [`listenForDialogusEvents()`](#listenfordialogusevents)
 - [`listenForGraphusEvents()`](#listenforgraphusevents)
+- [`showBody()`](#showbody)
+- [`changeCurrentNodeBy(...)`](#changecurrentnodeby)
    
 [Back to top](#application-level-requirements)
 
@@ -34,9 +36,9 @@ Function should initialize the application. Have to be called only once on each 
 - [`dialogus.init()`](./dialogus#init)
 - [`graphus.init(data)`](./graphus#init)
 
-If the app is running for the first time, `data` should be fetched from the `example_graph.json` file. Otherwise, it should be loaded from the `localStorage`, checked for validity with `graphus.isValidGraph(data)` to make sure the data is of expected shape, and passed to `graphus.init(data)`.
+If the app is running for the first time, `data` should be fetched from the `example_graph.json` file. Otherwise, it should be loaded from the `localStorage`, checked for validity with [`graphus.isValidGraph(data)`](./graphus#isvalidgraph), to make sure the data is of expected shape, and passed to [`graphus.init(data)`](./graphus#init).
 
-Also, if the app is running for the first time, it should call `dialogus.open('splash', {version, canClose: true})`
+Also, if the app is running for the first time, it should call [`dialogus.open('splash', {version, canClose: true})`](./dialogus#open).
    
 [Back to top](#application-level-requirements)
 
@@ -62,4 +64,55 @@ Have to be called only once on each page load, for side effects only.
 
 ## `listenForHeadusEvents()`
 
-Function should add all the event listeners for the `headus` module custom events. Have to be called only once on each page load, for side effects only.
+Function should add all the event listeners for the [`headus` module custom events](.headus#custom-events). It has to be called only once on each page load, for side effects only.
+
+Add [`menutrigger`](./headus#menutrigger) event handler calling the [`dialogus.show('menu', {canClose: true})`](./dialogus#show) method. 
+
+[Back to top](#application-level-requirements)
+
+## `listenForNodusEvents()`
+
+Function should add all the event listeners for the [`nodus` module custom events](.nodus#custom-events). It has to be called only once on each page load, for side effects only.
+
+Add [`gotonodetrigger`](./nodus#gotonodetrigger) event handler calling the [`changeCurrentNodeBy({id})`](#changecurrentnodeby) function for the given `event.detail.id`.
+
+[Back to top](#application-level-requirements)
+
+## `listenForLinkusEvents()`
+
+[Back to top](#application-level-requirements)
+
+## `listenForDialogusEvents()`
+
+Function should add all the event listeners for the [`dialogus` module custom events](.dialogus#custom-events). It has to be called only once on each page load, for side effects only.
+
+Add [`splashtrigger`](./dialogus#splashtigger) event handler calling the [`dialogus.open('splash', {version, canClose: true})`](./dialogus#open) method.
+
+[Back to top](#application-level-requirements)
+
+## `listenForGraphusEvents()`
+
+Function should add all the event listeners for the [`graphus` module custom events](.graphus#custom-events). It has to be called only once on each page load, for side effects only.
+
+Add [`graphloaded`](./graphus#graphloaded) event handler calling the following functions in that order:
+
+- [`headus.listNodes(names)`](./headus#listnodes)
+- [`nodus.showMany(nodes)`](./nodus#showmany)
+- [`linkus.showMany(links)`](./linkus#showmany)
+- [`showBody()`](#showbody)
+
+[Back to top](#application-level-requirements)
+
+## `showBody()`
+
+Function should remove the `hidden` attribute from the `<body>` element. It is to be used for side effects only.
+
+[Back to top](#application-level-requirements)
+
+## `changeCurrentNodeBy({id, name}, ?silent)`
+
+Function should try to change the current node to the node with the given `id` or `name`. It should be called for side effects only.
+
+ [`graphus.getNodeById(id)`](./graphus#getnodebyid) method. If the node is not found and `silent` is not `true`, should call the [`dialogus.open('inform', {message: 'Node not found', canClose: true})`](./dialogus#open) method. If node is found, should call the [`linkus.getLinksById(id)`] [`graphus.getLinksById(id)`](./graphus#getlinksbyid) method for the same node id. Next [`nodus.showOne(node)`](./nodus#showone) and [`linkus.showTwins(links)`](./linkus#showtwins) methods should be called for the node and links respectively.
+
+[Back to top](#application-level-requirements)

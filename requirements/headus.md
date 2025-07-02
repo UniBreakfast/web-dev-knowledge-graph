@@ -2,17 +2,31 @@
 
 ### This document holds requirements for the `headus.js` file
 
-It should export a `headus` object with the following methods:
+It should export a `headus` object that is an instance of `EventTarget` with the following methods:
 
 - [`init()`](#init)
-- [`clearSearchField()`][#clearsearchfield]
+- [`clearSearchField()`](#clearsearchfield)
+
+Also `headus` object is expected to dispatch the following custom events:
+
+- [`menutrigger`](#menutrigger)
 
 [Back to top](#headus-module-requirements)
 
-## `init()`
+## Methods
+
+### `init()`
 
 [Back to top](#headus-module-requirements)
 
-## `clearSearchField()`
+### `clearSearchField()`
+
+[Back to top](#headus-module-requirements)
+
+## Custom events
+
+### `menutrigger`
+
+This event should be dispatched when the "Menu" button is clicked.
 
 [Back to top](#headus-module-requirements)

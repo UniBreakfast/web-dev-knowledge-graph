@@ -2,19 +2,35 @@
 
 ### This document holds requirements for the `dialogus.js` file
 
-It should export a `dialogus` object with the following methods:
+It should export a `dialogus` object that is an instance of `EventTarget` with the following methods:
 
 - [`init()`](#init)
 - [`open(...)`](#open) 
 
+Also `dialogus` object is expected to dispatch the following custom events:
+
+- [`splashtrigger`](#splashtigger)
+
 [Back to top](#dialogus-module-requirements)
 
-## `init()`
+## Methods
+
+### `init()`
 
 [Back to top](#dialogus-module-requirements)
 
-## `open(name, ?data)`
+### `open(name, ?data)`
 
 This function (method) is to be used for side effects only. It should open the dialog with the given `name`. If `data` is provided, it should be used to prepare the dialog. 
+
+If `data.canClose` is `true`, the dialog buttons like `Cancel`, `Close`, `Continue` and `OK` (class `close`) should close the dialog until it is closed once. Also the dialog should be closed if the user clicks outside of it or presses the `ESC` key. But again, only until the dialog is closed once.
+
+[Back to top](#dialogus-module-requirements)
+
+## Custom events
+
+### `splashtigger`
+
+This event should be dispatched when the "About" button is clicked in "Menu" dialog.
 
 [Back to top](#dialogus-module-requirements)
