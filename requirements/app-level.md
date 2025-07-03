@@ -80,6 +80,10 @@ Add [`gotonodetrigger`](./nodus#gotonodetrigger) event handler calling the [`cha
 
 ## `listenForLinkusEvents()`
 
+Function should add all the event listeners for the [`linkus` module custom events](.linkus#custom-events). It has to be called only once on each page load, for side effects only.
+
+Add [`gotolinktrigger`](./linkus#gotolinktrigger) event handler calling the [`changeCurrentNodeBy({id: id.from, select: {id: id.to}})`](#changecurrentnodeby) function for the given `event.detail.id`.
+
 [Back to top](#application-level-requirements)
 
 ## `listenForDialogusEvents()`
@@ -109,10 +113,14 @@ Function should remove the `hidden` attribute from the `<body>` element. It is t
 
 [Back to top](#application-level-requirements)
 
-## `changeCurrentNodeBy({id, name}, ?silent)`
+## `changeCurrentNodeBy({id|name, ?select: {id|name}}, ?silent)`
 
 Function should try to change the current node to the node with the given `id` or `name`. It should be called for side effects only.
 
- [`graphus.getNodeById(id)`](./graphus#getnodebyid) method. If the node is not found and `silent` is not `true`, should call the [`dialogus.open('inform', {message: 'Node not found', canClose: true})`](./dialogus#open) method. If node is found, should call the [`linkus.getLinksById(id)`] [`graphus.getLinksById(id)`](./graphus#getlinksbyid) method for the same node id. Next [`nodus.showOne(node)`](./nodus#showone) and [`linkus.showTwins(links)`](./linkus#showtwins) methods should be called for the node and links respectively.
+If `id` is given or acquired from the [`graphus.getIdByName(name)`](./graphus#getidbyname) method, should call the [`graphus.getNodeById(id)`](./graphus#getnodebyid) method. If the node is not found and `silent` is not `true`, should call the [`dialogus.open('inform', {message: 'Node not found', canClose: true})`](./dialogus#open) method. If node is found, should call the [`graphus.getLinksById(id)`](./graphus#getlinksbyid) method for the same node id. Next [`nodus.showOne(node)`](./nodus#showone) and [`linkus.showTwins(links, id)`](./linkus#showtwins) methods should be called for the node and links respectively.
+
+If `select` is given, function should call the [`graphus.getLinksById(id, select.id)`](./graphus#getlinksbyid) method. Also should pass `select.id` to [`nodus.showOne(node, select.id)`](./nodus#showone). 
+
+If `name` is given instead of `id`, function should call the [`graphus.getIdByName(name)`](./graphus#getidbyname) method first. Same for `select`, if `select.name` is given instead of `select.id`.
 
 [Back to top](#application-level-requirements)

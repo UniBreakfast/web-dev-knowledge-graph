@@ -1,4 +1,4 @@
-## Headus module requirements
+# Headus module requirements
 
 ### This document holds requirements for the `headus.js` file
 

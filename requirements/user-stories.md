@@ -94,8 +94,7 @@ Steps:
   5. That node becomes "current".
   6. Left panel now shows that node name, description and the list of names of nodes having links to and from it.
   7. There's also a stack of buttons at the right side of the left panel with "Edit Node", "Delete Node" and "Add Link" buttons.
-  8. If list of linked nodes is not empty, a random one of them becomes "selected".
-  9. Right panel now shows the list of link(s) to/from the selected node from/to the current node.
+  8. Right panel now shows the list of link(s) to/from the current node, if any.
    
 [Back to top](#user-stories)
 

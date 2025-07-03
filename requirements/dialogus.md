@@ -1,4 +1,4 @@
-## Dialogus module requirements
+# Dialogus module requirements
 
 ### This document holds requirements for the `dialogus.js` file
 
@@ -24,6 +24,18 @@ Also `dialogus` object is expected to dispatch the following custom events:
 This function (method) is to be used for side effects only. It should open the dialog with the given `name`. If `data` is provided, it should be used to prepare the dialog. 
 
 If `data.canClose` is `true`, the dialog buttons like `Cancel`, `Close`, `Continue` and `OK` (class `close`) should close the dialog until it is closed once. Also the dialog should be closed if the user clicks outside of it or presses the `ESC` key. But again, only until the dialog is closed once.
+
+It supposed to recognize the following dialog names:
+
+- `menu`
+- `splash`
+- `inform`
+- `new node`
+- `edit node`
+- `delete node`
+- `new link`
+- `edit link`
+- `delete link`
 
 [Back to top](#dialogus-module-requirements)
 

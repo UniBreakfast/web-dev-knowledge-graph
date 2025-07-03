@@ -1,4 +1,4 @@
-## Nodus module requirements
+# Nodus module requirements
 
 ### This document holds requirements for the `nodus.js` file
 
@@ -11,6 +11,7 @@ It should export a `nodus` object that is an instance of `EventTarget` with the 
 Also `nodus` object is expected to dispatch the following custom events:
 
 - [`gotonodetrigger`](#gotonodetrigger)
+- [`editnodetrigger`](#editnodetrigger)
 - [`deletenodetrigger`](#deletenodetrigger)
 - [`addlinktrigger`](#addlinktrigger)
 
@@ -22,15 +23,21 @@ Also `nodus` object is expected to dispatch the following custom events:
 
 [Back to top](#nodus-module-requirements)
 
-### `showOne(node)`
+### `showOne(node, ?selectedId)`
 
 This function (method) is to be used for side effects only. It should show the given `node` with the list of linked nodes below.
+
+If `selectedId` is given (positive integer expected), corresponding item in the list of linked nodes should be selected.
+
+See the [`graphus.getNodeById(id)`](./graphus#getnodebyid) method for the expected shape of the `node` object.
 
 [Back to top](#nodus-module-requirements)
 
 ### `showMany(nodes)`
 
 This function (method) is to be used for side effects only. It should show the node list presenting the given `nodes` array in `all` mode.
+
+See the [`graphus.getNodes()`](./graphus#getnodes) method for the expected shape of the `nodes` array.
 
 [Back to top](#nodus-module-requirements)
 
