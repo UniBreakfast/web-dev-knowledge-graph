@@ -4,11 +4,11 @@
 
 It should export a `graphus` object that is an instance of `EventTarget` with the following methods:
 
-- [`init(...)`](#init)
-- [`isValidGraph(...)`](#isvalidgraph)
-- [`getIdByName(...)`](#getidbyname)
-- [`getNodeById(...)`](#getnodebyid)
-- [`getLinksById(...)`](#getlinksbyid)
+- [`init(...)`](#initdata)
+- [`isValidGraph(...)`](#isvalidgraphdata)
+- [`getIdByName(...)`](#getidbynamename)
+- [`getNodeById(...)`](#getnodebyidid)
+- [`getLinksById(...)`](#getlinksbyidd1id2)
 - [`getNodes()`](#getnodes)
 - [`getLinks()`](#getlinks)
 
@@ -54,6 +54,8 @@ name should be non-empty sanitized and trimmed string
 ### `getIdByName(name)`
 
 This method (function) should return the id of the node with the given `name` or `null` if the node is not found. Should expect `name` to be a non-empty string.
+
+[Back to top](#graphus-module-requirements)
 
 ### `getNodeById(id)`
 
