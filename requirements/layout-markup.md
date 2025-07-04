@@ -31,7 +31,7 @@ If page width is too small, elements should wrap to the next line, but first pai
 
 Normally article should present one node at a time, that node considered "current". There should be a heading with the node name and a description below. Floating to the right there should be a vertical group of three buttons: "Edit Node", "Delete Node" and "Add Link".
 
-Below the description there should be a list of links to other nodes. Each link should be represented by a button (label with hidden radio button) with the node name prefixed with direction (incoming/outgoing/two-way) shown with arrows. Buttons should be placed next to each other, but should wrap to the next line if there is not enough space. They should be aligned to the right.
+Below the description there should be a list of links to other nodes. Each link should be represented by a button (label with hidden radio button) with the node name prefixed with direction (incoming/outgoing/two-way) shown with arrows. Arrows should be added based on the corresponding class (`incoming`, `outgoing`, `two-way`) Buttons should be placed next to each other, but should wrap to the next line if there is not enough space. They should be aligned to the right.
 
 Alternatively (if no node is currently selected) there should be a vertical list of nodes represented with list items holding a header with the node name, followed by a description. Each node item should have a vertically stacked block floating to the right with a "Go to Node" button and counters for incoming/outgoing links shown with arrows next to the numbers.
 
@@ -41,11 +41,11 @@ Lastly (if there's no nodes at all) article should show a paragraph with a messa
 
 ## [Aside requirements](#aside-requirements)
 
-Normally aside should present a list of all links to and from the current node. Each link should be represented by a list item with a heading with the linked node name (prefixed with direction shown with an arrow), a link description and a vertically stacked button group floating to the right with "Edit Link" and "Delete Link" buttons.
+Normally aside should present a list of all links to and from the current node. Each link should be represented by a list item with a heading with the linked node name (prefixed with direction shown with an arrow based on the class `incoming` or `outgoing`), a link description and a vertically stacked button group floating to the right with "Edit Link" and "Delete Link" buttons.
 
 Heading, paragraph and button group should be wrapped in a summary element with details showing the linked node description paragraph if expanded. There also should be a "Go to Node" button floating to the left of that paragraph.
 
-Alternatively (if no node is currently selected) there should be a list of all the links. Each link should be represented by a list item with a heading with "From" node name, an arrow right and "To" node name. There should also be a paragraph with the link description below with a button "Go to Link" floating to the right of that paragraph.
+Alternatively (if no node is currently selected) there should be a list of all the links. Each link should be represented by a list item with a heading with "From" node name, an arrow right and "To" node name. Every link item should have `outgoing` class. There should also be a paragraph with the link description below with a button "Go to Link" floating to the right of that paragraph.
 
 [Back to top](#page-layout-markup-requirements)
 

@@ -24,7 +24,7 @@ Also `linkus` object is expected to dispatch the following custom events:
 
 ### `showTwin(links, id)`
 
-This function (method) is to be used for side effects only. It should show the link list presenting the given `links` array between two nodes, considering the point of view based on the `id` of the current node. Outgoing links should be shown first.
+This function (method) is to be used for side effects only. It should show the link list presenting the given `links` array between two nodes, considering the point of view based on the `id` of the current node. List items should have the class corresponding to their direction (`outgoing` or `incoming`). Outgoing links should be shown first.
 
 See the [`graphus.getLinksById(id)`](./graphus#getlinksbyid) method for the expected shape of the `links` array.
 
@@ -32,7 +32,7 @@ See the [`graphus.getLinksById(id)`](./graphus#getlinksbyid) method for the expe
 
 ### `showMany(links)`
 
-This function (method) is to be used for side effects only. It should show the link list presenting the given `links` array in `all` mode.
+This function (method) is to be used for side effects only. It should show the link list presenting the given `links` array in `all` mode. All list items should have `outgoing` class.
 
 See the [`graphus.getLinks()`](./graphus#getlinks) method for the expected shape of the `links` array.
 
