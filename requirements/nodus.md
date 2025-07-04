@@ -7,7 +7,7 @@
 It should export a `nodus` object that is an instance of `EventTarget` with the following methods:
 
 - [`init()`](#init)
-- [`showOne(...)`](#showonenodeselectedid)
+- [`showOne(...)`](#showonenode-selectedid)
 - [`showMany(...)`](#showmanynodes)
 
 Also `nodus` object is expected to dispatch the following custom events:

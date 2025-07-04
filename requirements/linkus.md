@@ -54,3 +54,11 @@ This event should be dispatched when the "Go to link" button is clicked next to 
 ```
 
 [Back to top](#linkus-module-requirements)
+
+### `editlinktrigger`
+
+[Back to top](#linkus-module-requirements)
+
+### `deletelinktrigger`
+
+[Back to top](#linkus-module-requirements)
