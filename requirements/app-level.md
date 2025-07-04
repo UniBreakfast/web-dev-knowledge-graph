@@ -1,3 +1,5 @@
+[Back to README](../README)
+
 # Application level requirements
 
 #### This document holds requirements for the `app.js` file
@@ -21,7 +23,7 @@ App should have a set of functions:
 - [`listenForDialogusEvents()`](#listenfordialogusevents)
 - [`listenForGraphusEvents()`](#listenforgraphusevents)
 - [`showBody()`](#showbody)
-- [`changeCurrentNodeBy(...)`](#changecurrentnodeby)
+- [`changeCurrentNodeBy(...)`](#changecurrentnodebyidname-select-idname-silent)
    
 [Back to top](#application-level-requirements)
 
@@ -34,7 +36,7 @@ Function should initialize the application. Have to be called only once on each 
 - [`nodus.init()`](./nodus#init)
 - [`linkus.init()`](./linkus#init)
 - [`dialogus.init()`](./dialogus#init)
-- [`graphus.init(data)`](./graphus#init)
+- [`graphus.init(data)`](./graphus#initdata)
 
 If the app is running for the first time, `data` should be fetched from the `example_graph.json` file. Otherwise, it should be loaded from the `localStorage`, checked for validity with [`graphus.isValidGraph(data)`](./graphus#isvalidgraph), to make sure the data is of expected shape, and passed to [`graphus.init(data)`](./graphus#init).
 
@@ -66,7 +68,7 @@ Have to be called only once on each page load, for side effects only.
 
 Function should add all the event listeners for the [`headus` module custom events](.headus#custom-events). It has to be called only once on each page load, for side effects only.
 
-Add [`menutrigger`](./headus#menutrigger) event handler calling the [`dialogus.show('menu', {canClose: true})`](./dialogus#show) method. 
+Add [`menutrigger`](./headus#menutrigger) event handler calling the [`dialogus.show('menu', {canClose: true})`](./dialogus#showname-data) method. 
 
 [Back to top](#application-level-requirements)
 
@@ -74,7 +76,7 @@ Add [`menutrigger`](./headus#menutrigger) event handler calling the [`dialogus.s
 
 Function should add all the event listeners for the [`nodus` module custom events](.nodus#custom-events). It has to be called only once on each page load, for side effects only.
 
-Add [`gotonodetrigger`](./nodus#gotonodetrigger) event handler calling the [`changeCurrentNodeBy({id})`](#changecurrentnodeby) function for the given `event.detail.id`.
+Add [`gotonodetrigger`](./nodus#gotonodetrigger) event handler calling the [`changeCurrentNodeBy({id})`](#changecurrentnodebyidname-select-idname-silent) function for the given `event.detail.id`.
 
 [Back to top](#application-level-requirements)
 
@@ -82,7 +84,7 @@ Add [`gotonodetrigger`](./nodus#gotonodetrigger) event handler calling the [`cha
 
 Function should add all the event listeners for the [`linkus` module custom events](.linkus#custom-events). It has to be called only once on each page load, for side effects only.
 
-Add [`gotolinktrigger`](./linkus#gotolinktrigger) event handler calling the [`changeCurrentNodeBy({id: id.from, select: {id: id.to}})`](#changecurrentnodeby) function for the given `event.detail.id`.
+Add [`gotolinktrigger`](./linkus#gotolinktrigger) event handler calling the [`changeCurrentNodeBy({id: id.from, select: {id: id.to}})`](#changecurrentnodebyidname-select-idname-silent) function for the given `event.detail.id`.
 
 [Back to top](#application-level-requirements)
 
@@ -90,7 +92,7 @@ Add [`gotolinktrigger`](./linkus#gotolinktrigger) event handler calling the [`ch
 
 Function should add all the event listeners for the [`dialogus` module custom events](.dialogus#custom-events). It has to be called only once on each page load, for side effects only.
 
-Add [`splashtrigger`](./dialogus#splashtigger) event handler calling the [`dialogus.open('splash', {version, canClose: true})`](./dialogus#open) method.
+Add [`splashtrigger`](./dialogus#splashtigger) event handler calling the [`dialogus.open('splash', {version, canClose: true})`](./dialogus#openname-data) method.
 
 [Back to top](#application-level-requirements)
 
@@ -100,9 +102,9 @@ Function should add all the event listeners for the [`graphus` module custom eve
 
 Add [`graphloaded`](./graphus#graphloaded) event handler calling the following functions in that order:
 
-- [`headus.listNodes(names)`](./headus#listnodes)
-- [`nodus.showMany(nodes)`](./nodus#showmany)
-- [`linkus.showMany(links)`](./linkus#showmany)
+- [`headus.listNodes(names)`](./headus#listnodesnames)
+- [`nodus.showMany(nodes)`](./nodus#showmanynodes)
+- [`linkus.showMany(links)`](./linkus#showmanylinks)
 - [`showBody()`](#showbody)
 
 [Back to top](#application-level-requirements)
@@ -117,10 +119,10 @@ Function should remove the `hidden` attribute from the `<body>` element. It is t
 
 Function should try to change the current node to the node with the given `id` or `name`. It should be called for side effects only.
 
-If `id` is given or acquired from the [`graphus.getIdByName(name)`](./graphus#getidbyname) method, should call the [`graphus.getNodeById(id)`](./graphus#getnodebyid) method. If the node is not found and `silent` is not `true`, should call the [`dialogus.open('inform', {message: 'Node not found', canClose: true})`](./dialogus#open) method. If node is found, should call the [`graphus.getLinksById(id)`](./graphus#getlinksbyid) method for the same node id. Next [`nodus.showOne(node)`](./nodus#showone) and [`linkus.showTwins(links, id)`](./linkus#showtwins) methods should be called for the node and links respectively.
+If `id` is given or acquired from the [`graphus.getIdByName(name)`](./graphus#getidbynamename) method, should call the [`graphus.getNodeById(id)`](./graphus#getnodebyidid) method. If the node is not found and `silent` is not `true`, should call the [`dialogus.open('inform', {message: 'Node not found', canClose: true})`](./dialogus#openname-data) method. If node is found, should call the [`graphus.getLinksById(id)`](./graphus#getlinksbyidid) method for the same node id. Next [`nodus.showOne(node)`](./nodus#showonenode-selectedid) and [`linkus.showTwins(links, id)`](./linkus#showtwinslinks-id) methods should be called for the node and links respectively.
 
-If `select` is given, function should call the [`graphus.getLinksById(id, select.id)`](./graphus#getlinksbyid) method. Also should pass `select.id` to [`nodus.showOne(node, select.id)`](./nodus#showone). 
+If `select` is given, function should call the [`graphus.getLinksById(id, select.id)`](./graphus#getlinksbyidid1-id2) method. Also should pass `select.id` to [`nodus.showOne(node, select.id)`](./nodus#showonenode-selectedid). 
 
-If `name` is given instead of `id`, function should call the [`graphus.getIdByName(name)`](./graphus#getidbyname) method first. Same for `select`, if `select.name` is given instead of `select.id`.
+If `name` is given instead of `id`, function should call the [`graphus.getIdByName(name)`](./graphus#getidbynamename) method first. Same for `select`, if `select.name` is given instead of `select.id`.
 
 [Back to top](#application-level-requirements)

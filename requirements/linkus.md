@@ -1,3 +1,5 @@
+[Up to App level requirements](app-level)
+
 # Linkus module requirements
 
 ### This document holds requirements for the `linkus.js` file
@@ -5,8 +7,8 @@
 It should export a `linkus` object that is an instance of `EventTarget` with the following methods:
 
 - [`init()`](#init)
-- [`showTwin(...)`](#showtwin)
-- [`showMany(...)`](#showmany)
+- [`showTwin(...)`](#showtwinlinks-id)
+- [`showMany(...)`](#showmanylinks)
 
 Also `linkus` object is expected to dispatch the following custom events:
 

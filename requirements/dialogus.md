@@ -1,3 +1,5 @@
+[Up to App level requirements](app-level)
+
 # Dialogus module requirements
 
 ### This document holds requirements for the `dialogus.js` file
@@ -5,7 +7,7 @@
 It should export a `dialogus` object that is an instance of `EventTarget` with the following methods:
 
 - [`init()`](#init)
-- [`open(...)`](#open) 
+- [`open(...)`](#openname-data) 
 
 Also `dialogus` object is expected to dispatch the following custom events:
 

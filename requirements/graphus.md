@@ -1,3 +1,5 @@
+[Up to App level requirements](app-level)
+
 # Graphus module requirements
 
 ### This document holds requirements for the `graphus.js` file
@@ -8,7 +10,7 @@ It should export a `graphus` object that is an instance of `EventTarget` with th
 - [`isValidGraph(...)`](#isvalidgraphdata)
 - [`getIdByName(...)`](#getidbynamename)
 - [`getNodeById(...)`](#getnodebyidid)
-- [`getLinksById(...)`](#getlinksbyidd1id2)
+- [`getLinksById(...)`](#getlinksbyidid1-id2)
 - [`getNodes()`](#getnodes)
 - [`getLinks()`](#getlinks)
 
