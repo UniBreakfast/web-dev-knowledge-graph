@@ -1,4 +1,4 @@
-[Back to README](../README)
+[Back to README](..)
 
 # Page layout markup requirements
 
