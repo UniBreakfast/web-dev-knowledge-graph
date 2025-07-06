@@ -44,6 +44,8 @@ This function (method) is to be used for side effects only. It should show the n
 
 See the [`graphus.getNodes()`](./graphus#getnodes) method for the expected shape of the `nodes` array.
 
+Alternatively, if the `nodes` array is empty, should show the "No nodes in the graph..." paragraph message by toggling the corresponding radio button before the `article`.
+
 [Back to top](#nodus-module-requirements)
 
 ### `getCurrentId()`
