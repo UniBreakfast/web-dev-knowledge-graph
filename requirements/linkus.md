@@ -9,6 +9,8 @@ It should export a `linkus` object that is an instance of `EventTarget` with the
 - [`init()`](#init)
 - [`showTwin(...)`](#showtwinlinks-id)
 - [`showMany(...)`](#showmanylinks)
+- [`geListedLinks()`](#getlistedlinks)
+- [`removeLink(...)`](#removelinkfrom-to)
 
 Also `linkus` object is expected to dispatch the following custom events:
 
@@ -40,6 +42,25 @@ See the [`graphus.getLinks()`](./graphus#getlinks) method for the expected shape
 
 [Back to top](#linkus-module-requirements)
 
+### `geListedLinks()`
+
+This function (method) should return an array of links that are currently shown in the right panel. Expected shape of result is:
+
+```
+[ 0 or more elements like the one below
+  {
+    from: positive integer,
+    to: different positive integer,
+  },
+]
+```
+
+[Back to top](#linkus-module-requirements)
+
+### `removeLink(from, to)`
+
+This function (method) should remove the link with the given `from` and `to` ids from the list on the page. It should be called for side effects only.
+
 ## Custom events
 
 ### `gotolinktrigger`
@@ -60,5 +81,14 @@ This event should be dispatched when the "Go to link" button is clicked next to 
 [Back to top](#linkus-module-requirements)
 
 ### `deletelinktrigger`
+
+This event should be dispatched when the "Delete link" button is clicked next to a specific link. It should carry such link detail as `id` property with the following data:
+
+```
+{
+  from: positive integer,
+  to: different positive integer,
+}
+```
 
 [Back to top](#linkus-module-requirements)

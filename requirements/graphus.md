@@ -15,6 +15,7 @@ It should export a `graphus` object that is an instance of `EventTarget` with th
 - [`getNodes()`](#getnodes)
 - [`getLinks()`](#getlinks)
 - [`deleteNode(...)`](#delenodeid)
+- [`deleteLink(...)`](#delinkfrom-to)
 
 Also `graphus` object is expected to dispatch the following custom events:
 
@@ -157,6 +158,14 @@ This function (method) should return an array of all links in the graph. Expecte
 
 This function (method) should delete the node with the given `id` from the graph. Should expect `id` to be a positive integer. It should also delete all the links to/from the node as well. Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details. 
 
+[Back to top](#graphus-module-requirements)
+
+### `deleteLink(from, to)`
+
+This function (method) should delete the link between the nodes with the given `from` and `to` ids from the graph. Should expect both `from` and `to` to be positive integers. Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details.
+
+[Back to top](#graphus-module-requirements)
+
 ## Custom events
 
 ### `graphloaded`
@@ -183,9 +192,13 @@ This event should be dispatched when the graph is updated. It should carry the d
         old: string,
         new: string
       },
-  description: string // if action is add or update
-  
-  
+  description: string, // if action is add or update
+  links: [ 0 or more elements like the one below
+    {
+      from: positive integer,
+      to: positive integer,
+    }, // if type is 'node', action is 'delete' and 
+  ]   // there were links to/from the deleted node
 }
 
 [Back to top](#graphus-module-requirements)

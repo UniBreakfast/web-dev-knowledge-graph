@@ -79,7 +79,7 @@ Function should add all the event listeners for the [`nodus` module custom event
 
 Add [`gotonodetrigger`](./nodus#gotonodetrigger) event handler calling the [`changeCurrentNodeBy({id})`](#changecurrentnodebyidname-select-idname-silent) function for the given `event.detail.id`.
 
-Add [`deletenodetrigger`](./nodus#deletenodetrigger) event handler getting the node information with the [`graphus.getNodeById(id)`](./graphus#getnodebyidid) method and then calling the [`dialogus.open('delete node', {node, canClose: true})`](./dialogus#openname-data) method.
+Add [`deletenodetrigger`](./nodus#deletenodetrigger) event handler getting the node information with the [`graphus.getNodeById(event.detail.id)`](./graphus#getnodebyidid) method and then calling the [`dialogus.open('delete node', {node, canClose: true})`](./dialogus#openname-data) method.
 
 [Back to top](#application-level-requirements)
 
@@ -88,6 +88,8 @@ Add [`deletenodetrigger`](./nodus#deletenodetrigger) event handler getting the n
 Function should add all the event listeners for the [`linkus` module custom events](linkus#custom-events). It has to be called only once on each page load, for side effects only.
 
 Add [`gotolinktrigger`](./linkus#gotolinktrigger) event handler calling the [`changeCurrentNodeBy({id: id.from, select: {id: id.to}})`](#changecurrentnodebyidname-select-idname-silent) function for the given `event.detail.id`.
+
+Add [`deletelinktrigger`](./linkus#deletelinktrigger) event handler accepting the `event.detail.id`, then getting the link information with the [`graphus.getLinksById(id.from, id.to)`](./graphus#getlinksbyidfrom-to) calling the [`dialogus.open('delete link', {link, canClose: true})`](./dialogus#openname-data) method.
 
 [Back to top](#application-level-requirements)
 
@@ -98,6 +100,8 @@ Function should add all the event listeners for the [`dialogus` module custom ev
 Add [`splashtrigger`](./dialogus#splashtigger) event handler calling the [`dialogus.open('splash', {version, canClose: true})`](./dialogus#openname-data) method.
 
 Add [`deletenodetrigger`](./dialogus#deletenodetrigger) event handler calling the [`graphus.deleteNode(event.detail.id)`](./graphus#delenodeid) method.
+
+Add [`deletelinktrigger`](./dialogus#deletelinktrigger) event handler accepting the `event.detail.id`, then calling the [`graphus.deleteLink(id.from, id.to)`](./graphus#delinkfrom-to) method.
 
 [Back to top](#application-level-requirements)
 
@@ -112,9 +116,9 @@ Add [`graphloaded`](./graphus#graphloaded) event handler calling the following f
 - [`linkus.showMany(links)`](./linkus#showmanylinks)
 - [`showBody()`](#showbody)
 
-Add [`graphupdated`](./graphus#graphupdated) event handler.
+Add [`graphupdated`](./graphus#graphupdated) event handler that acts based on the `event.detail.change` object.
 
-if the `event.detail.type` is `node` and `event.detail.action` is `delete`, call the [`headus.unlistNode(event.detail.id)`](./headus#unlistnodeid) method. Also if the [`headus.getQuery()`](./headus#getquery) method returns `event.detail.name`, call the [`headus.clearQuery()`](./headus#clearquery) method. Also if the [`nodus.getCurrentId()`](./nodus#getcurrentid) method returns `event.detail.id`, call the [`showAll()`](#showall) function.
+if the `change.type` is `node` and `change.action` is `delete`, call the [`headus.unlistNode(change.id)`](./headus#unlistnodeid) method. Also if the [`headus.getQuery()`](./headus#getquery) method returns `change.name`, call the [`headus.clearQuery()`](./headus#clearquery) method. Also if the [`nodus.getCurrentId()`](./nodus#getcurrentid) method returns `change.id`, call the [`showAll()`](#showall) function. Also if the [`nodus.getListedNodes()`](./nodus#getlistednodes) method returns an array of ids that includes `change.id`, call the [`nodus.removeNode(change.id)`](./nodus#removenodeid) method. Also if the [`linkus.geListedLinks()`](./linkus#getlistedlinks) method returns an array of links that includes any of the id pairs of either `change.id` or `change.links`, call the [`linkus.removeLink(from, to)`](./linkus#removelinkfrom-to) method for each such link id pair.
   
 [Back to top](#application-level-requirements)
 

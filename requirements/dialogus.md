@@ -13,6 +13,7 @@ Also `dialogus` object is expected to dispatch the following custom events:
 
 - [`splashtrigger`](#splashtigger)
 - [`deletenodetrigger`](#deletenodetrigger)
+- [`deletelinktrigger`](#deletelinktrigger)
 
 [Back to top](#dialogus-module-requirements)
 
@@ -55,3 +56,16 @@ This event should be dispatched when the "About" button is clicked in "Menu" dia
 This event should be dispatched when the "Delete" button is clicked in "Delete node" dialog. It should contain the node information as `event.detail.id`.
 
 [Back to top](#dialogus-module-requirements)
+
+### `deletelinktrigger`
+
+This event should be dispatched when the "Delete" button is clicked in "Delete link" dialog. It should contain the link information as `event.detail.id` object of the following shape:
+
+```
+{
+  from: positive integer,
+  to: different positive integer,
+}
+```
+
+[Back to top](#dialogus-module-requirements)s

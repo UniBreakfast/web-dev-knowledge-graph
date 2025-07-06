@@ -9,6 +9,9 @@ It should export a `nodus` object that is an instance of `EventTarget` with the 
 - [`init()`](#init)
 - [`showOne(...)`](#showonenode-selectedid)
 - [`showMany(...)`](#showmanynodes)
+- [`getCurrentId()`](#getcurrentid)
+- [`getListedNodes()`](#getlistednodes)
+- [`removeNode(id)`](#removenodeid)
 
 Also `nodus` object is expected to dispatch the following custom events:
 
@@ -42,6 +45,22 @@ This function (method) is to be used for side effects only. It should show the n
 See the [`graphus.getNodes()`](./graphus#getnodes) method for the expected shape of the `nodes` array.
 
 [Back to top](#nodus-module-requirements)
+
+### `getCurrentId()`
+
+This function (method) should return the id of the current node.
+
+[Back to top](#nodus-module-requirements)
+
+### `getListedNodes()`
+
+This function (method) should return the list of ids of the currently listed nodes either in `all` mode or in the list of linked nodes of the current node.
+
+[Back to top](#nodus-module-requirements)
+
+### `removeNode(id)`
+
+This function (method) should remove the node with the given `id` from the list of currently shown nodes either in `all` mode or in the list of linked nodes of the current node.
 
 ## Custom events
 
