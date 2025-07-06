@@ -12,6 +12,7 @@ It should export a `dialogus` object that is an instance of `EventTarget` with t
 Also `dialogus` object is expected to dispatch the following custom events:
 
 - [`splashtrigger`](#splashtigger)
+- [`deletenodetrigger`](#deletenodetrigger)
 
 [Back to top](#dialogus-module-requirements)
 
@@ -46,5 +47,11 @@ It supposed to recognize the following dialog names:
 ### `splashtigger`
 
 This event should be dispatched when the "About" button is clicked in "Menu" dialog.
+
+[Back to top](#dialogus-module-requirements)
+
+### `deletenodetrigger`
+
+This event should be dispatched when the "Delete" button is clicked in "Delete node" dialog. It should contain the node information as `event.detail.id`.
 
 [Back to top](#dialogus-module-requirements)

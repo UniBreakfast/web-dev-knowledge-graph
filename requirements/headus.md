@@ -7,7 +7,10 @@
 It should export a `headus` object that is an instance of `EventTarget` with the following methods:
 
 - [`init()`](#init)
-- [`clearSearchField()`](#clearsearchfield)
+- [`listNodes(...)`](#listnodesnames)
+- [`unlistNode()`](#unlistnodename)
+- [`getQuery()`](#getquery)
+- [`clearQuery()`](#clearquery)
 
 Also `headus` object is expected to dispatch the following custom events:
 
@@ -21,7 +24,27 @@ Also `headus` object is expected to dispatch the following custom events:
 
 [Back to top](#headus-module-requirements)
 
-### `clearSearchField()`
+### `listNodes(names)`
+
+This function (method) should fill the datalist of nodes with the given `names` as options.
+
+[Back to top](#headus-module-requirements)
+
+### `unlistNode(name)`
+
+This function (method) should remove the option with the given `name` from the datalist of nodes.
+
+[Back to top](#headus-module-requirements)
+
+### `getQuery()`
+
+This function (method) should return the current value of the query input field.
+
+[Back to top](#headus-module-requirements)
+
+### `clearQuery()`
+
+This function (method) should clear the query input field.
 
 [Back to top](#headus-module-requirements)
 

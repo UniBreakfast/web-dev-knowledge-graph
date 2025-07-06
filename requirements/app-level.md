@@ -24,6 +24,7 @@ App should have a set of functions:
 - [`listenForGraphusEvents()`](#listenforgraphusevents)
 - [`showBody()`](#showbody)
 - [`changeCurrentNodeBy(...)`](#changecurrentnodebyidname-select-idname-silent)
+- [`showAll()`](#showall)
    
 [Back to top](#application-level-requirements)
 
@@ -78,6 +79,8 @@ Function should add all the event listeners for the [`nodus` module custom event
 
 Add [`gotonodetrigger`](./nodus#gotonodetrigger) event handler calling the [`changeCurrentNodeBy({id})`](#changecurrentnodebyidname-select-idname-silent) function for the given `event.detail.id`.
 
+Add [`deletenodetrigger`](./nodus#deletenodetrigger) event handler getting the node information with the [`graphus.getNodeById(id)`](./graphus#getnodebyidid) method and then calling the [`dialogus.open('delete node', {node, canClose: true})`](./dialogus#openname-data) method.
+
 [Back to top](#application-level-requirements)
 
 ## `listenForLinkusEvents()`
@@ -94,6 +97,8 @@ Function should add all the event listeners for the [`dialogus` module custom ev
 
 Add [`splashtrigger`](./dialogus#splashtigger) event handler calling the [`dialogus.open('splash', {version, canClose: true})`](./dialogus#openname-data) method.
 
+Add [`deletenodetrigger`](./dialogus#deletenodetrigger) event handler calling the [`graphus.deleteNode(event.detail.id)`](./graphus#delenodeid) method.
+
 [Back to top](#application-level-requirements)
 
 ## `listenForGraphusEvents()`
@@ -107,6 +112,10 @@ Add [`graphloaded`](./graphus#graphloaded) event handler calling the following f
 - [`linkus.showMany(links)`](./linkus#showmanylinks)
 - [`showBody()`](#showbody)
 
+Add [`graphupdated`](./graphus#graphupdated) event handler.
+
+if the `event.detail.type` is `node` and `event.detail.action` is `delete`, call the [`headus.unlistNode(event.detail.id)`](./headus#unlistnodeid) method. Also if the [`headus.getQuery()`](./headus#getquery) method returns `event.detail.name`, call the [`headus.clearQuery()`](./headus#clearquery) method. Also if the [`nodus.getCurrentId()`](./nodus#getcurrentid) method returns `event.detail.id`, call the [`showAll()`](#showall) function.
+  
 [Back to top](#application-level-requirements)
 
 ## `showBody()`
@@ -124,5 +133,17 @@ If `id` is given or acquired from the [`graphus.getIdByName(name)`](./graphus#ge
 If `select` is given, function should call the [`graphus.getLinksById(id, select.id)`](./graphus#getlinksbyidid1-id2) method. Also should pass `select.id` to [`nodus.showOne(node, select.id)`](./nodus#showonenode-selectedid). 
 
 If `name` is given instead of `id`, function should call the [`graphus.getIdByName(name)`](./graphus#getidbynamename) method first. Same for `select`, if `select.name` is given instead of `select.id`.
+
+[Back to top](#application-level-requirements)
+
+## `showAll()`
+
+Function should call the following functions in that order:
+
+- [`graphus.getNodes()`](./graphus#getnodes)
+- [`graphus.getLinks()`](./graphus#getlinks)
+- [`nodus.showMany(nodes)`](./nodus#showmanynodes)
+- [`linkus.showMany(links)`](./linkus#showmanylinks)
+- [`showBody()`](#showbody)
 
 [Back to top](#application-level-requirements)

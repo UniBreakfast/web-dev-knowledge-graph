@@ -27,6 +27,8 @@ Search input should take up most of the width, leave some space for the title to
 
 If page width is too small, elements should wrap to the next line, but first pair should stay together, as well as the second pair. Also second pair should be at the top in that case.
 
+Header should also include a hidden invisible datalist of the node names for the search input.
+
 [Back to top](#page-layout-markup-requirements)
 
 ## [Article requirements](#article-requirements)

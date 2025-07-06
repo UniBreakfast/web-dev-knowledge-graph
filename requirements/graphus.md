@@ -11,12 +11,15 @@ It should export a `graphus` object that is an instance of `EventTarget` with th
 - [`getIdByName(...)`](#getidbynamename)
 - [`getNodeById(...)`](#getnodebyidid)
 - [`getLinksById(...)`](#getlinksbyidid1-id2)
+- [`getNodeNames()`](#getnodenames)
 - [`getNodes()`](#getnodes)
 - [`getLinks()`](#getlinks)
+- [`deleteNode(...)`](#delenodeid)
 
 Also `graphus` object is expected to dispatch the following custom events:
 
 - [`graphloaded`](#graphloaded)
+- [`graphupdated`](#graphupdated)
 
 [Back to top](#graphus-module-requirements)
 
@@ -55,13 +58,13 @@ name should be non-empty sanitized and trimmed string
 
 ### `getIdByName(name)`
 
-This method (function) should return the id of the node with the given `name` or `null` if the node is not found. Should expect `name` to be a non-empty string.
+This function (method) should return the id of the node with the given `name` or `null` if the node is not found. Should expect `name` to be a non-empty string.
 
 [Back to top](#graphus-module-requirements)
 
 ### `getNodeById(id)`
 
-This method (function) should return the node with the given `id` or `null` if the node is not found. Should expect `id` to be a positive integer. Expected shape of the node is:
+This function (method) should return the node with the given `id` or `null` if the node is not found. Should expect `id` to be a positive integer. Expected shape of the node is:
 
 ```
 {
@@ -82,7 +85,7 @@ This method (function) should return the node with the given `id` or `null` if t
 
 ### `getLinksById(id1, ?id2)`
 
-This method (function) should return an array of links to/from the node with the given `id1` or an empty array if no links with that specific node are found. Should expect `id1` to be a positive integer. Expected shape of result is:
+This function (method) should return an array of links to/from the node with the given `id1` or an empty array if no links with that specific node are found. Should expect `id1` to be a positive integer. Expected shape of result is:
 
 ```
 [ 0 or more elements like the one below
@@ -102,9 +105,15 @@ If `id2` is given, should return an array of links between the nodes with `id1` 
 
 [Back to top](#graphus-module-requirements)
 
+### `getNodeNames()`
+
+This function (method) should return an array of all node names in the graph.
+
+[Back to top](#graphus-module-requirements)
+
 ### `getNodes()`
 
-This method (function) should return an array of all nodes in the graph. Expected shape of result is:
+This function (method) should return an array of all nodes in the graph. Expected shape of result is:
 
 ```
 [ 0 or more elements like the one below
@@ -124,7 +133,7 @@ This method (function) should return an array of all nodes in the graph. Expecte
 
 ### `getLinks()`
 
-This method (function) should return an array of all links in the graph. Expected shape of result is:
+This function (method) should return an array of all links in the graph. Expected shape of result is:
 
 ```
 [ 0 or more elements like the one below
@@ -144,12 +153,39 @@ This method (function) should return an array of all links in the graph. Expecte
 
 [Back to top](#graphus-module-requirements)
 
+### `deleteNode(id)`
+
+This function (method) should delete the node with the given `id` from the graph. Should expect `id` to be a positive integer. It should also delete all the links to/from the node as well. Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details. 
+
 ## Custom events
 
 ### `graphloaded`
 
 This event should be dispatched when the graph is loaded. It should carry such graph details as `nodes` and `links` as arrays of objects with all the data that needs to be displayed.
 
-See the [`graphus.getNodes()`](./graphus#getnodes) and [`graphus.getLinks()`](./graphus#getlinks) methods for the expected shape of the arrays.
+[Back to top](#graphus-module-requirements)
+
+### `graphupdated`
+
+This event should be dispatched when the graph is updated. It should carry the details of the change as `event.detail.change` object of the following shape:
+
+```
+{
+  type: 'node' | 'link',
+  action: 'add' | 'delete' | 'update',
+  id: positive integer // if type is 'node'
+      | { // if type is 'link'
+        from: positive integer, 
+        to: positive integer
+      },
+  name: string // if type is 'node' and action is add
+      | { // if action is update
+        old: string,
+        new: string
+      },
+  description: string // if action is add or update
+  
+  
+}
 
 [Back to top](#graphus-module-requirements)

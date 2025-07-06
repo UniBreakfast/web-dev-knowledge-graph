@@ -136,7 +136,7 @@ Steps:
   1. User gets to the main page presenting a specific node.
   2. Left panel now shows that node name and description with "Delete Node" button on the right.
   3. User clicks the "Delete Node" button.
-  4. Delete node confirmation dialog is opened with warning about the non-recoverable deletion of the "node_name" and all of its links.
+  4. Delete node confirmation dialog is opened with warning about the non-recoverable deletion of the "node_name" and all of its links with a number of links stated.
   5. User clicks the "Cancel" button.
   6. Delete node dialog is closed without deleting the node.
   7. User clicks the "Delete Node" button again.
