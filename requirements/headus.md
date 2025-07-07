@@ -8,12 +8,14 @@ It should export a `headus` object that is an instance of `EventTarget` with the
 
 - [`init()`](#init)
 - [`listNodes(...)`](#listnodesnames)
-- [`unlistNode()`](#unlistnodename)
+- [`enlistNode(...)`](#enlistnodename)
+- [`unlistNode(...)`](#unlistnodename)
 - [`getQuery()`](#getquery)
 - [`clearQuery()`](#clearquery)
 
 Also `headus` object is expected to dispatch the following custom events:
 
+- [`addnodetrigger`](#addnodetrigger)
 - [`querynode`](#querynode)
 - [`menutrigger`](#menutrigger)
 
@@ -28,6 +30,12 @@ Also `headus` object is expected to dispatch the following custom events:
 ### `listNodes(names)`
 
 This function (method) should fill the datalist of nodes with the given `names` as options.
+
+[Back to top](#headus-module-requirements)
+
+### `enlistNode(name)`
+
+This function (method) should add the option with the given `name` to the datalist of nodes.
 
 [Back to top](#headus-module-requirements)
 
@@ -50,6 +58,12 @@ This function (method) should clear the query input field.
 [Back to top](#headus-module-requirements)
 
 ## Custom events
+
+### `addnodetrigger`
+
+This event should be dispatched when the "Add Node" button is clicked. It should carry the current value of the query input field as `event.detail.name` if it is not empty after trim.
+
+[Back to top](#headus-module-requirements)
 
 ### `querynode`
 

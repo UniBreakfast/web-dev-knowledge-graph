@@ -14,6 +14,7 @@ It should export a `graphus` object that is an instance of `EventTarget` with th
 - [`getNodeNames()`](#getnodenames)
 - [`getNodes()`](#getnodes)
 - [`getLinks()`](#getlinks)
+- [`addNode(...)`](#addnodename-description)
 - [`deleteNode(...)`](#delenodeid)
 - [`deleteLink(...)`](#delinkfrom-to)
 
@@ -154,6 +155,12 @@ This function (method) should return an array of all links in the graph. Expecte
 
 [Back to top](#graphus-module-requirements)
 
+### `addNode(name, ?description)`
+
+This function (method) should add the node with the given `name` and `description` to the graph. Should expect `name` to be a non-empty string. Should also expect `description` to be a string. Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details.
+
+[Back to top](#graphus-module-requirements)
+
 ### `deleteNode(id)`
 
 This function (method) should delete the node with the given `id` from the graph. Should expect `id` to be a positive integer. It should also delete all the links to/from the node as well. Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details. 
@@ -188,10 +195,10 @@ This event should be dispatched when the graph is updated. It should carry the d
         to: positive integer
       },
   name: string // if type is 'node' and action is add
-      | { // if action is update
-        old: string,
-        new: string
-      },
+        | { // if action is update
+          old: string,
+          new: string
+        },
   description: string, // if action is add or update
   links: [ 0 or more elements like the one below
     {

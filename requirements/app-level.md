@@ -69,6 +69,8 @@ Have to be called only once on each page load, for side effects only.
 
 Function should add all the event listeners for the [`headus` module custom events](headus#custom-events). It has to be called only once on each page load, for side effects only.
 
+Add [`addnodetrigger`](./headus#addnodetrigger) event handler calling the [`dialogus.open('add node', {?name: event.detail.name, canClose: true})`](./dialogus#openname-data) method. If the `name` is not provided, the `name` property on the data argument is to be skipped.
+
 Add [`querynode`](./headus#querynode) event handler calling the [`changeCurrentNodeBy({name}, true)`](#changecurrentnodebyidname-select-idname-silent) function for the given `event.detail.query`.
 
 Add [`menutrigger`](./headus#menutrigger) event handler calling the [`dialogus.open('menu', {canClose: true})`](./dialogus#openname-data) method. 
@@ -101,6 +103,8 @@ Function should add all the event listeners for the [`dialogus` module custom ev
 
 Add [`splashtrigger`](./dialogus#splashtigger) event handler calling the [`dialogus.open('splash', {version, canClose: true})`](./dialogus#openname-data) method.
 
+Add [`addnodetrigger`](./dialogus#addnodetrigger) event handler calling the [`graphus.addNode(event.detail.name, ?event.detail.description)`](./graphus#addnodename-description) method. Second argument is optional, it is passed if not empty.
+
 Add [`deletenodetrigger`](./dialogus#deletenodetrigger) event handler calling the [`graphus.deleteNode(event.detail.id)`](./graphus#delenodeid) method.
 
 Add [`deletelinktrigger`](./dialogus#deletelinktrigger) event handler accepting the `event.detail.id`, then calling the [`graphus.deleteLink(id.from, id.to)`](./graphus#delinkfrom-to) method.
@@ -120,7 +124,9 @@ Add [`graphloaded`](./graphus#graphloaded) event handler calling the following f
 
 Add [`graphupdated`](./graphus#graphupdated) event handler that acts based on the `event.detail.change` object.
 
-if the `change.type` is `node` and `change.action` is `delete`, call the [`headus.unlistNode(change.id)`](./headus#unlistnodeid) method. Also if the [`headus.getQuery()`](./headus#getquery) method returns `change.name`, call the [`headus.clearQuery()`](./headus#clearquery) method. Also if the [`nodus.getCurrentId()`](./nodus#getcurrentid) method returns `change.id`, call the [`showMany()`](#showMany) function. Also if the [`nodus.getListedNodes()`](./nodus#getlistednodes) method returns an array of ids that includes `change.id`, call the [`nodus.removeNode(change.id)`](./nodus#removenodeid) method. Also if the [`linkus.geListedLinks()`](./linkus#getlistedlinks) method returns an array of links that includes any of the id pairs of either `change.id` or `change.links`, call the [`linkus.removeLink(from, to)`](./linkus#removelinkfrom-to) method for each such link id pair.
+If the `change.type` is `node` and `change.action` is `add`, call the [`headus.enlistNode(name)`](./headus#enlistnodename) method. Also call the [`nodus.showOne(node)`](./nodus#showonenode-selectedid) and [`linkus.showTwin(links, id)`](./linkus#showtwinlinks-id) methods for the new node, using data from the `change` object and passing an empty array as `links` argument.
+
+If the `change.type` is `node` and `change.action` is `delete`, call the [`headus.unlistNode(change.id)`](./headus#unlistnodeid) method. Also if the [`headus.getQuery()`](./headus#getquery) method returns `change.name`, call the [`headus.clearQuery()`](./headus#clearquery) method. Also if the [`nodus.getCurrentId()`](./nodus#getcurrentid) method returns `change.id`, call the [`showMany()`](#showMany) function. Also if the [`nodus.getListedNodes()`](./nodus#getlistednodes) method returns an array of ids that includes `change.id`, call the [`nodus.removeNode(change.id)`](./nodus#removenodeid) method. Also if the [`linkus.geListedLinks()`](./linkus#getlistedlinks) method returns an array of links that includes any of the id pairs of either `change.id` or `change.links`, call the [`linkus.removeLink(from, to)`](./linkus#removelinkfrom-to) method for each such link id pair.
   
 [Back to top](#application-level-requirements)
 
