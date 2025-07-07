@@ -14,6 +14,7 @@ It should export a `headus` object that is an instance of `EventTarget` with the
 
 Also `headus` object is expected to dispatch the following custom events:
 
+- [`querynode`](#querynode)
 - [`menutrigger`](#menutrigger)
 
 [Back to top](#headus-module-requirements)
@@ -49,6 +50,12 @@ This function (method) should clear the query input field.
 [Back to top](#headus-module-requirements)
 
 ## Custom events
+
+### `querynode`
+
+This event should be dispatched when the query input field is changed. It should carry the query string as `event.detail.query` object.
+
+[Back to top](#headus-module-requirements)
 
 ### `menutrigger`
 
