@@ -24,7 +24,7 @@ App should have a set of functions:
 - [`listenForGraphusEvents()`](#listenforgraphusevents)
 - [`showBody()`](#showbody)
 - [`changeCurrentNodeBy(...)`](#changecurrentnodebyidname-select-idname-silent)
-- [`showAll()`](#showall)
+- [`showMany()`](#showMany)
    
 [Back to top](#application-level-requirements)
 
@@ -118,7 +118,7 @@ Add [`graphloaded`](./graphus#graphloaded) event handler calling the following f
 
 Add [`graphupdated`](./graphus#graphupdated) event handler that acts based on the `event.detail.change` object.
 
-if the `change.type` is `node` and `change.action` is `delete`, call the [`headus.unlistNode(change.id)`](./headus#unlistnodeid) method. Also if the [`headus.getQuery()`](./headus#getquery) method returns `change.name`, call the [`headus.clearQuery()`](./headus#clearquery) method. Also if the [`nodus.getCurrentId()`](./nodus#getcurrentid) method returns `change.id`, call the [`showAll()`](#showall) function. Also if the [`nodus.getListedNodes()`](./nodus#getlistednodes) method returns an array of ids that includes `change.id`, call the [`nodus.removeNode(change.id)`](./nodus#removenodeid) method. Also if the [`linkus.geListedLinks()`](./linkus#getlistedlinks) method returns an array of links that includes any of the id pairs of either `change.id` or `change.links`, call the [`linkus.removeLink(from, to)`](./linkus#removelinkfrom-to) method for each such link id pair.
+if the `change.type` is `node` and `change.action` is `delete`, call the [`headus.unlistNode(change.id)`](./headus#unlistnodeid) method. Also if the [`headus.getQuery()`](./headus#getquery) method returns `change.name`, call the [`headus.clearQuery()`](./headus#clearquery) method. Also if the [`nodus.getCurrentId()`](./nodus#getcurrentid) method returns `change.id`, call the [`showMany()`](#showMany) function. Also if the [`nodus.getListedNodes()`](./nodus#getlistednodes) method returns an array of ids that includes `change.id`, call the [`nodus.removeNode(change.id)`](./nodus#removenodeid) method. Also if the [`linkus.geListedLinks()`](./linkus#getlistedlinks) method returns an array of links that includes any of the id pairs of either `change.id` or `change.links`, call the [`linkus.removeLink(from, to)`](./linkus#removelinkfrom-to) method for each such link id pair.
   
 [Back to top](#application-level-requirements)
 

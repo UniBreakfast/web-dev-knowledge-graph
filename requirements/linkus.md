@@ -36,7 +36,7 @@ See the [`graphus.getLinksById(id)`](./graphus#getlinksbyid) method for the expe
 
 ### `showMany(links)`
 
-This function (method) is to be used for side effects only. It should show the link list presenting the given `links` array in `all` mode. All list items should have `outgoing` class.
+This function (method) is to be used for side effects only. It should show the link list presenting the given `links` array in `unrelated` mode. All list items should have `outgoing` class.
 
 See the [`graphus.getLinks()`](./graphus#getlinks) method for the expected shape of the `links` array.
 
@@ -65,7 +65,7 @@ This function (method) should remove the link with the given `from` and `to` ids
 
 ### `gotolinktrigger`
 
-This event should be dispatched when the "Go to link" button is clicked next to a specific link in `all` mode. It should carry the `event.detail.id` property with the following data:
+This event should be dispatched when the "Go to link" button is clicked next to a specific link in `unrelated` mode. It should carry the `event.detail.id` property with the following data:
 
 ```
 {

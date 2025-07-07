@@ -35,13 +35,13 @@ If page width is too small, elements should wrap to the next line, but first pai
 
 Normally `article` should present one node at a time, that node considered "current". There should be a heading with the node name and a description below. Floating to the right there should be a vertical group of three buttons: "Edit Node", "Delete Node" and "Add Link".
 
-Below the description there should be a list of links to other nodes. Each link should be represented by a button (label with hidden radio button) with the node name prefixed with direction (incoming/outgoing/two-way) shown with arrows. Arrows should be added based on the corresponding class (`incoming`, `outgoing`, `two-way`) Buttons should be placed next to each other, but should wrap to the next line if there is not enough space. They should be aligned to the right.
+Below the description there should be a list of links to other nodes. Each link should be represented by a button (label with hidden radio button) with the node name prefixed with direction (incoming/outgoing/two-way) shown with arrows. Arrows should be added based on the corresponding class (`incoming`, `outgoing`, `two-way`) Buttons should be placed next to each other, but should wrap to the next line if there is not enough space. They should be aligned to the right. If there are no linked nodes at the moment there should be a paragraph with a message "No links to other nodes yet". List/paragraph display mode should be controlled with a hidden invisible checkbox before it.
 
 Alternatively (if no node is currently selected) there should be a vertical list of nodes represented with list items holding a header with the node name, followed by a description. Each node item should have a vertically stacked block floating to the right with a "Go to Node" button and counters for incoming/outgoing links shown with arrows next to the numbers.
 
 Lastly (if there's no nodes at all) `article` should show a paragraph with a message "No nodes in the graph. Add some using the 'Add Node' button in the top left corner".
 
-Article display mode should be controlled with the hidden invisible radio buttons before it.
+Article display mode should be controlled with the hidden invisible radio buttons before it, and there should be three modes: `current`, `many`, `message`.
 
 [Back to top](#page-layout-markup-requirements)
 
@@ -53,7 +53,9 @@ Heading, paragraph and button group should be wrapped in a summary element with 
 
 Alternatively (if no node is currently selected) there should be a list of all the links. Each link should be represented by a list item with a heading with "From" node name, an arrow right and "To" node name. Every link item should have `outgoing` class. There should also be a `paragraph` with the link description below with a button "Go to Link" floating to the right of that `paragraph`.
 
-Alternatively (if there's no links to show) `aside` should show a `paragraph` with a message "No links".
+Alternatively (if there's no links to show) `aside` should show a `paragraph` with a message "No links" or "No links from/to the current node yet. Add some with the 'Add Link' button on the left". The last one should appear is a node is currently selected and there is at least one other node existing in the graph. Which one is to be decided by the hidden invisible checkbox before it.
+
+Aside display mode should be controlled with the hidden invisible radio buttons before it, and there should be three modes: `related`, `unrelated`, `message`.
 
 [Back to top](#page-layout-markup-requirements)
 

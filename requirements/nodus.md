@@ -30,7 +30,7 @@ Also `nodus` object is expected to dispatch the following custom events:
 
 ### `showOne(node, ?selectedId)`
 
-This function (method) is to be used for side effects only. It should show the given `node` with the list of linked nodes below. Each linked node label should have the class corresponding to its direction (`outgoing`, `incoming` or `two-way`).
+This function (method) is to be used for side effects only. It should show the given `node` with the list of linked nodes below. Each linked node label should have the class corresponding to its direction (`outgoing`, `incoming` or `two-way`). If there are no linked nodes, should show the "No links to other nodes yet" paragraph message by toggling the corresponding checkbox before the list of linked nodes.
 
 If `selectedId` is given (positive integer expected), corresponding item in the list of linked nodes should be selected.
 
@@ -40,7 +40,7 @@ See the [`graphus.getNodeById(id)`](./graphus#getnodebyid) method for the expect
 
 ### `showMany(nodes)`
 
-This function (method) is to be used for side effects only. It should show the node list presenting the given `nodes` array in `all` mode.
+This function (method) is to be used for side effects only. It should show the node list presenting the given `nodes` array in `many` mode.
 
 See the [`graphus.getNodes()`](./graphus#getnodes) method for the expected shape of the `nodes` array.
 
@@ -56,19 +56,19 @@ This function (method) should return the id of the current node.
 
 ### `getListedNodes()`
 
-This function (method) should return the list of ids of the currently listed nodes either in `all` mode or in the list of linked nodes of the current node.
+This function (method) should return the list of ids of the currently listed nodes either in `many` mode or in the list of linked nodes of the current node.
 
 [Back to top](#nodus-module-requirements)
 
 ### `removeNode(id)`
 
-This function (method) should remove the node with the given `id` from the list of currently shown nodes either in `all` mode or in the list of linked nodes of the current node.
+This function (method) should remove the node with the given `id` from the list of currently shown nodes either in `many` mode or in the list of linked nodes of the current node.
 
 ## Custom events
 
 ### `gotonodetrigger`
 
-This event should be dispatched when the user clicks on a "Go to Node" button next to a specific node in `all` mode. It should carry such node detail as `id`.
+This event should be dispatched when the user clicks on a "Go to Node" button next to a specific node in `many` mode. It should carry such node detail as `id`.
 
 [Back to top](#nodus-module-requirements)
 
