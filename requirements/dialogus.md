@@ -8,6 +8,7 @@ It should export a `dialogus` object that is an instance of `EventTarget` with t
 
 - [`init()`](#init)
 - [`open(...)`](#openname-data) 
+- [`close(...)`](#closename)
 
 Also `dialogus` object is expected to dispatch the following custom events:
 
@@ -44,6 +45,12 @@ It supposed to recognize the following dialog names:
 
 [Back to top](#dialogus-module-requirements)
 
+### `close(name)`
+
+This function (method) is to be used for side effects only. It should close the dialog with the given `name`.
+
+It supposed to recognize the same dialog names as [`open(...)`](#openname-data).
+
 ## Custom events
 
 ### `splashtigger`
@@ -67,7 +74,7 @@ This event should be dispatched when the "Add" button is clicked in "Add node" d
 
 ### `deletenodetrigger`
 
-This event should be dispatched when the "Delete" button is clicked in "Delete node" dialog. It should contain the node information as `event.detail.id`.
+This event should be dispatched when the "Delete" button is clicked in "Delete node" dialog. It should contain the node information as `event.detail.id`. Right after the event is dispatched, the "Delete node" dialog should be closed.
 
 [Back to top](#dialogus-module-requirements)
 
@@ -81,5 +88,7 @@ This event should be dispatched when the "Delete" button is clicked in "Delete l
   to: different positive integer,
 }
 ```
+
+Right after the event is dispatched, the "Delete link" dialog should be closed.
 
 [Back to top](#dialogus-module-requirements)s

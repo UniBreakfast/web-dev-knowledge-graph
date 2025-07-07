@@ -103,7 +103,7 @@ Function should add all the event listeners for the [`dialogus` module custom ev
 
 Add [`splashtrigger`](./dialogus#splashtigger) event handler calling the [`dialogus.open('splash', {version, canClose: true})`](./dialogus#openname-data) method.
 
-Add [`addnodetrigger`](./dialogus#addnodetrigger) event handler calling the [`graphus.addNode(event.detail.name, ?event.detail.description)`](./graphus#addnodename-description) method. Second argument is optional, it is passed if not empty.
+Add [`addnodetrigger`](./dialogus#addnodetrigger) event handler should check if `event.detail.name` is empty, and if is is, should call the [`dialogus.open('inform', {title: 'Name required', text: 'Node name cannot be empty or empty-like.', canClose: true})`](./dialogus#openname-data) method. Otherwise, should call the [`dialogus.close('add node')`](./dialogus#closename) method, and then call the [`graphus.addNode(event.detail.name, ?event.detail.description)`](./graphus#addnodename-description) method. Second argument is optional, it is passed if not empty.
 
 Add [`deletenodetrigger`](./dialogus#deletenodetrigger) event handler calling the [`graphus.deleteNode(event.detail.id)`](./graphus#delenodeid) method.
 
