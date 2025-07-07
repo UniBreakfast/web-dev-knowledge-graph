@@ -8,6 +8,7 @@ It should export a `graphus` object that is an instance of `EventTarget` with th
 
 - [`init(...)`](#initdata)
 - [`isValidGraph(...)`](#isvalidgraphdata)
+- [`isNameTaken(...)`](#isnametakenname)
 - [`getIdByName(...)`](#getidbynamename)
 - [`getNodeById(...)`](#getnodebyidid)
 - [`getLinksById(...)`](#getlinksbyidid1-id2)
@@ -35,7 +36,7 @@ This function (method) is to be used for side effects only. It should initialize
 
 ### `isValidGraph(data)`
 
-Predicate function that returns `true` if the given `data` is of expected shape, `false` otherwise. Expected shape is:
+Predicate function (method) that returns `true` if the given `data` is of expected shape, `false` otherwise. Expected shape is:
 
 ```
 {
@@ -55,6 +56,12 @@ id and fromId_toId combined do not repeat.
 string values can be empty, if not - should be sanitized and trimmed
 name should be non-empty sanitized and trimmed string
 ```
+
+[Back to top](#graphus-module-requirements)
+
+### `isNameTaken(name)`
+
+Predicate function (method) that returns `true` if some node in the graph structure has the given `name`, `false` otherwise.
 
 [Back to top](#graphus-module-requirements)
 

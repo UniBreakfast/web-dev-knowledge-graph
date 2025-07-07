@@ -69,7 +69,7 @@ Have to be called only once on each page load, for side effects only.
 
 Function should add all the event listeners for the [`headus` module custom events](headus#custom-events). It has to be called only once on each page load, for side effects only.
 
-Add [`addnodetrigger`](./headus#addnodetrigger) event handler calling the [`dialogus.open('add node', {?name: event.detail.name, canClose: true})`](./dialogus#openname-data) method. If the `name` is not provided, the `name` property on the data argument is to be skipped.
+Add [`addnodetrigger`](./headus#addnodetrigger) event handler calling the [`dialogus.open('add node', {?name: event.detail.name, canClose: true})`](./dialogus#openname-data) method. If the `name` is not provided or if it is provided but the call to [`graphus.isNameTaken(name)`](./graphus#isnametakenname) returns `true`, the `name` property on the data argument is to be skipped.
 
 Add [`querynode`](./headus#querynode) event handler calling the [`changeCurrentNodeBy({name}, true)`](#changecurrentnodebyidname-select-idname-silent) function for the given `event.detail.query`.
 
@@ -103,7 +103,7 @@ Function should add all the event listeners for the [`dialogus` module custom ev
 
 Add [`splashtrigger`](./dialogus#splashtigger) event handler calling the [`dialogus.open('splash', {version, canClose: true})`](./dialogus#openname-data) method.
 
-Add [`addnodetrigger`](./dialogus#addnodetrigger) event handler should check if `event.detail.name` is empty, and if is is, should call the [`dialogus.open('inform', {title: 'Name required', text: 'Node name cannot be empty or empty-like.', canClose: true})`](./dialogus#openname-data) method. Otherwise, should call the [`dialogus.close('add node')`](./dialogus#closename) method, and then call the [`graphus.addNode(event.detail.name, ?event.detail.description)`](./graphus#addnodename-description) method. Second argument is optional, it is passed if not empty.
+Add [`addnodetrigger`](./dialogus#addnodetrigger) event handler should check if `event.detail.name` is empty, and if is is, should call the [`dialogus.open('inform', {title: 'Name required', text: 'Node name cannot be empty or empty-like.', canClose: true})`](./dialogus#openname-data) method. Otherwise it should call the [`graphus.isNameTaken(event.detail.name)`](./graphus#isnametakenname) method, and if it returns `true`, should call the [`dialogus.open('inform', {title: 'Name taken', text: 'There's already a node named ' + event.detail.name + '. Try another name.', canClose: true})`](./dialogus#openname-data) method. Otherwise, should call the [`dialogus.close('add node')`](./dialogus#closename) method, and then call the [`graphus.addNode(event.detail.name, ?event.detail.description)`](./graphus#addnodename-description) method. Second argument is optional, it is passed if not empty.
 
 Add [`deletenodetrigger`](./dialogus#deletenodetrigger) event handler calling the [`graphus.deleteNode(event.detail.id)`](./graphus#delenodeid) method.
 
