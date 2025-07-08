@@ -11,6 +11,7 @@ It should export a `nodus` object that is an instance of `EventTarget` with the 
 - [`showMany(...)`](#showmanynodes)
 - [`getCurrentId()`](#getcurrentid)
 - [`getListedNodes()`](#getlistednodes)
+- [`updateOne(...)`](#updateonename-description)
 - [`removeNode(id)`](#removenodeid)
 
 Also `nodus` object is expected to dispatch the following custom events:
@@ -60,6 +61,12 @@ This function (method) should return the list of ids of the currently listed nod
 
 [Back to top](#nodus-module-requirements)
 
+### `updateOne(name, description)`
+
+This function (method) should update the current node with the given `name` and `description`.
+
+[Back to top](#nodus-module-requirements)
+
 ### `removeNode(id)`
 
 This function (method) should remove the node with the given `id` from the list of currently shown nodes either in `many` mode or in the list of linked nodes of the current node.
@@ -73,6 +80,8 @@ This event should be dispatched when the user clicks on a "Go to Node" button ne
 [Back to top](#nodus-module-requirements)
 
 ### `editnodetrigger`
+
+This event should be dispatched when the user clicks on a "Edit Node" button next to a specific node. It should carry such node detail as `id`.
 
 [Back to top](#nodus-module-requirements)
 

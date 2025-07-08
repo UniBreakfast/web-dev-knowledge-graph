@@ -16,8 +16,9 @@ It should export a `graphus` object that is an instance of `EventTarget` with th
 - [`getNodes()`](#getnodes)
 - [`getLinks()`](#getlinks)
 - [`addNode(...)`](#addnodename-description)
-- [`deleteNode(...)`](#delenodeid)
-- [`deleteLink(...)`](#delinkfrom-to)
+- [`updateNode(...)`](#updatenodeid-name-description)
+- [`deleteNode(...)`](#deletenodeid)
+- [`deleteLink(...)`](#deletelinkfrom-to)
 
 Also `graphus` object is expected to dispatch the following custom events:
 
@@ -167,6 +168,10 @@ This function (method) should return an array of all links in the graph. Expecte
 This function (method) should add the node with the given `name` and `description` to the graph. Should expect `name` to be a non-empty string. Should also expect `description` to be a string. Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details.
 
 [Back to top](#graphus-module-requirements)
+
+### `updateNode(id, {?name, ?description})`
+
+This function (method) should update the node with the given `id` with the new `name` and/or `description`. Should expect `id` to be a positive integer. If `name` is given, it should be a non-empty string. If `description` is given, it should be a string. Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details.
 
 ### `deleteNode(id)`
 
