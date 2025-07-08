@@ -10,12 +10,14 @@ It should export a `graphus` object that is an instance of `EventTarget` with th
 - [`isValidGraph(...)`](#isvalidgraphdata)
 - [`isNameTaken(...)`](#isnametakenname)
 - [`getIdByName(...)`](#getidbynamename)
+- [`getNameById(...)`](#getnamebyidid)
 - [`getNodeById(...)`](#getnodebyidid)
 - [`getLinksById(...)`](#getlinksbyidid1-id2)
 - [`getNodeNames()`](#getnodenames)
 - [`getNodes()`](#getnodes)
 - [`getLinks()`](#getlinks)
 - [`addNode(...)`](#addnodename-description)
+- [`addLink(...)`](#addlinkfrom-to-description)
 - [`updateNode(...)`](#updatenodeid-name-description)
 - [`deleteNode(...)`](#deletenodeid)
 - [`deleteLink(...)`](#deletelinkfrom-to)
@@ -69,6 +71,12 @@ Predicate function (method) that returns `true` if some node in the graph struct
 ### `getIdByName(name)`
 
 This function (method) should return the id of the node with the given `name` or `null` if the node is not found. Should expect `name` to be a non-empty string.
+
+[Back to top](#graphus-module-requirements)
+
+### `getNameById(id)`
+
+This function (method) should return the name of the node with the given `id` or `null` if the node is not found. Should expect `id` to be a positive integer.
 
 [Back to top](#graphus-module-requirements)
 
@@ -169,6 +177,10 @@ This function (method) should add the node with the given `name` and `descriptio
 
 [Back to top](#graphus-module-requirements)
 
+### `addLink(from, to, ?description)`
+
+This function (method) should add the link between the nodes with the given `from` and `to` ids to the graph. Should expect both `from` and `to` to be positive integers. Should also expect `description` to be a string. Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details.
+
 ### `updateNode(id, {?name, ?description})`
 
 This function (method) should update the node with the given `id` with the new `name` and/or `description`. Should expect `id` to be a positive integer. If `name` is given, it should be a non-empty string. If `description` is given, it should be a string. Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details.
@@ -219,5 +231,6 @@ This event should be dispatched when the graph is updated. It should carry the d
     }, // if type is 'node', action is 'delete' and 
   ]   // there were links to/from the deleted node
 }
+```
 
 [Back to top](#graphus-module-requirements)

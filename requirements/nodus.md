@@ -93,4 +93,6 @@ This event should be dispatched when the user clicks on a "Delete Node" button n
 
 ### `addlinktrigger`
 
+This event should be dispatched when the user clicks on a "Add Link" button next to a specific node. It should carry such node detail as `id`.
+
 [Back to top](#nodus-module-requirements)

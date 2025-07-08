@@ -14,6 +14,7 @@ Also `dialogus` object is expected to dispatch the following custom events:
 
 - [`splashtrigger`](#splashtigger)
 - [`addnodetrigger`](#addnodetrigger)
+- [`addlinktrigger`](#addlinktrigger)
 - [`savenodetrigger`](#savenodetrigger)
 - [`deletenodetrigger`](#deletenodetrigger)
 - [`deletelinktrigger`](#deletelinktrigger)
@@ -67,6 +68,20 @@ This event should be dispatched when the "Add" button is clicked in "Add node" d
 ```
 {
   name: trimmed string,
+  description: trimmed string,
+}
+```
+
+[Back to top](#dialogus-module-requirements)
+
+### `addlinktrigger`
+
+This event should be dispatched when the "Add" button is clicked in "Add Link" dialog. It should carry the `event.detail.link` object of the following shape:
+
+```
+{
+  from: trimmed string,
+  to: trimmed string,
   description: trimmed string,
 }
 ```

@@ -87,6 +87,8 @@ Add [`editnodetrigger`](./nodus#editnodetrigger) event handler calling the [`dia
 
 Add [`deletenodetrigger`](./nodus#deletenodetrigger) event handler getting the node information with the [`graphus.getNodeById(event.detail.id)`](./graphus#getnodebyidid) method and then calling the [`dialogus.open('delete node', {node, canClose: true})`](./dialogus#openname-data) method.
 
+Add [`addlinktrigger`](./nodus#addlinktrigger) event handler calling the [`graphus.getNameById(event.detail.id)`](./graphus#getnamebyidid) method, and then calling the [`dialogus.open('add link', {from: name}, canClose: true})`](./dialogus#openname-data) method.
+
 [Back to top](#application-level-requirements)
 
 ## `listenForLinkusEvents()`
@@ -111,6 +113,8 @@ Add [`savenodetrigger`](./dialogus#savenodetrigger) event handler, that should a
 
 Add [`deletenodetrigger`](./dialogus#deletenodetrigger) event handler calling the [`graphus.deleteNode(event.detail.id)`](./graphus#delenodeid) method.
 
+Add [`addlinktrigger`](./dialogus#addlinktrigger) event handler that should accept the `event.detail.link` object, then check if both `link.from` and `link.to` are empty, and if they are call the [`dialogus.open('inform', {title: 'Node names required', text: 'Links are linking pairs of nodes, so node names have to be specified.', canClose: true})`](./dialogus#openname-data) method. Otherwise it should check if either `link.from` or `link.to` is empty, or they are equal, or [`graphus.getIdByName(link.from)`](./graphus#getidbynamename) or [`graphus.getIdByName(link.to)`](./graphus#getidbynamename) returns `null`, and if so call the [`dialogus.open('inform', {title: 'Two exising nodes required', text: 'Links can be created only between two distinct existing nodes'})`](./dialogus#openname-data) method. Otherwise, should call the [`dialogus.close('add link')`](./dialogus#closename) method, and then call the [`graphus.addLink(fromId, toId, link.description)`](./graphus#addlinkfrom-to-description) method.
+
 Add [`deletelinktrigger`](./dialogus#deletelinktrigger) event handler accepting the `event.detail.id`, then calling the [`graphus.deleteLink(id.from, id.to)`](./graphus#delinkfrom-to) method.
 
 [Back to top](#application-level-requirements)
@@ -133,6 +137,10 @@ If the `change.type` is `node` and `change.action` is `add`, call the [`headus.e
 If the `change.type` is `node` and `change.action` is `update`, check if `change.name.old` equals `change.name.new`. If it does not, call the [`headus.unlistNode(change.name.old)`](./headus#unlistnodename) and [`headus.enlistNode(change.name.new)`](./headus#enlistnodename) methods. Also call the [`nodus.getCurrentId()`](./nodus#getcurrentid) method and if it returns `change.id`, call the [`nodus.updateOne({name: change.name.new, description: change.description})`](./nodus#updateonename-description) method.
 
 If the `change.type` is `node` and `change.action` is `delete`, call the [`headus.unlistNode(change.id)`](./headus#unlistnodeid) method. Also if the [`headus.getQuery()`](./headus#getquery) method returns `change.name`, call the [`headus.clearQuery()`](./headus#clearquery) method. Also if the [`nodus.getCurrentId()`](./nodus#getcurrentid) method returns `change.id`, call the [`showMany()`](#showMany) function. Also if the [`nodus.getListedNodes()`](./nodus#getlistednodes) method returns an array of ids that includes `change.id`, call the [`nodus.removeNode(change.id)`](./nodus#removenodeid) method. Also if the [`linkus.geListedLinks()`](./linkus#getlistedlinks) method returns an array of links that includes any of the id pairs of either `change.id` or `change.links`, call the [`linkus.removeLink(from, to)`](./linkus#removelinkfrom-to) method for each such link id pair.
+
+If the `change.type` is `link` and `change.action` is `add`, call the [`nodus.getCurrentId()`](./nodus#getcurrentid) method and if it returns the `change.id.from`, call the [`changeCurrentNodeBy({id: change.id.from, select: {id: change.id.to})`](#changecurrentnodebyidname-select-idname-silent) function. Otherwise if it returns the `change.id.to`, call the [`changeCurrentNodeBy({id: change.id.to, select: {id: change.id.from})`](#changecurrentnodebyidname-select-idname-silent) function.
+
+If the `change.type` is `link` and `change.action` is `delete`, call the [`nodus.getCurrentId()`](./nodus#getcurrentid) method, and if it returns the `change.id.from`, call the [`changeCurrentNodeBy({id: change.id.from})`](#changecurrentnodebyidname-select-idname-silent) function. Otherwise if it returns the `change.id.to`, call the [`changeCurrentNodeBy({id: change.id.to})`](#changecurrentnodebyidname-select-idname-silent) function.
   
 [Back to top](#application-level-requirements)
 

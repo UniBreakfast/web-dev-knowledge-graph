@@ -394,22 +394,6 @@ Steps:
    
 [Back to top](#user-stories)
 
-## Only existing nodes can be linked
-
-Steps:
-
-  1. User gets to the New Link dialog.
-  2. User inputs node names, one or both of which do not exist.
-  3. User clicks the "Add" button.
-  4. Informer dialog is opened.
-  5. Dialog is titled "Node not found".
-  6. There's a message saying that only existing nodes can be linked, but there's no node with name "node_name".
-  7. User clicks the "OK" button.
-  8. Informer dialog is closed.
-  9. User can change the name to an existing one and try again or close the dialog.
-   
-[Back to top](#user-stories)
-
 ## New Link dialog can be closed
 
 Steps:
