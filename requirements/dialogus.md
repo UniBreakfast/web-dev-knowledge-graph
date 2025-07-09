@@ -13,6 +13,9 @@ It should export a `dialogus` object that is an instance of `EventTarget` with t
 
 Also `dialogus` object is expected to dispatch the following custom events:
 
+- [`showalltrigger`](#showalltrigger)
+- [`exporttrigger`](#exporttrigger)
+- [`importtrigger`](#importtrigger)
 - [`splashtrigger`](#splashtigger)
 - [`addnodetrigger`](#addnodetrigger)
 - [`addlinktrigger`](#addlinktrigger)
@@ -70,6 +73,24 @@ It supposed to recognize the following dialog names:
 [Back to top](#dialogus-module-requirements)
 
 ## Custom events
+
+### `showalltrigger`
+
+This event should be dispatched when the "Show all nodes and links" button is clicked in "Menu" dialog.
+
+[Back to top](#dialogus-module-requirements)
+
+### `exporttrigger`
+
+This event should be dispatched when the "Export Graph" button is clicked in "Menu" dialog.
+
+[Back to top](#dialogus-module-requirements)
+
+### `importtrigger`
+
+This event should be dispatched when the "Import Graph" button is clicked in "Menu" dialog.
+
+[Back to top](#dialogus-module-requirements)
 
 ### `splashtigger`
 

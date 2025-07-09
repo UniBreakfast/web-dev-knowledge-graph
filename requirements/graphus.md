@@ -7,6 +7,7 @@
 It should export a `graphus` object that is an instance of `EventTarget` with the following methods:
 
 - [`init(...)`](#initdata)
+- [`export()`](#export)
 - [`isValidGraph(...)`](#isvalidgraphdata)
 - [`isNameTaken(...)`](#isnametakenname)
 - [`doesLinkExist(...)`](#doeslinkexistfrom-to)
@@ -37,6 +38,12 @@ Also `graphus` object is expected to dispatch the following custom events:
 ### `init(?data)`
 
 This function (method) is to be used for side effects only. It should initialize the graph with the given `data`, if any, which should lead to the [`graphloaded`](#graphloaded) event being dispatched.
+
+[Back to top](#graphus-module-requirements)
+
+### `export()`
+
+This function (method) should return the current graph structure serialized as a JSON string.
 
 [Back to top](#graphus-module-requirements)
 

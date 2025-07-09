@@ -109,6 +109,12 @@ Add [`deletelinktrigger`](./linkus#deletelinktrigger) event handler accepting th
 
 Function should add all the event listeners for the [`dialogus` module custom events](dialogus#custom-events). It has to be called only once on each page load, for side effects only.
 
+Add [`showalltrigger`](./dialogus#showalltrigger) event handler calling the [`showMany()`](#showmany) function and [`dialogus.close('menu')`](./dialogus#closename) method.
+
+Add [`exporttrigger`](./dialogus#exporttrigger) event handler calling the [`graphus.export()`](./graphus#exportgraph) method and then opening the native file save dialog with suggested name like `graph yyyy-mm-dd.json`.
+
+Add [`importtrigger`](./dialogus#importtrigger) event handler opening the native file open dialog and then if the user selected a JSON-file, parsing it with `JSON.parse()`, validating with the [`graphus.isValidGraph(data)`](./graphus#isvalidgraphdata) method and then, if it is valid, calling the [`graphus.init(data)`](./graphus#initdata) method and [`dialogus.close('menu')`](./dialogus#closename) method.
+
 Add [`splashtrigger`](./dialogus#splashtigger) event handler calling the [`dialogus.open('splash', {version, canClose: true})`](./dialogus#openname-data) method.
 
 Add [`addnodetrigger`](./dialogus#addnodetrigger) event handler, that should check if `event.detail.name` is empty, and if is is, should call the [`dialogus.open('inform', {title: 'Name required', text: 'Node name cannot be empty or empty-like.', canClose: true})`](./dialogus#openname-data) method. Otherwise, it should call the [`graphus.isNameTaken(event.detail.name)`](./graphus#isnametakenname) method, and if it returns `true`, should call the [`dialogus.open('inform', {title: 'Name taken', text: 'There\'s already a node named ' + event.detail.name + '. Try another name.', canClose: true})`](./dialogus#openname-data) method. Otherwise, should call the [`dialogus.close('add node')`](./dialogus#closename) method, and then call the [`graphus.addNode(event.detail.name, ?event.detail.description)`](./graphus#addnodename-description) method. Second argument is optional, it is passed if not empty.
