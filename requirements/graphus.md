@@ -9,16 +9,19 @@ It should export a `graphus` object that is an instance of `EventTarget` with th
 - [`init(...)`](#initdata)
 - [`isValidGraph(...)`](#isvalidgraphdata)
 - [`isNameTaken(...)`](#isnametakenname)
+- [`doesLinkExist(...)`](#doeslinkexistfrom-to)
 - [`getIdByName(...)`](#getidbynamename)
 - [`getNameById(...)`](#getnamebyidid)
 - [`getNodeById(...)`](#getnodebyidid)
 - [`getLinksById(...)`](#getlinksbyidid1-id2)
+- [`getLinkDescription(...)`](#getlinkdescriptionfrom-to)
 - [`getNodeNames()`](#getnodenames)
 - [`getNodes()`](#getnodes)
 - [`getLinks()`](#getlinks)
 - [`addNode(...)`](#addnodename-description)
 - [`addLink(...)`](#addlinkfrom-to-description)
 - [`updateNode(...)`](#updatenodeid-name-description)
+- [`updateLink(...)`](#updatelinkfrom-to-data)
 - [`deleteNode(...)`](#deletenodeid)
 - [`deleteLink(...)`](#deletelinkfrom-to)
 
@@ -65,6 +68,12 @@ name should be non-empty sanitized and trimmed string
 ### `isNameTaken(name)`
 
 Predicate function (method) that returns `true` if some node in the graph structure has the given `name`, `false` otherwise.
+
+[Back to top](#graphus-module-requirements)
+
+### `doesLinkExist(from, to)`
+
+Predicate function (method) that returns `true` if the graph structure contains a link from `from` to `to`, `false` otherwise.
 
 [Back to top](#graphus-module-requirements)
 
@@ -120,6 +129,12 @@ This function (method) should return an array of links to/from the node with the
 ```
 
 If `id2` is given, should return an array of links between the nodes with `id1` and `id2` only.
+
+[Back to top](#graphus-module-requirements)
+
+### `getLinkDescription(from, to)`
+
+This function (method) should return the description of the link with the given `from` and `to` ids or `null` if the link is not found. Should expect both `from` and `to` to be positive integers.
 
 [Back to top](#graphus-module-requirements)
 
@@ -181,9 +196,25 @@ This function (method) should add the node with the given `name` and `descriptio
 
 This function (method) should add the link between the nodes with the given `from` and `to` ids to the graph. Should expect both `from` and `to` to be positive integers. Should also expect `description` to be a string. Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details.
 
+[Back to top](#graphus-module-requirements)
+
 ### `updateNode(id, {?name, ?description})`
 
 This function (method) should update the node with the given `id` with the new `name` and/or `description`. Should expect `id` to be a positive integer. If `name` is given, it should be a non-empty string. If `description` is given, it should be a string. Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details.
+
+[Back to top](#graphus-module-requirements)
+
+### `updateLink(from, to, data)`
+
+This function (method) should update the link between the nodes with the given `from` and `to` ids with the new data. Should expect both `from` and `to` to be positive integers. The `data` object can contain the following properties:
+
+- `from`: positive integer, the new `fromId` if changed
+- `to`: positive integer, the new `toId` if changed
+- `description`: string
+
+Then it should dispatch the [`graphupdated`](#graphupdated) event with the change details.
+
+[Back to top](#graphus-module-requirements)
 
 ### `deleteNode(id)`
 
@@ -216,7 +247,11 @@ This event should be dispatched when the graph is updated. It should carry the d
   id: positive integer // if type is 'node'
       | { // if type is 'link'
         from: positive integer, 
-        to: positive integer
+        to: positive integer,
+        update: { // if linked nodes are different now
+          from: positive integer,
+          to: positive integer
+        }
       },
   name: string // if type is 'node' and action is add
         | { // if action is update

@@ -10,6 +10,7 @@ It should export a `linkus` object that is an instance of `EventTarget` with the
 - [`showTwin(...)`](#showtwinlinks-id)
 - [`showMany(...)`](#showmanylinks)
 - [`geListedLinks()`](#getlistedlinks)
+- [`updateLink(...)`](#updatelinkfrom-to-description)
 - [`removeLink(...)`](#removelinkfrom-to)
 
 Also `linkus` object is expected to dispatch the following custom events:
@@ -57,6 +58,12 @@ This function (method) should return an array of links that are currently shown 
 
 [Back to top](#linkus-module-requirements)
 
+### `updateLink(from, to, description)`
+
+This function (method) should update the description of the link with the given `from` and `to` ids on the page. It should be called for side effects only.
+
+[Back to top](#linkus-module-requirements)
+
 ### `removeLink(from, to)`
 
 This function (method) should remove the link with the given `from` and `to` ids from the list on the page. It should be called for side effects only.
@@ -77,6 +84,15 @@ This event should be dispatched when the "Go to link" button is clicked next to 
 [Back to top](#linkus-module-requirements)
 
 ### `editlinktrigger`
+
+This event should be dispatched when the "Edit link" button is clicked next to a specific link. It should carry the `event.detail.id` property with the following data:
+
+```
+{
+  from: positive integer,
+  to: different positive integer,
+}
+```
 
 [Back to top](#linkus-module-requirements)
 

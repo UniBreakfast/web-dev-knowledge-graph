@@ -20,6 +20,7 @@ Also `nodus` object is expected to dispatch the following custom events:
 - [`editnodetrigger`](#editnodetrigger)
 - [`deletenodetrigger`](#deletenodetrigger)
 - [`addlinktrigger`](#addlinktrigger)
+- [`nodeselectedtrigger`](#nodeselectedtrigger)
 
 [Back to top](#nodus-module-requirements)
 
@@ -75,7 +76,7 @@ This function (method) should remove the node with the given `id` from the list 
 
 ### `gotonodetrigger`
 
-This event should be dispatched when the user clicks on a "Go to Node" button next to a specific node in `many` mode. It should carry such node detail as `id`.
+This event should be dispatched when the user clicks on a "Go to Node" button next to a specific node in `many` mode or on an already selected node in the list of linked nodes in `current` mode. It should carry such node detail as `id`.
 
 [Back to top](#nodus-module-requirements)
 
@@ -94,5 +95,18 @@ This event should be dispatched when the user clicks on a "Delete Node" button n
 ### `addlinktrigger`
 
 This event should be dispatched when the user clicks on a "Add Link" button next to a specific node. It should carry such node detail as `id`.
+
+[Back to top](#nodus-module-requirements)
+
+### `nodeselectedtrigger`
+
+This event should be dispatched when the user clicks on a node in the list of linked nodes of the current node. It should carry such node detail as `id`. It should be of the following shape:
+
+```
+{
+  current: positive integer,
+  selected: positive integer
+} 
+```
 
 [Back to top](#nodus-module-requirements)

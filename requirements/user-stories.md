@@ -532,8 +532,7 @@ Steps:
   10. User clicks on the same selected node item.
   11. That node becomes "current".
   12. Left panel now shows that node information.
-  13. Node that was "current" previously becomes "selected" in the list of linked nodes below.
-  14. Right panel shows the list of link(s) between the current node and the selected node but direction is reversed because of the opposite point of view.
+  13. Right panel shows the list of link(s) with the current node involved..
    
 [Back to top](#user-stories)
 

@@ -9,6 +9,7 @@ It should export a `dialogus` object that is an instance of `EventTarget` with t
 - [`init()`](#init)
 - [`open(...)`](#openname-data) 
 - [`close(...)`](#closename)
+- [`swapDirections(...)`](#swapdirectionsname)
 
 Also `dialogus` object is expected to dispatch the following custom events:
 
@@ -16,8 +17,10 @@ Also `dialogus` object is expected to dispatch the following custom events:
 - [`addnodetrigger`](#addnodetrigger)
 - [`addlinktrigger`](#addlinktrigger)
 - [`savenodetrigger`](#savenodetrigger)
+- [`savelinktrigger`](#savelinktrigger)
 - [`deletenodetrigger`](#deletenodetrigger)
 - [`deletelinktrigger`](#deletelinktrigger)
+- [`swapdirectionstrigger`](#swapdirectionstrigger)
 
 [Back to top](#dialogus-module-requirements)
 
@@ -53,6 +56,19 @@ This function (method) is to be used for side effects only. It should close the 
 
 It supposed to recognize the same dialog names as [`open(...)`](#openname-data).
 
+[Back to top](#dialogus-module-requirements)
+
+### `swapDirections(name)`
+
+This function (method) is to be used for side effects only. It should swap the values in the `from` and `to` fields of the dialog with the given `name`.
+
+It supposed to recognize the following dialog names:
+
+- `new link`
+- `edit link`
+
+[Back to top](#dialogus-module-requirements)
+
 ## Custom events
 
 ### `splashtigger`
@@ -80,6 +96,24 @@ This event should be dispatched when the "Add" button is clicked in "Add Link" d
 
 ```
 {
+  from: trimmed string,
+  to: trimmed string,
+  description: trimmed string,
+}
+```
+
+[Back to top](#dialogus-module-requirements)
+
+### `savelinktrigger`
+
+This event should be dispatched when the "Save" button is clicked in "Edit link" dialog. It should carry the `event.detail.link` object of the following shape:
+
+```
+{
+  id {
+    from: positive integer,
+    to: different positive integer,
+  },
   from: trimmed string,
   to: trimmed string,
   description: trimmed string,
@@ -122,3 +156,9 @@ This event should be dispatched when the "Delete" button is clicked in "Delete l
 Right after the event is dispatched, the "Delete link" dialog should be closed.
 
 [Back to top](#dialogus-module-requirements)s
+
+### `swapdirectionstrigger`
+
+This event should be dispatched when the "Swap" button is clicked in "Add link" or "Edit link" dialog. It should contain the dialog name as `event.detail.name`. Dialogus should also listen for this event and call the [`swapDirections(event.detail.name)`](#swapdirectionsname) method on itself.
+
+[Back to top](#dialogus-module-requirements)
