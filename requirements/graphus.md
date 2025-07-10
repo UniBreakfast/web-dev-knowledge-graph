@@ -15,11 +15,13 @@ It should export a `graphus` object that is an instance of `EventTarget` with th
 - [`getNameById(...)`](#getnamebyidid)
 - [`getNodeById(...)`](#getnodebyidid)
 - [`getLinksById(...)`](#getlinksbyidid1-id2)
+- [`getNodeDescription(...)`](#getnodedescriptionid)
 - [`getLinkDescription(...)`](#getlinkdescriptionfrom-to)
 - [`getNodeNames()`](#getnodenames)
 - [`getNodes(...)`](#getnodesfilter)
 - [`getLinks(...)`](#getlinksfilter)
 - [`getStats()`](#getstats)
+- [`listAllId()`](#listallid)
 - [`addNode(...)`](#addnodename-description)
 - [`addLink(...)`](#addlinkfrom-to-description)
 - [`updateNode(...)`](#updatenodeid-name-description)
@@ -112,7 +114,8 @@ This function (method) should return the node with the given `id` or `null` if t
       name: string,
       direction: 'incoming' | 'outgoing' | 'two-way'
     },
-  ]
+  ],
+  linkCount: non-negative integer
 }
 ```
 
@@ -137,6 +140,12 @@ This function (method) should return an array of links to/from the node with the
 ```
 
 If `id2` is given, should return an array of links between the nodes with `id1` and `id2` only.
+
+[Back to top](#graphus-module-requirements)
+
+### `getNodeDescription(id)`
+
+This function (method) should return the description of the node with the given `id` or `null` if the node is not found. Should expect `id` to be a positive integer.
 
 [Back to top](#graphus-module-requirements)
 
@@ -213,8 +222,30 @@ This function (method) should return an object with the following properties:
   linksPerNode: {
     min: non-negative integer,
     max: non-negative integer,
-    avg: non-negative integer
-  }
+    avg: non-negative integer,
+    count: { // number of nodes with that min/max links
+      min: non-negative integer,
+      max: non-negative integer
+    }
+  },
+}
+```
+
+[Back to top](#graphus-module-requirements)
+
+### `listAllId()`
+
+This function (method) should return all the keys in the graph structure presented as an object with the following shape:
+
+```
+{
+  nodes: [ 0 or more of distinct positive integers],
+  links: [ 0 or more of objects like the one below
+    {
+      from: positive integer,
+      to: different positive integer
+    },
+  ]
 }
 ```
 

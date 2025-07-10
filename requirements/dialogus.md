@@ -58,6 +58,87 @@ It supposed to recognize the following dialog names:
 - `edit link`
 - `delete link`
 
+If `name` is `menu` then the `data` should be used to prepare the buttons in the "Menu" dialog. `data` object is expected to have the `counts` property of the following shape:
+
+```
+{
+  descriptionless: {
+    nodes: non-negative integer,
+    links: non-negative integer
+  },
+  linksPerNode: {
+    min: non-negative integer,
+    max: non-negative integer
+  },
+  present: {
+    nodes: boolean,
+    links: boolean
+  }
+}
+```
+
+If `name` is `inform` then the `data` should be used to prepare the "Inform" dialog. `data` object is expected to carry the following properties:
+
+```
+{
+  title: string,
+  text: string
+}
+```
+
+If `name` is `new node` then the `data` can optionally contain the `name` property to pre-fill the input field. 
+
+If `name` is `edit node` then the `data` should be used to prepare the "Edit Node" dialog. `data` object is expected to have the `node` property of the following shape:
+
+```
+{
+  id: positive integer,
+  name: string,
+  description: string
+}
+```
+
+If `name` is `delete node` then the `data` should be used to prepare the "Delete Node" dialog. `data` object is expected to have the `node` property of the following shape with the following properties:
+
+```
+{
+  id: positive integer,
+  name: string,
+  linkCount: non-negative integer
+}
+```
+
+If `name` is `new link` then the `data` should be used to prepare the "New Link" dialog. `data` object can optionally contain the `from` property to pre-fill the input field.
+
+If `name` is `edit link` then the `data` should be used to prepare the "Edit Link" dialog. `data` object is expected to have the `link` property of the following shape:
+
+```
+{
+  id: {
+    from: positive integer,
+    to: different positive integer
+  },
+  from: string, node name,
+  to: string, node name,
+  description: string
+}
+```
+
+If `name` is `delete link` then the `data` should be used to prepare the "Delete Link" dialog. `data` object is expected to have the `link` property with the following properties:
+
+```
+{
+  from: {
+    id: positive integer,
+    name: string
+  },
+  to: {
+    id: positive integer,
+    name: string
+  }
+}
+```
+
 [Back to top](#dialogus-module-requirements)
 
 ### `close(name)`

@@ -73,7 +73,7 @@ Add [`addnodetrigger`](./headus#addnodetrigger) event handler calling the [`dial
 
 Add [`querynode`](./headus#querynode) event handler calling the [`changeCurrentNodeBy({name}, true)`](#changecurrentnodebyidname-select-idname-silent) function for the given `event.detail.query`.
 
-Add [`menutrigger`](./headus#menutrigger) event handler calling the [`dialogus.open('menu', {canClose: true})`](./dialogus#openname-data) method. 
+Add [`menutrigger`](./headus#menutrigger) event handler calling the [`graphus.getStats()`](./graphus#getstats) method, finding `counts` with `{descriptionless: stats.descriptionless, linksPerNode: stats.linksPerNode.count, present: {nodes: !!stats.nodes.length, links: !!stats.links.length}}` and then calling the [`dialogus.open('menu', {counts, canClose: true})`](./dialogus#openname-data) method. 
 
 [Back to top](#application-level-requirements)
 
@@ -83,7 +83,7 @@ Function should add all the event listeners for the [`nodus` module custom event
 
 Add [`gotonodetrigger`](./nodus#gotonodetrigger) event handler calling the [`changeCurrentNodeBy({id})`](#changecurrentnodebyidname-select-idname-silent) function for the given `event.detail.id`.
 
-Add [`editnodetrigger`](./nodus#editnodetrigger) event handler calling the [`dialogus.open('edit node', {node, canClose: true})`](./dialogus#openname-data) method. It should get the node information with the [`graphus.getNodeById(event.detail.id)`](./graphus#getnodebyidid) method and pass it as `node` property in the data argument.
+Add [`editnodetrigger`](./nodus#editnodetrigger) event handler calling the [`graphus.getNameById(event.detail.id)`](./graphus#getnamebyidid) and [`graphus.getDescriptionById(event.detail.id)`](./graphus#getdescriptionbyidid) methods, and then calling the [`dialogus.open('edit node', {node: {id: event.detail.id, name, description}, canClose: true})`](./dialogus#openname-data) method. It should get the node information with the [`graphus.getNodeById(event.detail.id)`](./graphus#getnodebyidid) method and pass it as `node` property in the data argument.
 
 Add [`deletenodetrigger`](./nodus#deletenodetrigger) event handler getting the node information with the [`graphus.getNodeById(event.detail.id)`](./graphus#getnodebyidid) method and then calling the [`dialogus.open('delete node', {node, canClose: true})`](./dialogus#openname-data) method.
 
@@ -99,9 +99,9 @@ Function should add all the event listeners for the [`linkus` module custom even
 
 Add [`gotolinktrigger`](./linkus#gotolinktrigger) event handler calling the [`changeCurrentNodeBy({id: id.from, select: {id: id.to}})`](#changecurrentnodebyidname-select-idname-silent) function for the given `event.detail.id`.
 
-Add [`editlinktrigger`](./linkus#editlinktrigger) event handler accepting the `event.detail.id`, then getting the node names with the [`graphus.getNameById(id.from)`](./graphus#getnamebyidid) and [`graphus.getNameById(id.to)`](./graphus#getnamebyidid) methods, and the link description with the [`graphus.getLinkDescription(id.from, id.to)`](./graphus#getlinkdescriptionfrom-to) method, and then calling the [`dialogus.open('edit link', {link: {id: {from: id.from, to: id.to}, from: fromName, to: toName}, description, canClose: true})`](./dialogus#openname-data) method.
+Add [`editlinktrigger`](./linkus#editlinktrigger) event handler accepting the `event.detail.id`, then getting the node names with the [`graphus.getNameById(id.from)`](./graphus#getnamebyidid) and [`graphus.getNameById(id.to)`](./graphus#getnamebyidid) methods, and the link description with the [`graphus.getLinkDescription(id.from, id.to)`](./graphus#getlinkdescriptionfrom-to) method, and then calling the [`dialogus.open('edit link', {link: {id: {from: id.from, to: id.to}, from: fromName, to: toName, description}, canClose: true})`](./dialogus#openname-data) method.
 
-Add [`deletelinktrigger`](./linkus#deletelinktrigger) event handler accepting the `event.detail.id`, then getting the link information with the [`graphus.getLinksById(id.from, id.to)`](./graphus#getlinksbyidfrom-to) calling the [`dialogus.open('delete link', {link, canClose: true})`](./dialogus#openname-data) method.
+Add [`deletelinktrigger`](./linkus#deletelinktrigger) event handler accepting the `event.detail.id`, then getting the link information with the [`graphus.getLinks(l => l.from.id == id.from && l.to.id == id.to)`](./graphus#getlinksfilter) calling the [`dialogus.open('delete link', {link, canClose: true})`](./dialogus#openname-data) method and passing the first link from the list as `link` property in the data argument.
 
 [Back to top](#application-level-requirements)
 
@@ -127,7 +127,9 @@ Add [`leastlinkedtrigger`](./dialogus#leastlinkedtrigger) event handler calling 
 
 Add [`mostlinkedtrigger`](./dialogus#mostlinkedtrigger) event handler calling the [`graphus.getNodes(({linkCount: {incoming, outgoing}}, {max}) => incoming + outgoing == max)`](./graphus#getnodesfilter) method and then calling the [`nodus.showMany(nodes)`](./nodus#showmanynodes) method. Also it should call the [`dialogus.close('menu')`](./dialogus#closename) method.
 
-//////////
+Add [`randomnodetrigger`](./dialogus#randomnodetrigger) event handler calling the [`graphus.listAllId()`](./graphus#listallid) method, then picking a random node id from the list, and then calling the [`changeCurrentNodeBy({id})`](#changecurrentnodebyidname-select-idname-silent) function for the given id. Also it should call the [`dialogus.close('menu')`](./dialogus#closename) method.
+
+Add [`randomlinktrigger`](./dialogus#randomlinktrigger) event handler calling the [`graphus.listAllId()`](./graphus#listallid) method, then picking a random link `id` pair from the list, and then calling the [`changeCurrentNodeBy({id: id.from, select: {id: id.to}})`](#changecurrentnodebyidname-select-idname-silent) function for the given id. Also it should call the [`dialogus.close('menu')`](./dialogus#closename) method.
 
 Add [`addnodetrigger`](./dialogus#addnodetrigger) event handler, that should check if `event.detail.name` is empty, and if is is, should call the [`dialogus.open('inform', {title: 'Name required', text: 'Node name cannot be empty or empty-like.', canClose: true})`](./dialogus#openname-data) method. Otherwise, it should call the [`graphus.isNameTaken(event.detail.name)`](./graphus#isnametakenname) method, and if it returns `true`, should call the [`dialogus.open('inform', {title: 'Name taken', text: 'There\'s already a node named ' + event.detail.name + '. Try another name.', canClose: true})`](./dialogus#openname-data) method. Otherwise, should call the [`dialogus.close('add node')`](./dialogus#closename) method, and then call the [`graphus.addNode(event.detail.name, ?event.detail.description)`](./graphus#addnodename-description) method. Second argument is optional, it is passed if not empty.
 
