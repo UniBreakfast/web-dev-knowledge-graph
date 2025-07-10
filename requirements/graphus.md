@@ -17,8 +17,9 @@ It should export a `graphus` object that is an instance of `EventTarget` with th
 - [`getLinksById(...)`](#getlinksbyidid1-id2)
 - [`getLinkDescription(...)`](#getlinkdescriptionfrom-to)
 - [`getNodeNames()`](#getnodenames)
-- [`getNodes()`](#getnodes)
-- [`getLinks()`](#getlinks)
+- [`getNodes(...)`](#getnodesfilter)
+- [`getLinks(...)`](#getlinksfilter)
+- [`getStats()`](#getstats)
 - [`addNode(...)`](#addnodename-description)
 - [`addLink(...)`](#addlinkfrom-to-description)
 - [`updateNode(...)`](#updatenodeid-name-description)
@@ -151,7 +152,7 @@ This function (method) should return an array of all node names in the graph.
 
 [Back to top](#graphus-module-requirements)
 
-### `getNodes()`
+### `getNodes(?filter)`
 
 This function (method) should return an array of all nodes in the graph. Expected shape of result is:
 
@@ -169,9 +170,11 @@ This function (method) should return an array of all nodes in the graph. Expecte
 ]
 ```
 
+If `filter` is given, should return an array of nodes that match the filter, with `filter` being a predicate function that returns `true` if the node matches the filter, `false` otherwise. That `filter` function can expect two arguments: a node of the shape shown above and a stats object with `min` and `max` positive integer properties, telling you how many links the nodes in the graph tend to have.
+
 [Back to top](#graphus-module-requirements)
 
-### `getLinks()`
+### `getLinks(?filter)`
 
 This function (method) should return an array of all links in the graph. Expected shape of result is:
 
@@ -189,6 +192,30 @@ This function (method) should return an array of all links in the graph. Expecte
     description: string
   },
 ]
+```
+
+If `filter` is given, should return an array of links that match the filter, with `filter` being a predicate function that returns `true` if the link matches the filter, `false` otherwise. That `filter` function can expect a link of the shape shown above to be passed as an argument to it.
+
+[Back to top](#graphus-module-requirements)
+
+### `getStats()`
+
+This function (method) should return an object with the following properties:
+
+```
+{
+  nodes: non-negative integer,
+  links: non-negative integer,
+  descriptionless: {
+    nodes: non-negative integer,
+    links: non-negative integer
+  },
+  linksPerNode: {
+    min: non-negative integer,
+    max: non-negative integer,
+    avg: non-negative integer
+  }
+}
 ```
 
 [Back to top](#graphus-module-requirements)

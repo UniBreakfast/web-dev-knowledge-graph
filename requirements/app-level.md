@@ -115,7 +115,19 @@ Add [`exporttrigger`](./dialogus#exporttrigger) event handler calling the [`grap
 
 Add [`importtrigger`](./dialogus#importtrigger) event handler opening the native file open dialog and then if the user selected a JSON-file, parsing it with `JSON.parse()`, validating with the [`graphus.isValidGraph(data)`](./graphus#isvalidgraphdata) method and then, if it is valid, calling the [`graphus.init(data)`](./graphus#initdata) method and [`dialogus.close('menu')`](./dialogus#closename) method.
 
+Add [`statstrigger`](./dialogus#statstrigger) event handler calling the [`graphus.getStats()`](./graphus#getstats) method and then calling the [`dialogus.open('stats', {stats, canClose: true})`](./dialogus#openname-data) method.
+
 Add [`splashtrigger`](./dialogus#splashtigger) event handler calling the [`dialogus.open('splash', {version, canClose: true})`](./dialogus#openname-data) method.
+
+Add [`emptynodestrigger`](./dialogus#emptynodestrigger) event handler calling the [`graphus.getNodes(n => !n.description)`](./graphus#getnodesfilter) method and then calling the [`nodus.showMany(nodes)`](./nodus#showmanynodes) method. Also it should call the [`dialogus.close('menu')`](./dialogus#closename) method.
+
+Add [`emptylinkstrigger`](./dialogus#emptylinkstrigger) event handler calling the [`graphus.getLinks(l => !l.description)`](./graphus#getlinksfilter) method and then calling the [`linkus.showMany(links)`](./linkus#showmanylinks) method. Also it should call the [`dialogus.close('menu')`](./dialogus#closename) method.
+
+Add [`leastlinkedtrigger`](./dialogus#leastlinkedtrigger) event handler calling the [`graphus.getNodes(({linkCount: {incoming, outgoing}}, {min}) => incoming + outgoing == min)`](./graphus#getnodesfilter) method and then calling the [`nodus.showMany(nodes)`](./nodus#showmanynodes) method. Also it should call the [`dialogus.close('menu')`](./dialogus#closename) method.
+
+Add [`mostlinkedtrigger`](./dialogus#mostlinkedtrigger) event handler calling the [`graphus.getNodes(({linkCount: {incoming, outgoing}}, {max}) => incoming + outgoing == max)`](./graphus#getnodesfilter) method and then calling the [`nodus.showMany(nodes)`](./nodus#showmanynodes) method. Also it should call the [`dialogus.close('menu')`](./dialogus#closename) method.
+
+//////////
 
 Add [`addnodetrigger`](./dialogus#addnodetrigger) event handler, that should check if `event.detail.name` is empty, and if is is, should call the [`dialogus.open('inform', {title: 'Name required', text: 'Node name cannot be empty or empty-like.', canClose: true})`](./dialogus#openname-data) method. Otherwise, it should call the [`graphus.isNameTaken(event.detail.name)`](./graphus#isnametakenname) method, and if it returns `true`, should call the [`dialogus.open('inform', {title: 'Name taken', text: 'There\'s already a node named ' + event.detail.name + '. Try another name.', canClose: true})`](./dialogus#openname-data) method. Otherwise, should call the [`dialogus.close('add node')`](./dialogus#closename) method, and then call the [`graphus.addNode(event.detail.name, ?event.detail.description)`](./graphus#addnodename-description) method. Second argument is optional, it is passed if not empty.
 
@@ -182,8 +194,8 @@ If `name` is given instead of `id`, function should call the [`graphus.getIdByNa
 
 Function should call the following functions in that order:
 
-- [`graphus.getNodes()`](./graphus#getnodes)
-- [`graphus.getLinks()`](./graphus#getlinks)
+- [`graphus.getNodes()`](./graphus#getnodesfilter)
+- [`graphus.getLinks()`](./graphus#getlinksfilter)
 - [`nodus.showMany(nodes)`](./nodus#showmanynodes)
 - [`linkus.showMany(links)`](./linkus#showmanylinks)
 - [`showBody()`](#showbody)

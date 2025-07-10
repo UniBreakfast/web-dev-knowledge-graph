@@ -44,7 +44,7 @@ See the [`graphus.getNodeById(id)`](./graphus#getnodebyid) method for the expect
 
 This function (method) is to be used for side effects only. It should show the node list presenting the given `nodes` array in `many` mode.
 
-See the [`graphus.getNodes()`](./graphus#getnodes) method for the expected shape of the `nodes` array.
+See the [`graphus.getNodes()`](./graphus#getnodesfilter) method for the expected shape of the `nodes` array.
 
 Alternatively, if the `nodes` array is empty, should show the "No nodes in the graph..." paragraph message by toggling the corresponding radio button before the `article`.
 

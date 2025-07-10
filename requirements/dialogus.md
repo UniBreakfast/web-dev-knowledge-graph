@@ -16,7 +16,14 @@ Also `dialogus` object is expected to dispatch the following custom events:
 - [`showalltrigger`](#showalltrigger)
 - [`exporttrigger`](#exporttrigger)
 - [`importtrigger`](#importtrigger)
+- [`statstrigger`](#statstrigger)
 - [`splashtrigger`](#splashtigger)
+- [`emptynodestrigger`](#emptynodestrigger)
+- [`emptylinkstrigger`](#emptylinkstrigger)
+- [`leastlinkedtrigger`](#leastlinkedtrigger)
+- [`mostlinkedtrigger`](#mostlinkedtrigger)
+- [`randomnodetrigger`](#randomnodetrigger)
+- [`randomlinktrigger`](#randomlinktrigger)s
 - [`addnodetrigger`](#addnodetrigger)
 - [`addlinktrigger`](#addlinktrigger)
 - [`savenodetrigger`](#savenodetrigger)
@@ -92,9 +99,51 @@ This event should be dispatched when the "Import Graph" button is clicked in "Me
 
 [Back to top](#dialogus-module-requirements)
 
+### `statstrigger`
+
+This event should be dispatched when the "Stats" button is clicked in "Menu" dialog.
+
+[Back to top](#dialogus-module-requirements)
+
 ### `splashtigger`
 
 This event should be dispatched when the "About" button is clicked in "Menu" dialog.
+
+[Back to top](#dialogus-module-requirements)
+
+### `emptynodestrigger`
+
+This event should be dispatched when the "Nodes without description" button is clicked in "Menu" dialog.
+
+[Back to top](#dialogus-module-requirements)
+
+### `emptylinkstrigger`
+
+This event should be dispatched when the "Links without description" button is clicked in "Menu" dialog.
+
+[Back to top](#dialogus-module-requirements)
+
+### `leastlinkedtrigger`
+
+This event should be dispatched when the "Least linked nodes" button is clicked in "Menu" dialog.
+
+[Back to top](#dialogus-module-requirements)
+
+### `mostlinkedtrigger`
+
+This event should be dispatched when the "Most linked nodes" button is clicked in "Menu" dialog.
+
+[Back to top](#dialogus-module-requirements)
+
+### `randomnodetrigger`
+
+This event should be dispatched when the "Random node" button is clicked in "Menu" dialog.
+
+[Back to top](#dialogus-module-requirements)
+
+### `randomlinktrigger`
+
+This event should be dispatched when the "Random link" button is clicked in "Menu" dialog.
 
 [Back to top](#dialogus-module-requirements)
 

@@ -39,7 +39,7 @@ See the [`graphus.getLinksById(id)`](./graphus#getlinksbyid) method for the expe
 
 This function (method) is to be used for side effects only. It should show the link list presenting the given `links` array in `unrelated` mode. All list items should have `outgoing` class.
 
-See the [`graphus.getLinks()`](./graphus#getlinks) method for the expected shape of the `links` array.
+See the [`graphus.getLinks()`](./graphus#getlinksfilter) method for the expected shape of the `links` array.
 
 [Back to top](#linkus-module-requirements)
 
