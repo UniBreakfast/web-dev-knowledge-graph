@@ -32,7 +32,7 @@ This application is primarily for individuals who engage in systems thinking and
 *   **Developers & Architects** mapping software components.
 *   **Students & Researchers** organizing study topics and sources.
 *   **Technical Writers** structuring complex documentation.
-*   **Anyone** practicing non-linear, visual note-taking.
+*   **Anyone** practicing non-linear, associative note-taking.
 
 [Back to top](#brief-graph-application)
 
