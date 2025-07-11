@@ -2,6 +2,8 @@
 
 # Page layout markup requirements
 
+[UI Guidelines are here](ui-guidelines)
+
 #### This document holds requirements for the `index.html` file
 
 HTML markup (with CSS styling) should produce a page with 4 parts:

@@ -1,8 +1,19 @@
-# UI Design Guidelines: GRAPH Application
+[Back to README](..)
+
+# UI Guidelines
+
+[Layout Markup requirements are here](layout-markup)
 
 ## Guiding Philosophy
 
 The visual design of the GRAPH application is guided by principles of **minimalism, clarity, and functionality**. The interface should be clean and unobtrusive, prioritizing content and user interaction over decoration. It employs a light, monochrome color scheme with subtle, purpose-driven color accents. The overall aesthetic is sharp, textual, and information-dense, avoiding heavy visual elements like shadows, gradients, or complex animations.
+
+- [Color Palette](#1-color-palette)
+- [Typography](#2-typography)
+- [Layout & Spacing](#3-layout--spacing)
+- [Component Styling](#4-component-styling)
+- [Interactivity & Motion](#5-interactivity--motion)
+- [Iconography](#6-iconography)
 
 ## 1. Color Palette
 
@@ -19,6 +30,8 @@ The palette is built on a foundation of neutral grays, ensuring a calm and focus
 | **Border / Divider**| `#E2E8F0` | For all borders on panels, inputs, and dividers. Subtle and clean. |
 | **Subtle Hover**    | `#F7FAFC` | A very light background color for list items on hover.         |
 
+[Back to top](#ui-guidelines)
+
 #### **Accent & Semantic Colors**
 
 | Name                        | Hex       | Usage                                                              |
@@ -28,6 +41,8 @@ The palette is built on a foundation of neutral grays, ensuring a calm and focus
 | **Link: Outgoing**          | `#3182CE` | Arrow color for outgoing links (matches the primary interaction color). |
 | **Link: Incoming**          | `#38A169` | Arrow color for incoming links.                                    |
 | **Link: Two-Way**           | `#805AD5` | Arrow color for two-way links.                                     |
+
+[Back to top](#ui-guidelines)
 
 ## 2. Typography
 
@@ -47,6 +62,8 @@ Typography is consistent and legible, using a single font family to create a uni
 | **Body Text**   | `18px`    | `400` (Regular) | All primary content and descriptions. |
 | **Button / Label** | `16px`    | `600` (Semi-Bold) | Text on all buttons and small labels. |
 
+[Back to top](#ui-guidelines)
+
 ## 3. Layout & Spacing
 
 Spacing is consistent and modest to maintain a clean, organized layout without feeling sparse.
@@ -55,6 +72,8 @@ Spacing is consistent and modest to maintain a clean, organized layout without f
 *   **Margins & Padding:** Use multiples of the base unit (`4px`, `8px`, `12px`, `16px`, `24px`).
 *   **Borders:** `1px solid var(--color-border)` for all components.
 *   **Rounding:** A minimal `border-radius` of `4px` should be used on buttons, inputs, and dialogs.
+
+[Back to top](#ui-guidelines)
 
 ## 4. Component Styling
 
@@ -87,12 +106,18 @@ Indicators are textual and colored for semantic meaning, implemented with `::bef
 *   **Two-Way:** `⇄` (color: `--color-link-two-way`)
 *   **Swap:** `⇅` 
 
+[Back to top](#ui-guidelines)
+
 ## 5. Interactivity & Motion
 
 *   **Transitions:** All state changes (e.g., hover) should use a subtle and quick `transition`.
     *   `transition: all 150ms ease-in-out;`
 *   **Animations:** No decorative animations should be used.
 
+[Back to top](#ui-guidelines)
+
 ## 6. Iconography
 
 The UI is predominantly text-based. Icons should be avoided on desktop views. If absolutely necessary for narrow mobile viewports, a lightweight, clean, and consistent line-icon set should be chosen. The link direction arrows (`→`, `←`, `⇄`, `⇅`) are considered typographic characters, not icons.
+
+[Back to top](#ui-guidelines)

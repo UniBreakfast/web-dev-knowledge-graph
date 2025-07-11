@@ -1,14 +1,29 @@
-# Project Brief: GRAPH Application
+[Back to README](..)
+
+# Brief: GRAPH Application
+
+[High-level Requirements are here](high-level)
+
+- [The Problem](#1-the-problem)
+- [The Vision: Our Solution](#2-the-vision-our-solution)
+- [Target Audience](#3-target-audience)
+- [Core Objectives](#4-core-objectives)
+- [Scope & Boundaries](#5-scope--boundaries)
+- [Measures of Success](#6-measures-of-success)
 
 ## 1. The Problem
 
 Knowledge, whether for personal study or professional system design, is a network of interconnected concepts. Traditional tools like documents and spreadsheets force this network into a linear or tabular format, obscuring critical relationships and hindering deep understanding. This leads to information silos, missed insights, and a fragmented view of complex systems. There is a need for a simple, accessible tool that treats knowledge as what it is: a graph.
+
+[Back to top](#brief-graph-application)
 
 ## 2. The Vision: Our Solution
 
 **GRAPH is a lightweight, client-side web application that empowers users to build and explore directed knowledge graphs.**
 
 By providing a simple, interactive interface to create "Nodes" (concepts) and "Links" (relationships), GRAPH transforms abstract information into a tangible, navigable map. It moves beyond linear note-taking, allowing users to see the bigger picture and understand how individual pieces of information connect. The entire experience is designed to be self-contained within the browser, requiring no backend, no sign-up, and no complex setup—making it an instant, personal knowledge-mapping workspace.
+
+[Back to top](#brief-graph-application)
 
 ## 3. Target Audience
 
@@ -19,6 +34,8 @@ This application is primarily for individuals who engage in systems thinking and
 *   **Technical Writers** structuring complex documentation.
 *   **Anyone** practicing non-linear, visual note-taking.
 
+[Back to top](#brief-graph-application)
+
 ## 4. Core Objectives
 
 We will achieve our vision by focusing on four key objectives:
@@ -27,6 +44,8 @@ We will achieve our vision by focusing on four key objectives:
 2.  **Provide a "Zero-Effort" Personal Workspace:** Ensure all user work is automatically and persistently saved in the browser, creating a reliable, always-on workspace without the need for manual saving.
 3.  **Ensure User Ownership and Data Portability:** Guarantee that users have full control over their data through simple, robust JSON export and import functionality.
 4.  **Facilitate Structural Insight:** Equip users with simple analytical tools to quickly assess the state of their graph, such as identifying its density or finding incomplete entries.
+
+[Back to top](#brief-graph-application)
 
 ## 5. Scope & Boundaries
 
@@ -49,6 +68,8 @@ To deliver a focused and high-quality product, the initial scope is intentionall
   
 Anything and all of the above can be added as future enhancements, when the base functionality is in place.
 
+[Back to top](#brief-graph-application)
+
 ## 6. Measures of Success
 
 The project will be considered a success when:
@@ -57,3 +78,5 @@ The project will be considered a success when:
 *   Core user flows—such as creating a node, linking it to another, and navigating to it—are intuitive and can be completed without referencing documentation.
 *   The application can successfully export a graph and re-import it into a clean session, restoring the identical state.
 *   The UI remains responsive and performant, even with a graph of several hundred nodes and links.
+
+[Back to top](#brief-graph-application)
