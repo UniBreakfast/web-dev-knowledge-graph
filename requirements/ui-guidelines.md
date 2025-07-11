@@ -121,3 +121,5 @@ Indicators are textual and colored for semantic meaning, implemented with `::bef
 The UI is predominantly text-based. Icons should be avoided on desktop views. If absolutely necessary for narrow mobile viewports, a lightweight, clean, and consistent line-icon set should be chosen. The link direction arrows (`→`, `←`, `⇄`, `⇅`) are considered typographic characters, not icons.
 
 [Back to top](#ui-guidelines)
+
+<img width="480" alt="GRAPH logo" src="https://github.com/user-attachments/assets/259d5bbd-d8ad-497c-b417-14940e78e246" />

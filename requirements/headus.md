@@ -76,3 +76,5 @@ This event should be dispatched when the query input field is changed. It should
 This event should be dispatched when the "Menu" button is clicked.
 
 [Back to top](#headus-module-requirements)
+
+<img width="480" alt="GRAPH logo" src="https://github.com/user-attachments/assets/259d5bbd-d8ad-497c-b417-14940e78e246" />

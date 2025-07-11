@@ -313,3 +313,5 @@ Right after the event is dispatched, the "Delete link" dialog should be closed.
 This event should be dispatched when the "Swap" button is clicked in "Add link" or "Edit link" dialog. It should contain the dialog name as `event.detail.name`. Dialogus should also listen for this event and call the [`swapDirections(event.detail.name)`](#swapdirectionsname) method on itself.
 
 [Back to top](#dialogus-module-requirements)
+
+<img width="480" alt="GRAPH logo" src="https://github.com/user-attachments/assets/259d5bbd-d8ad-497c-b417-14940e78e246" />

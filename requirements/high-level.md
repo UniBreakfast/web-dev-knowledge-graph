@@ -142,3 +142,5 @@ The application provides multiple tools to help users find and analyze informati
 *   **Usability:** The interface uses clear, conventional UI patterns (buttons, forms, dialogs). Informative dialogs guide the user and prevent common errors, such as creating a node with a duplicate name.
 
 [Back to top](#high-level-requirements-document)
+
+<img width="480" alt="GRAPH logo" src="https://github.com/user-attachments/assets/259d5bbd-d8ad-497c-b417-14940e78e246" />
