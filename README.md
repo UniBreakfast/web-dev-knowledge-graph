@@ -1,3 +1,5 @@
+# GRAPH Application Requirements
+
 ## [🎯 Brief description](requirements/brief.md)
 ## [🗺️ High level requirements](requirements/high-level)
 ## [🧑‍💻 User stories](requirements/user-stories)
