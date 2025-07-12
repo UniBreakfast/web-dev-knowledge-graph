@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRAPH</title>
+  <link rel="stylesheet" href="app.css">
+  <!-- CSS for other modules will be added here later -->
+</head>
+
+<body hidden> <!-- hidden until app.js shows it -->
+  <header id="headus">
+    <datalist id="nodes-datalist"></datalist>
+
+    <div class="header-group">
+      <button id="add-node-button">Add Node</button>
+      <input type="search" id="query-input" list="nodes-datalist" placeholder="Find or create a node...">
+    </div>
+
+    <div class="header-group">
+      <h1 id="app-title">GRAPH</h1>
+      <button id="menu-button">Menu</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="nodus-section">
+      <!-- Controls for which article view to show -->
+      <input type="radio" name="nodus-view" id="nodus-view-current" class="view-toggle">
+      <input type="radio" name="nodus-view" id="nodus-view-many" class="view-toggle">
+      <input type="radio" name="nodus-view" id="nodus-view-message" class="view-toggle">
+
+      <article id="nodus-current" class="view">
+        <!-- Content for a single "current" node -->
+      </article>
+
+      <article id="nodus-many" class="view">
+        <!-- Content for a list of many nodes -->
+      </article>
+
+      <article id="nodus-message" class="view">
+        <p>No nodes in the graph. Add some using the 'Add Node' button in the top left corner.</p>
+      </article>
+    </section>
+
+    <div id="splitter"></div>
+
+    <section id="linkus-section">
+      <!-- Controls for which aside view to show -->
+      <input type="radio" name="linkus-view" id="linkus-view-related" class="view-toggle">
+      <input type="radio" name="linkus-view" id="linkus-view-unrelated" class="view-toggle">
+      <input type="radio" name="linkus-view" id="linkus-view-message" class="view-toggle">
+
+      <aside id="linkus-related" class="view">
+        <!-- Content for links related to the current node -->
+      </aside>
+
+      <aside id="linkus-unrelated" class="view">
+        <!-- Content for a list of all links -->
+      </aside>
+
+      <aside id="linkus-message" class="view">
+        <p>No links to show.</p>
+      </aside>
+    </section>
+  </main>
+
+  <div id="dialogus">
+    <!-- Dialogs will be placed here -->
+    <dialog id="menu-dialog">
+      <!-- Menu Dialog Content -->
+    </dialog>
+
+    <!-- Other dialogs ... -->
+  </div>
+
+  <!-- Script: Module-based architecture -->
+  <script src="app.js" type="module"></script>
+</body>
+
+</html>

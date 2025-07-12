@@ -1,0 +1,79 @@
+@import url(css/headus.css);
+@import url(css/nodus.css);
+@import url(css/linkus.css);
+@import url(css/dialogus.css);
+
+/* Corresponds to ui-guidelines.md */
+:root {
+  /* Primary Palette */
+  --page-background: #F4F5F7;
+  --panel-background: #FFFFFF;
+  --primary-text: #2D3748;
+  --secondary-text: #718096;
+  --border-divider: #E2E8F0;
+  --subtle-hover: #F7FAFC;
+
+  /* Accent & Semantic Colors */
+  --interaction-primary: #3182CE;
+  --destructive-danger: #E53E3E;
+  --link-outgoing: #3182CE;
+  --link-incoming: #38A169;
+  --link-two-way: #805AD5;
+
+  /* Typography */
+  --font-family: 'Trebuchet MS', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --base-font-size: 18px;
+  --base-line-height: 1.6;
+
+  /* Layout */
+  --spacing-unit: 8px;
+  --border-radius: 4px;
+}
+
+/* Basic reset and body styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
+  background-color: var(--page-background);
+  color: var(--primary-text);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden; /* No scroll on body */
+}
+
+[hidden] {
+  display: none !important; /* hiding with attribute has precedence over display-inside */
+}
+
+.view-toggle {
+  display: none; /* Hide radio buttons that control views */
+}
+
+/* Main Content Area */
+main {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+#nodus-section, #linkus-section {
+  width: 50%;
+  padding: calc(var(--spacing-unit) * 2);
+  background-color: var(--panel-background);
+  overflow-y: auto;
+}
+
+#splitter {
+  width: 1px;
+  background-color: var(--border-divider);
+  cursor: col-resize;
+  flex-shrink: 0;
+}

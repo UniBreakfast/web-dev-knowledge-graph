@@ -1,0 +1,34 @@
+/* Header Styles */
+#headus {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(var(--spacing-unit) * 2);
+  background-color: var(--panel-background);
+  border-bottom: 1px solid var(--border-divider);
+  flex-shrink: 0;
+  
+  .header-group {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 2);
+  }
+  
+  #query-input {
+    width: 30vw; /* Takes up significant space */
+  }
+  
+  #app-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--secondary-text);
+  }
+}
+
+/* Responsive wrap for header */
+@media (max-width: 800px) {
+  #headus {
+    flex-direction: column-reverse;
+    gap: var(--spacing-unit);
+  }
+}

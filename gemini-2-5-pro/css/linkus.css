@@ -1,0 +1,14 @@
+#linkus {
+  
+  /* View Switching Logic */
+  .view {
+    display: none;
+  }
+  
+  #linkus-view-related:checked ~ #linkus-related,
+  #linkus-view-unrelated:checked ~ #linkus-unrelated,
+  #linkus-view-message:checked ~ #linkus-message {
+    display: block;
+  }
+
+}
