@@ -70,6 +70,7 @@ This document outlines the technical foundation, coding conventions, and guiding
 ### 2.2. HTML
 *   **Semantics:** Always use the most semantic HTML element for the job.
 *   **Accessibility:** Ensure interactive elements are accessible and keyboard-navigable.
+*   **Markup** All markup is written directly in `index.html` right where it is expected to render (and not in JS template literals elsewhere) including `<template>`-s for later extraction and use by JavaScript upon rendering.
 
 ### 2.3. CSS
 *   **Selectors:** Use `id` attributes for selecting the top-level element of each module and for other unique elements within them. Use classes only where necessary for styling multiple, non-unique elements (e.g., link direction indicators). This approach keeps selectors simple and direct.
