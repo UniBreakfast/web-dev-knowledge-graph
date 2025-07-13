@@ -63,7 +63,7 @@ This document outlines the technical foundation, coding conventions, and guiding
 *   **Function Length:** Functions should ideally be no longer than 33 lines. This is a guideline, and exceptions can be made for functions with simple, repetitive logic (e.g., a `switch` statement).
 *   **Naming:** Use `camelCase` for all functions and variables.
 *   **Variables:** Use `const` by default. Use `let` only for variables that must be reassigned. Avoid `var`.
-*   **Data Structures:** If data structure literals (e.g., arrays, objects) are too large to fit on one line, write them as multiline array/object literals with hanging commas after the last elements/properties. Use short form object literals without unnecessary repetition of same key/value identifiers (e.g., `{a, b}`, not `{a: a, b: b}`).
+*   **Data Structures:** If data structure literals (e.g., arrays, objects) are too large to fit on one line, write them as multiline array/object literals with hanging commas after the last elements/properties. Use short form object literals without unnecessary repetition of same key/value identifiers (e.g., `{a, b}`, not `{a: a, b: b}`). No padding spaces after opening and before closing braces of literals.
 *   **Indentation:** Use 2 spaces for indentation.
 *   **Semicolons:** Use semicolons at the end of statements or do not use them, but be consistent.
 
