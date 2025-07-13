@@ -58,10 +58,14 @@ This document outlines the technical foundation, coding conventions, and guiding
 ## 2. Code Style & Conventions
 
 ### 2.1. JavaScript
-*   **Functions:** Use classic function declarations (`function doSomething() {}`) for top-level and exported functions. Arrow functions are acceptable for short, anonymous callbacks passed as arguments.
+*   **Functions:** Use classic function declarations (`function doSomething() {}`) for top-level and exported functions. Arrow functions are acceptable for short, anonymous callbacks passed as arguments. Declare all classic functions at the end of the file relying on hoisting.
+*   **Parentheses:** Omit unnecessary parentheses for single arrow function arguments and when using `new` with a constructor having no arguments.
 *   **Function Length:** Functions should ideally be no longer than 33 lines. This is a guideline, and exceptions can be made for functions with simple, repetitive logic (e.g., a `switch` statement).
 *   **Naming:** Use `camelCase` for all functions and variables.
 *   **Variables:** Use `const` by default. Use `let` only for variables that must be reassigned. Avoid `var`.
+*   **Data Structures:** If data structure literals (e.g., arrays, objects) are too large to fit on one line, write them as multiline array/object literals with hanging commas after the last elements/properties. Use short form object literals without unnecessary repetition of same key/value identifiers (e.g., `{a, b}`, not `{a: a, b: b}`).
+*   **Indentation:** Use 2 spaces for indentation.
+*   **Semicolons:** Use semicolons at the end of statements or do not use them, but be consistent.
 
 ### 2.2. HTML
 *   **Semantics:** Always use the most semantic HTML element for the job.

@@ -29,6 +29,8 @@ It should export a `graphus` object that is an instance of `EventTarget` with th
 - [`deleteNode(...)`](#deletenodeid)
 - [`deleteLink(...)`](#deletelinkfrom-to)
 
+Every change to the graph should lead to updating (incrementing) the `version` property of the graph.
+
 Also `graphus` object is expected to dispatch the following custom events:
 
 - [`graphloaded`](#graphloaded)
