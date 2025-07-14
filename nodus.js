@@ -37,6 +37,12 @@ Object.assign(nodus, {
     elements.manyContainer.replaceChildren(...cards);
     elements.viewManyRadio.checked = true;
   },
+
+  getCurrentId() {
+    if (!elements.viewCurrentRadio.checked) return null;
+    const currentView = elements.currentContainer.querySelector('.node-current-content');
+    return currentView ? +currentView.dataset.id : null;
+  },
 });
 
 function _initElements() {

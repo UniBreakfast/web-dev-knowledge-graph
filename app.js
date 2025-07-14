@@ -1,8 +1,8 @@
-import {graphus} from './graphus.js';
-import {headus} from './headus.js';
-import {nodus} from './nodus.js';
-import {linkus} from './linkus.js';
-import {dialogus} from './dialogus.js';
+import { graphus } from './graphus.js';
+import { headus } from './headus.js';
+import { nodus } from './nodus.js';
+import { linkus } from './linkus.js';
+import { dialogus } from './dialogus.js';
 
 const version = '1.0.0'; // Example version for splash screen later
 
@@ -63,38 +63,86 @@ function addCustomListeners() {
 function listenForGraphusEvents() {
   graphus.addEventListener('graphloaded', (event) => {
     const { nodes, links, names } = event.detail;
-    // Call modules to render the initial "show many" view
     headus.listNodes(names);
     nodus.showMany(nodes);
     linkus.showMany(links);
     showBody();
   });
-  // 'graphupdated' listener to be implemented later
+
+  graphus.addEventListener('graphupdated', (event) => {
+    const { change } = event.detail;
+
+    if (change.type === 'node' && change.action === 'add') {
+      headus.enlistNode(change.name);
+      const newNode = graphus.getNodeById(change.id);
+      nodus.showOne(newNode);
+      linkus.showTwin([], change.id); // Show empty links for the new node
+    }
+
+    if (change.type === 'link' && change.action === 'add') {
+      const currentId = nodus.getCurrentId();
+      if (currentId === change.id.from) {
+        changeCurrentNodeBy({ id: change.id.from, select: { id: change.id.to } });
+      } else if (currentId === change.id.to) {
+        // This case is less common but good to handle
+        changeCurrentNodeBy({ id: change.id.to, select: { id: change.id.from } });
+      }
+    }
+  });
 }
 
-function listenForHeadusEvents() { /* To be implemented */ }
+function listenForHeadusEvents() {
+  headus.addEventListener('addnodetrigger', event => {
+    const detail = event.detail;
+    const data = { canClose: true };
+
+    // Per requirements, only pre-fill name if it's provided and NOT taken
+    if (detail?.name) {
+      if (!graphus.isNameTaken(detail.name)) {
+        data.name = detail.name;
+      }
+    }
+
+    dialogus.open('add node', data);
+  });
+}
 
 function listenForNodusEvents() {
   nodus.addEventListener('gotonodetrigger', event => {
-    const {id} = event.detail;
-    changeCurrentNodeBy({id});
+    const { id } = event.detail;
+    changeCurrentNodeBy({ id });
   });
 
   nodus.addEventListener('nodeselectedtrigger', event => {
-    const {current, selected} = event.detail;
+    const { current, selected } = event.detail;
     const links = graphus.getLinksById(current, selected);
-
-    // Note: 'current' here is the node ID, which linkus needs
-    linkus.showTwin(links, current); 
+    linkus.showTwin(links, current);
   });
   /* To be implemented */
 }
 
 function listenForLinkusEvents() { /* To be implemented */ }
-function listenForDialogusEvents() { /* To be implemented */ }
 
-function changeCurrentNodeBy({id, name, select}, silent) {
-  // If the second argument is a boolean, it's 'silent'
+function listenForDialogusEvents() {
+  dialogus.addEventListener('addnodetrigger', event => {
+    const { name, description } = event.detail;
+
+    if (!name) {
+      dialogus.open('inform', { title: 'Name required', text: 'Node name cannot be empty or empty-like.', canClose: true });
+      return;
+    }
+
+    if (graphus.isNameTaken(name)) {
+      dialogus.open('inform', { title: 'Name taken', text: 'There\'s already a node named ' + name + '. Try another name.', canClose: true });
+      return;
+    }
+
+    dialogus.close('add node');
+    graphus.addNode(name, description);
+  });
+}
+
+function changeCurrentNodeBy({ id, name, select }, silent) {
   if (typeof select === 'boolean') {
     silent = select;
     select = undefined;
@@ -103,15 +151,15 @@ function changeCurrentNodeBy({id, name, select}, silent) {
   const nodeId = id ?? graphus.getIdByName(name);
   if (!nodeId) {
     if (!silent) {
-      dialogus.open('inform', {message: 'Node not found', canClose: true});
+      dialogus.open('inform', { message: 'Node not found', canClose: true });
     }
     return;
   }
-  
+
   const node = graphus.getNodeById(nodeId);
   if (!node) {
     if (!silent) {
-      dialogus.open('inform', {message: 'Node not found', canClose: true});
+      dialogus.open('inform', { message: 'Node not found', canClose: true });
     }
     return;
   }
@@ -125,7 +173,15 @@ function changeCurrentNodeBy({id, name, select}, silent) {
   } else {
     links = graphus.getLinksById(nodeId);
   }
-  
+
   nodus.showOne(node, selectId);
   linkus.showTwin(links, nodeId);
+}
+
+function showMany() {
+  const nodes = graphus.getNodes();
+  const links = graphus.getLinks();
+  nodus.showMany(nodes);
+  linkus.showMany(links);
+  showBody();
 }

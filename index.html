@@ -140,6 +140,24 @@
 
   <div id="dialogus">
     <!-- Dialogs will be placed here -->
+    <dialog id="new-node-dialog">
+      <form method="dialog">
+        <h2>New Node</h2>
+        <label>
+          Name
+          <input type="text" name="name" list="nodes-datalist" required placeholder="Unique node name">
+        </label>
+        <label>
+          Description
+          <textarea name="description" placeholder="Optional details about the node..."></textarea>
+        </label>
+        <footer>
+          <button type="reset" value="cancel" class="close">Cancel</button>
+          <button type="submit" value="add">Add</button>
+        </footer>
+      </form>
+    </dialog>
+    
     <dialog id="menu-dialog">
       <!-- Menu Dialog Content -->
     </dialog>

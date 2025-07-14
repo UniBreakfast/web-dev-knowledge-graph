@@ -1,3 +1,59 @@
 #dialogus {
-  
+  dialog {
+    width: min(1000px, 85vw);
+    height: 70vh;
+    border: 1px solid var(--border-divider);
+    border-radius: var(--border-radius);
+    padding: 0;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  dialog::backdrop {
+    background-color: rgba(244, 245, 247, 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  dialog form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: calc(var(--spacing-unit) * 3);
+  }
+
+  dialog h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    flex-shrink: 0;
+  }
+
+  dialog label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  dialog input[type="text"],
+  dialog textarea {
+    font-family: var(--font-family);
+    font-size: var(--base-font-size);
+    padding: var(--spacing-unit);
+    border: 1px solid var(--border-divider);
+    border-radius: var(--border-radius);
+    margin-top: var(--spacing-unit);
+  }
+
+  dialog textarea {
+    flex-grow: 1;
+    /* Vertically greedy */
+    resize: none;
+  }
+
+  dialog footer {
+    margin-top: calc(var(--spacing-unit) * 2);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-unit);
+    flex-shrink: 0;
+  }
 }

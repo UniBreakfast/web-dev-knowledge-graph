@@ -17,11 +17,26 @@
   #query-input {
     width: 30vw; /* Takes up significant space */
   }
-  
+
+  #title-logo {
+    position: relative; /* Contain the absolutely positioned h1 */
+  }
+
+  #title-logo img {
+    height: 50px; /* Give the SVG a defined height */
+    vertical-align: middle; /* Helps align with the button */
+  }
+
   #app-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--secondary-text);
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 }
 

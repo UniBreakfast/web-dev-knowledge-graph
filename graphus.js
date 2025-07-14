@@ -4,7 +4,14 @@ const STORAGE_KEY = 'graph_app_data';
 
 Object.assign(graphus, {
   init(data) {
+    if (!this.isValidGraph(data)) {
+      console.error("Invalid graph data provided to init. Halting.");
+      // In a real-world scenario, you might want to load a default
+      // or clear localStorage, but for now, we'll just stop.
+      return;
+    }
     _setGraphData(data);
+
     const detail = {
       names: this.getNodeNames(),
       nodes: this.getNodes(),
@@ -17,45 +24,48 @@ Object.assign(graphus, {
   isValidGraph(data) {
     if (!data || typeof data !== 'object') return false;
 
-    // Check for required top-level properties
     const topLevelKeys = ['version', 'nextId', 'nodes', 'links'];
     if (Object.keys(data).length !== topLevelKeys.length || !topLevelKeys.every(k => k in data)) {
       return false;
     }
 
-    // Basic type checks
     if (typeof data.version !== 'number' || data.version < 1) return false;
     if (typeof data.nextId !== 'number' || data.nextId < 1) return false;
     if (typeof data.nodes !== 'object' || data.nodes === null) return false;
     if (typeof data.links !== 'object' || data.links === null) return false;
 
-    // Check nodes structure
     for (const [id, nodeData] of Object.entries(data.nodes)) {
-      if (isNaN(parseInt(id, 10))) return false; // ID must be a number string
+      if (isNaN(parseInt(id, 10))) return false;
       if (typeof nodeData !== 'object' || Object.keys(nodeData).length !== 1) return false;
       const [name, description] = Object.entries(nodeData)[0];
       if (typeof name !== 'string' || name.trim() === '') return false;
       if (typeof description !== 'string') return false;
     }
 
-    // Check links structure
     const nodeIds = Object.keys(data.nodes);
     for (const [linkId, description] of Object.entries(data.links)) {
       const parts = linkId.split('_');
       if (parts.length !== 2) return false;
       const [fromId, toId] = parts;
-      if (!nodeIds.includes(fromId) || !nodeIds.includes(toId)) return false; // Link must connect existing nodes
-      if (fromId === toId) return false; // No self-links
+      if (!nodeIds.includes(fromId) || !nodeIds.includes(toId)) return false;
+      if (fromId === toId) return false;
       if (typeof description !== 'string') return false;
     }
 
     return true;
   },
 
-  getNodeNames() {
+  isNameTaken(name) {
     const data = _getGraphData();
-    if (!data?.nodes) return [];
-    return Object.values(data.nodes).map(node => Object.keys(node)[0]);
+    if (!data?.nodes) return false;
+    const trimmedName = name.trim();
+    return Object.values(data.nodes).some(nodeData => Object.keys(nodeData)[0] === trimmedName);
+  },
+
+  doesLinkExist(fromId, toId) {
+    const data = _getGraphData();
+    if (!data?.links) return false;
+    return `${fromId}_${toId}` in data.links;
   },
 
   getIdByName(name) {
@@ -69,31 +79,35 @@ Object.assign(graphus, {
     return entry ? +entry[0] : null;
   },
 
+  getNameById(id) {
+    const data = _getGraphData();
+    const node = data?.nodes?.[id];
+    return node ? Object.keys(node)[0] : null;
+  },
+
   getNodeById(id) {
     const data = _getGraphData();
     if (!data?.nodes?.[id]) return null;
 
     const [[name, description]] = Object.entries(data.nodes[id]);
     const links = Object.keys(data.links);
-
     const linksToNodes = new Map();
 
     for (const linkId of links) {
       const [fromId, toId] = linkId.split('_').map(Number);
+      if (fromId !== id && toId !== id) continue;
+
+      const peerId = fromId === id ? toId : fromId;
+      const [peerName] = Object.keys(data.nodes[peerId]);
+      const current = linksToNodes.get(peerId) || { id: peerId, name: peerName };
 
       if (fromId === id) { // Outgoing
-        const [nodeName] = Object.keys(data.nodes[toId]);
-        const current = linksToNodes.get(toId) || { id: toId, name: nodeName };
         current.direction = current.direction === 'incoming' ? 'two-way' : 'outgoing';
-        linksToNodes.set(toId, current);
       }
-
       if (toId === id) { // Incoming
-        const [nodeName] = Object.keys(data.nodes[fromId]);
-        const current = linksToNodes.get(fromId) || { id: fromId, name: nodeName };
         current.direction = current.direction === 'outgoing' ? 'two-way' : 'incoming';
-        linksToNodes.set(fromId, current);
       }
+      linksToNodes.set(peerId, current);
     }
 
     return {
@@ -120,42 +134,29 @@ Object.assign(graphus, {
     for (const [linkId, description] of linkEntries) {
       const [fromId, toId] = linkId.split('_').map(Number);
 
-      // Case 1: Single ID provided, get all connected links
-      if (!id2) {
-        if (fromId === id1) { // Outgoing from id1
-          results.push({
-            direction: 'outgoing',
-            description,
-            node: getPeerNodeInfo(toId)
-          });
+      if (id2) { // Get links between id1 and id2
+        if (fromId === id1 && toId === id2) {
+          results.push({ direction: 'outgoing', description, node: getPeerNodeInfo(toId) });
         }
-        if (toId === id1) { // Incoming to id1
-          results.push({
-            direction: 'incoming',
-            description,
-            node: getPeerNodeInfo(fromId)
-          });
+        if (fromId === id2 && toId === id1) {
+          results.push({ direction: 'incoming', description, node: getPeerNodeInfo(fromId) });
         }
-      }
-      // Case 2: Two IDs provided, get links between them
-      else {
-        if (fromId === id1 && toId === id2) { // Outgoing from id1 to id2
-          results.push({
-            direction: 'outgoing',
-            description,
-            node: getPeerNodeInfo(toId) // The node is the peer
-          });
+      } else { // Get all links for id1
+        if (fromId === id1) {
+          results.push({ direction: 'outgoing', description, node: getPeerNodeInfo(toId) });
         }
-        if (fromId === id2 && toId === id1) { // Incoming to id1 from id2
-          results.push({
-            direction: 'incoming',
-            description,
-            node: getPeerNodeInfo(fromId) // The node is the peer
-          });
+        if (toId === id1) {
+          results.push({ direction: 'incoming', description, node: getPeerNodeInfo(fromId) });
         }
       }
     }
     return results;
+  },
+
+  getNodeNames() {
+    const data = _getGraphData();
+    if (!data?.nodes) return [];
+    return Object.values(data.nodes).map(node => Object.keys(node)[0]);
   },
 
   getNodes(filter) {
@@ -174,7 +175,7 @@ Object.assign(graphus, {
     });
 
     if (!filter) return allNodes;
-    // Filtering logic will be implemented later
+    // Filtering logic to be implemented later per requirements
     return allNodes;
   },
 
@@ -193,8 +194,48 @@ Object.assign(graphus, {
     });
 
     if (!filter) return allLinks;
-    // Filtering logic will be implemented later
+    // Filtering logic to be implemented later per requirements
     return allLinks;
+  },
+
+  addNode(name, description = '') {
+    const data = _getGraphData();
+    const trimmedName = name.trim();
+    if (!trimmedName || this.isNameTaken(trimmedName)) {
+      console.error("Attempted to add node with invalid or duplicate name.");
+      return;
+    }
+
+    const newId = data.nextId;
+    data.nodes[newId] = { [trimmedName]: description.trim() };
+    data.nextId++;
+    
+    const change = {
+      type: 'node',
+      action: 'add',
+      id: newId,
+      name: trimmedName,
+      description: description.trim(),
+    };
+    _saveAndDispatch(data, change);
+  },
+
+  addLink(fromId, toId, description = '') {
+    const data = _getGraphData();
+    if (this.doesLinkExist(fromId, toId)) {
+      console.error("Attempted to add a link that already exists.");
+      return;
+    }
+
+    data.links[`${fromId}_${toId}`] = description.trim();
+
+    const change = {
+      type: 'link',
+      action: 'add',
+      id: { from: fromId, to: toId },
+      description: description.trim(),
+    };
+    _saveAndDispatch(data, change);
   },
 });
 
@@ -206,4 +247,11 @@ function _getGraphData() {
 
 function _setGraphData(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function _saveAndDispatch(data, change) {
+  data.version++;
+  _setGraphData(data);
+  const event = new CustomEvent('graphupdated', { detail: { change } });
+  graphus.dispatchEvent(event);
 }
