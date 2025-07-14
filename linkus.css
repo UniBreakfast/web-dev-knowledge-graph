@@ -1,4 +1,4 @@
-#linkus {
+#linkus-section {
 
   /* View Switching Logic */
   .view {
@@ -32,6 +32,21 @@
   }
 
   #linkus-unrelated .link-card-content p {
+    flex-grow: 1;
+    color: var(--secondary-text);
+  }
+
+  .link-details summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+  }
+
+  .link-details summary h3 {
+    flex-shrink: 0;
+  }
+
+  .link-details summary p {
     flex-grow: 1;
     color: var(--secondary-text);
   }

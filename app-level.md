@@ -186,8 +186,6 @@ Function should try to change the current node to the node with the given `id` o
 
 If `id` is given or acquired from the [`graphus.getIdByName(name)`](./graphus#getidbynamename) method, should call the [`graphus.getNodeById(id)`](./graphus#getnodebyidid) method. If the node is not found and `silent` is not `true`, should call the [`dialogus.open('inform', {message: 'Node not found', canClose: true})`](./dialogus#openname-data) method. If node is found, should call the [`graphus.getLinksById(id)`](./graphus#getlinksbyidid1-id2) method for the same node id. Next [`nodus.showOne(node)`](./nodus#showonenode-selectedid) and [`linkus.showTwin(links, id)`](./linkus#showtwinlinks-id) methods should be called for the node and links respectively.
 
-If second argument is a boolean it is to be assigned to `silent`, and `select` should become `undefined`.
-
 If `select` is given, function should call the [`graphus.getLinksById(id, select.id)`](./graphus#getlinksbyidid1-id2) method. Also should pass `select.id` to [`nodus.showOne(node, select.id)`](./nodus#showonenode-selectedid). 
 
 If `name` is given instead of `id`, function should call the [`graphus.getIdByName(name)`](./graphus#getidbynamename) method first. Same for `select`, if `select.name` is given instead of `select.id`.

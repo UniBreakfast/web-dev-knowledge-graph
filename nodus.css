@@ -1,4 +1,4 @@
-#nodus {
+#nodus-section {
 
   /* View Switching Logic */
   .view {
@@ -39,5 +39,28 @@
     display: flex;
     gap: var(--spacing-unit);
     color: var(--secondary-text);
+  }
+
+  .linked-nodes-list-container .no-links-message,
+  .linked-nodes-list-container .linked-nodes-list {
+    display: none;
+  }
+
+  #linked-nodes-toggle:not(:checked)~.no-links-message,
+  #linked-nodes-toggle:checked~.linked-nodes-list {
+    display: block;
+    /* or flex for the list */
+  }
+
+  .linked-nodes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-unit);
+    justify-content: flex-end;
+  }
+
+  .linked-node-item.selected {
+    background-color: var(--interaction-primary);
+    color: white;
   }
 }

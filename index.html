@@ -35,7 +35,36 @@
       <input type="radio" name="nodus-view" id="nodus-view-message" class="view-toggle">
 
       <article id="nodus-current" class="view">
+        <template id="node-current-template">
+          <div class="node-current-content" data-id>
+            <div class="node-current-header">
+              <h2 data-name></h2>
+              <div class="node-actions">
+                <button class="edit-node-button">Edit Node</button>
+                <button class="delete-node-button">Delete Node</button>
+                <button class="add-link-button">Add Link</button>
+              </div>
+            </div>
+            <p data-description></p>
+            <div class="linked-nodes-list-container">
+              <input type="checkbox" id="linked-nodes-toggle" class="view-toggle">
+              <label for="linked-nodes-toggle" hidden></label>
+              <p class="no-links-message">No links to other nodes yet.</p>
+              <ul class="linked-nodes-list">
+                <!-- Radio buttons will be inserted here by nodus.js -->
+              </ul>
+            </div>
+          </div>
+        </template>
         <!-- Content for a single "current" node -->
+        <template id="linked-node-item-template">
+          <li>
+            <label>
+              <input type="radio" name="nodus-linked-node-select" class="view-toggle">
+              <span class="linked-node-item" data-id data-direction></span>
+            </label>
+          </li>
+        </template>
       </article>
 
       <article id="nodus-many" class="view">
@@ -71,6 +100,22 @@
       <input type="radio" name="linkus-view" id="linkus-view-message" class="view-toggle">
 
       <aside id="linkus-related" class="view">
+        <template id="link-related-template">
+          <details class="link-details" data-direction>
+            <summary>
+              <h3 data-name></h3>
+              <p data-description></p>
+              <div class="link-actions">
+                <button class="edit-link-button">Edit Link</button>
+                <button class="delete-link-button">Delete Link</button>
+              </div>
+            </summary>
+            <div class="linked-node-description">
+              <button class="goto-node-button">Go to Node</button>
+              <p data-node-description></p>
+            </div>
+          </details>
+        </template>
         <!-- Content for links related to the current node -->
       </aside>
 
