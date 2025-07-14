@@ -1,13 +1,8 @@
-import {graphus} from './js/graphus.js'
-import {headus} from './js/headus.js'
-import {nodus} from './js/nodus.js'
-import {linkus} from './js/linkus.js'
-import {dialogus} from './js/dialogus.js'
-import { graphus } from './js/graphus.js';
-import { headus } from './js/headus.js';
-import { nodus } from './js/nodus.js';
-import { linkus } from './js/linkus.js';
-import { dialogus } from './js/dialogus.js';
+import {graphus} from './graphus.js';
+import {headus} from './headus.js';
+import {nodus} from './nodus.js';
+import {linkus} from './linkus.js';
+import {dialogus} from './dialogus.js';
 
 const version = '1.0.0'; // Example version for splash screen later
 
@@ -24,7 +19,7 @@ async function init() {
   let data;
 
   if (firstRun) {
-    const response = await fetch('example_graph.json');
+    const response = await fetch('example-graph.json');
     data = await response.json();
   } else {
     try {
@@ -36,7 +31,7 @@ async function init() {
       }
     } catch (e) {
       console.error(e.message, "Falling back to example graph.");
-      const response = await fetch('example_graph.json');
+      const response = await fetch('example-graph.json');
       data = await response.json();
     }
   }

@@ -19,7 +19,10 @@
     </div>
 
     <div class="header-group">
-      <h1 id="app-title">GRAPH</h1>
+      <div id="title-logo">
+        <h1 id="app-title">GRAPH</h1>
+        <img src="graph-title-logo.svg" alt="graph app logo with letter nodes and arrows connecting them">
+      </div>
       <button id="menu-button">Menu</button>
     </div>
   </header>
@@ -36,6 +39,21 @@
       </article>
 
       <article id="nodus-many" class="view">
+        <template id="node-card-template">
+          <div class="node-card">
+            <div class="node-card-main">
+              <h3 data-name></h3>
+              <p data-description></p>
+            </div>
+            <div class="node-card-aside">
+              <button class="goto-node-button" data-id>Go to Node</button>
+              <div class="link-counts">
+                <span class="incoming" title="Incoming Links" data-incoming></span>
+                <span class="outgoing" title="Outgoing Links" data-outgoing></span>
+              </div>
+            </div>
+          </div>
+        </template>
         <!-- Content for a list of many nodes -->
       </article>
 
@@ -57,6 +75,15 @@
       </aside>
 
       <aside id="linkus-unrelated" class="view">
+        <template id="link-card-template">
+          <div class="link-card outgoing">
+            <h3 data-names></h3>
+            <div class="link-card-content">
+              <p data-description></p>
+              <button class="goto-link-button" data-from-id data-to-id>Go to Link</button>
+            </div>
+          </div>
+        </template>
         <!-- Content for a list of all links -->
       </aside>
 

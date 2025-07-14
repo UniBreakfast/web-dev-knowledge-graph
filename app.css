@@ -1,7 +1,7 @@
-@import url(css/headus.css);
-@import url(css/nodus.css);
-@import url(css/linkus.css);
-@import url(css/dialogus.css);
+@import url(headus.css);
+@import url(nodus.css);
+@import url(linkus.css);
+@import url(dialogus.css);
 
 /* Corresponds to ui-guidelines.md */
 :root {
@@ -76,4 +76,20 @@ main {
   background-color: var(--border-divider);
   cursor: col-resize;
   flex-shrink: 0;
+}
+
+/* Link Direction Indicators */
+.incoming::before {
+  content: '← ';
+  color: var(--link-incoming);
+}
+
+.outgoing::before {
+  content: '→ ';
+  color: var(--link-outgoing);
+}
+
+.two-way::before {
+  content: '⇄ ';
+  color: var(--link-two-way);
 }

@@ -1,0 +1,38 @@
+#linkus {
+
+  /* View Switching Logic */
+  .view {
+    display: none;
+  }
+
+  #linkus-view-related:checked~#linkus-related,
+  #linkus-view-unrelated:checked~#linkus-unrelated,
+  #linkus-view-message:checked~#linkus-message {
+    display: block;
+  }
+
+  /* Styles for the "Show Many" view */
+  #linkus-unrelated .link-card {
+    background-color: var(--page-background);
+    border: 1px solid var(--border-divider);
+    border-radius: var(--border-radius);
+    padding: calc(var(--spacing-unit) * 2);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  #linkus-unrelated .link-card h3 {
+    margin-bottom: var(--spacing-unit);
+  }
+
+  #linkus-unrelated .link-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: calc(var(--spacing-unit) * 2);
+  }
+
+  #linkus-unrelated .link-card-content p {
+    flex-grow: 1;
+    color: var(--secondary-text);
+  }
+}
