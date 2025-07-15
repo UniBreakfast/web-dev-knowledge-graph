@@ -118,6 +118,11 @@ function listenForNodusEvents() {
     const links = graphus.getLinksById(current, selected);
     linkus.showTwin(links, current);
   });
+  
+  nodus.addEventListener('addlinktrigger', event => {
+    const fromName = graphus.getNameById(event.detail.id);
+    dialogus.open('add link', { from: fromName, canClose: true });
+  });
   /* To be implemented */
 }
 
@@ -139,6 +144,37 @@ function listenForDialogusEvents() {
 
     dialogus.close('add node');
     graphus.addNode(name, description);
+  });
+  
+  dialogus.addEventListener('addlinktrigger', event => {
+    const { link } = event.detail;
+
+    if (!link.from || !link.to) {
+      dialogus.open('inform', { title: 'Node names required', text: 'Links must connect two nodes. Both "from" and "to" fields are required.', canClose: true });
+      return;
+    }
+
+    if (link.from === link.to) {
+      dialogus.open('inform', { title: 'Two distinct nodes required', text: 'A node cannot link to itself.', canClose: true });
+      return;
+    }
+
+    const fromId = graphus.getIdByName(link.from);
+    const toId = graphus.getIdByName(link.to);
+
+    if (!fromId || !toId) {
+      const missing = !fromId ? `"${link.from}"` : `"${link.to}"`;
+      dialogus.open('inform', { title: 'Node not found', text: `Could not find a node named ${missing}. Links can only be created between existing nodes.`, canClose: true });
+      return;
+    }
+
+    if (graphus.doesLinkExist(fromId, toId)) {
+      dialogus.open('inform', { title: 'Link exists', text: 'A link from "' + link.from + '" to "' + link.to + '" already exists.', canClose: true });
+      return;
+    }
+
+    dialogus.close('add link');
+    graphus.addLink(fromId, toId, link.description);
   });
 }
 

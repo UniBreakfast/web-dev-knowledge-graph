@@ -158,6 +158,41 @@
       </form>
     </dialog>
     
+    <dialog id="inform-dialog">
+      <form method="dialog">
+        <h2 data-title></h2>
+        <p data-text></p>
+        <footer>
+          <button value="ok" class="close">OK</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="new-link-dialog">
+      <form method="dialog">
+        <h2>New Link</h2>
+        <div class="link-fields">
+          <label>
+            From
+            <input type="text" name="from" list="nodes-datalist" required placeholder="Name of existing node">
+          </label>
+          <button type="button" class="swap-button" title="Swap Directions">⇅</button>
+          <label>
+            To
+            <input type="text" name="to" list="nodes-datalist" required placeholder="Name of existing node">
+          </label>
+        </div>
+        <label>
+          Description
+          <textarea name="description" placeholder="Optional details about the relationship..."></textarea>
+        </label>
+        <footer>
+          <button type="reset" value="cancel" class="close">Cancel</button>
+          <button type="submit" value="add">Add</button>
+        </footer>
+      </form>
+    </dialog>
+    
     <dialog id="menu-dialog">
       <!-- Menu Dialog Content -->
     </dialog>
