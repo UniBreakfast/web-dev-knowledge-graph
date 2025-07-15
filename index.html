@@ -157,7 +157,7 @@
         </footer>
       </form>
     </dialog>
-    
+
     <dialog id="inform-dialog">
       <form method="dialog">
         <h2 data-title></h2>
@@ -197,9 +197,9 @@
       <form method="dialog">
         <h2>Delete Node</h2>
         <p>
-          Are you sure you want to permanently delete the node 
-          "<strong><output name="name"></output></strong>"? 
-          This will also delete <strong><output name="linkCount"></output></strong> 
+          Are you sure you want to permanently delete the node
+          "<strong><output name="name"></output></strong>"?
+          This will also delete <strong><output name="linkCount"></output></strong>
           link(s) connected to it. This action cannot be undone.
         </p>
         <footer>
@@ -208,7 +208,23 @@
         </footer>
       </form>
     </dialog>
-    
+
+    <dialog id="delete-link-dialog">
+      <form method="dialog">
+        <h2>Delete Link</h2>
+        <p>
+          Are you sure you want to permanently delete the link from
+          "<strong><output name="fromName"></output></strong>" to
+          "<strong><output name="toName"></output></strong>"?
+          This action cannot be undone.
+        </p>
+        <footer>
+          <button type="reset" value="cancel" class="close">Cancel</button>
+          <button type="submit" value="delete" class="destructive">Delete</button>
+        </footer>
+      </form>
+    </dialog>
+
     <dialog id="menu-dialog">
       <!-- Menu Dialog Content -->
     </dialog>

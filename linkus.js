@@ -5,6 +5,7 @@ let elements = {};
 Object.assign(linkus, {
   init() {
     _initElements();
+    elements.relatedContainer.addEventListener('click', _handleRelatedLinkClick);
   },
 
   showTwin(links, currentId) {
@@ -71,4 +72,20 @@ function _populateRelatedLink(link, currentId) {
   details.querySelector('[data-node-description]').textContent = link.node.description || 'No description.';
 
   return cardClone;
+}
+
+function _handleRelatedLinkClick(event) {
+  const deleteButton = event.target.closest('.delete-link-button');
+  if (!deleteButton) return;
+
+  const details = deleteButton.closest('.link-details');
+  const { fromId, toId } = details.dataset;
+
+  const detail = {
+    id: {
+      from: +fromId,
+      to: +toId,
+    },
+  };
+  linkus.dispatchEvent(new CustomEvent('deletelinktrigger', { detail }));
 }

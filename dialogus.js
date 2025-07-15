@@ -17,6 +17,8 @@ Object.assign(dialogus, {
     });
     elements.deleteNodeDialog = document.getElementById('delete-node-dialog');
     elements.deleteNodeForm = elements.deleteNodeDialog.querySelector('form');
+    elements.deleteLinkDialog = document.getElementById('delete-link-dialog');
+    elements.deleteLinkForm = elements.deleteLinkDialog.querySelector('form');
   },
 
   open(name, data) {
@@ -33,6 +35,9 @@ Object.assign(dialogus, {
         break;
       case 'delete node':
         _openDeleteNodeDialog(data);
+        break;
+      case 'delete link':
+        _openDeleteLinkDialog(data);
         break;
       // Other cases will be added here
     }
@@ -51,6 +56,9 @@ Object.assign(dialogus, {
         break;
       case 'delete node':
         elements.deleteNodeDialog.close();
+        break;
+      case 'delete link':
+        elements.deleteLinkDialog.close();
         break;
     }
   }
@@ -137,4 +145,22 @@ function _openDeleteNodeDialog(data) {
   
   elements.deleteNodeDialog.addEventListener('submit', handleFormSubmit, { once: true });
   elements.deleteNodeDialog.showModal();
+}
+
+function _openDeleteLinkDialog(data) {
+    const { link } = data; // link: { from: {id, name}, to: {id, name} }
+    elements.deleteLinkForm.elements.fromName.value = link.from.name;
+    elements.deleteLinkForm.elements.toName.value = link.to.name;
+
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        if (event.submitter?.value === 'delete') {
+            const detail = { id: { from: link.from.id, to: link.to.id } };
+            dialogus.dispatchEvent(new CustomEvent('deletelinktrigger', { detail }));
+        }
+        dialogus.close('delete link');
+    };
+
+    elements.deleteLinkDialog.addEventListener('submit', handleFormSubmit, { once: true });
+    elements.deleteLinkDialog.showModal();
 }

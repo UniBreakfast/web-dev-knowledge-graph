@@ -194,8 +194,8 @@ Object.assign(graphus, {
     });
 
     if (!filter) return allLinks;
-    // Filtering logic to be implemented later per requirements
-    return allLinks;
+    
+    return allLinks.filter(filter);
   },
 
   addNode(name, description = '') {
@@ -271,6 +271,25 @@ Object.assign(graphus, {
         const [from, to] = linkId.split('_').map(Number);
         return { from, to };
       }),
+    };
+    _saveAndDispatch(data, change);
+  },
+
+  deleteLink(from, to) {
+    const data = _getGraphData();
+    const linkId = `${from}_${to}`;
+
+    if (!data.links.hasOwnProperty(linkId)) {
+      console.error(`Attempted to delete non-existent link: ${linkId}`);
+      return;
+    }
+
+    delete data.links[linkId];
+
+    const change = {
+      type: 'link',
+      action: 'delete',
+      id: { from, to },
     };
     _saveAndDispatch(data, change);
   },

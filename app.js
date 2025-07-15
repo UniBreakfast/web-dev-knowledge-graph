@@ -88,13 +88,21 @@ function listenForGraphusEvents() {
         changeCurrentNodeBy({ id: change.id.to, select: { id: change.id.from } });
       }
     }
-    
+
     if (change.type === 'node' && change.action === 'delete') {
       // If the currently viewed node was the one deleted, go back to "show many"
       if (nodus.getCurrentId() === change.id) {
         showMany();
       }
       // We will add more cleanup logic here later (e.g., nodus.removeNode)
+    }
+
+    if (change.type === 'link' && change.action === 'delete') {
+      const currentId = nodus.getCurrentId();
+      if (currentId === change.id.from || currentId === change.id.to) {
+        // Refresh the view to remove the link from the UI
+        changeCurrentNodeBy({ id: currentId });
+      }
     }
   });
 }
@@ -126,12 +134,12 @@ function listenForNodusEvents() {
     const links = graphus.getLinksById(current, selected);
     linkus.showTwin(links, current);
   });
-  
+
   nodus.addEventListener('addlinktrigger', event => {
     const fromName = graphus.getNameById(event.detail.id);
     dialogus.open('add link', { from: fromName, canClose: true });
   });
-  
+
   nodus.addEventListener('deletenodetrigger', event => {
     const node = graphus.getNodeById(event.detail.id);
     if (node) {
@@ -142,7 +150,16 @@ function listenForNodusEvents() {
   /* To be implemented */
 }
 
-function listenForLinkusEvents() { /* To be implemented */ }
+function listenForLinkusEvents() {
+  linkus.addEventListener('deletelinktrigger', event => {
+    const { id } = event.detail; // id: { from, to }
+    // Per requirements, get the full link object to pass to the dialog
+    const links = graphus.getLinks(l => l.from.id === id.from && l.to.id === id.to);
+    if (links.length) {
+      dialogus.open('delete link', { link: links[0], canClose: true });
+    }
+  });
+}
 
 function listenForDialogusEvents() {
   dialogus.addEventListener('addnodetrigger', event => {
@@ -161,7 +178,7 @@ function listenForDialogusEvents() {
     dialogus.close('add node');
     graphus.addNode(name, description);
   });
-  
+
   dialogus.addEventListener('addlinktrigger', event => {
     const { link } = event.detail;
 
@@ -192,9 +209,14 @@ function listenForDialogusEvents() {
     dialogus.close('add link');
     graphus.addLink(fromId, toId, link.description);
   });
-  
+
   dialogus.addEventListener('deletenodetrigger', event => {
     graphus.deleteNode(event.detail.id);
+  });
+  
+  dialogus.addEventListener('deletelinktrigger', event => {
+    const { id } = event.detail;
+    graphus.deleteLink(id.from, id.to);
   });
 }
 

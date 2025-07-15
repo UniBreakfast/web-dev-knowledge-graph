@@ -58,7 +58,8 @@
   }
 
   #inform-dialog,
-  #delete-node-dialog {
+  #delete-node-dialog,
+  #delete-link-dialog {
     height: auto;
     max-height: 70vh;
   }
