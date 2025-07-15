@@ -88,6 +88,14 @@ function listenForGraphusEvents() {
         changeCurrentNodeBy({ id: change.id.to, select: { id: change.id.from } });
       }
     }
+    
+    if (change.type === 'node' && change.action === 'delete') {
+      // If the currently viewed node was the one deleted, go back to "show many"
+      if (nodus.getCurrentId() === change.id) {
+        showMany();
+      }
+      // We will add more cleanup logic here later (e.g., nodus.removeNode)
+    }
   });
 }
 
@@ -122,6 +130,14 @@ function listenForNodusEvents() {
   nodus.addEventListener('addlinktrigger', event => {
     const fromName = graphus.getNameById(event.detail.id);
     dialogus.open('add link', { from: fromName, canClose: true });
+  });
+  
+  nodus.addEventListener('deletenodetrigger', event => {
+    const node = graphus.getNodeById(event.detail.id);
+    if (node) {
+      // The node object from graphus has the name and linkCount we need
+      dialogus.open('delete node', { node, canClose: true });
+    }
   });
   /* To be implemented */
 }
@@ -175,6 +191,10 @@ function listenForDialogusEvents() {
 
     dialogus.close('add link');
     graphus.addLink(fromId, toId, link.description);
+  });
+  
+  dialogus.addEventListener('deletenodetrigger', event => {
+    graphus.deleteNode(event.detail.id);
   });
 }
 

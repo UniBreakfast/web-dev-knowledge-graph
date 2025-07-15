@@ -237,6 +237,43 @@ Object.assign(graphus, {
     };
     _saveAndDispatch(data, change);
   },
+
+  deleteNode(id) {
+    const data = _getGraphData();
+    const nodeToDelete = data.nodes[id];
+    if (!nodeToDelete) {
+      console.error(`Attempted to delete non-existent node with id: ${id}`);
+      return;
+    }
+
+    const nodeName = Object.keys(nodeToDelete)[0];
+
+    // Find and filter out links connected to the node
+    const linksToDelete = Object.keys(data.links).filter(linkId => {
+      const [fromId, toId] = linkId.split('_');
+      return +fromId === id || +toId === id;
+    });
+
+    // Delete the node
+    delete data.nodes[id];
+
+    // Delete the links
+    for (const linkId of linksToDelete) {
+      delete data.links[linkId];
+    }
+    
+    const change = {
+      type: 'node',
+      action: 'delete',
+      id: id,
+      name: nodeName, // For UI feedback
+      links: linksToDelete.map(linkId => { // For UI cleanup
+        const [from, to] = linkId.split('_').map(Number);
+        return { from, to };
+      }),
+    };
+    _saveAndDispatch(data, change);
+  },
 });
 
 // --- Private Helper Functions (hoisted) ---

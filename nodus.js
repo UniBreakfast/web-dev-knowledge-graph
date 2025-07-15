@@ -110,6 +110,15 @@ function _handleNodusClick(event) {
 
 function _handleCurrentViewInteraction(event) {
   const target = event.target;
+
+  const deleteNodeButton = target.closest('.delete-node-button');
+
+  if (deleteNodeButton) {
+    const id = +target.closest('.node-current-content').dataset.id;
+    nodus.dispatchEvent(new CustomEvent('deletenodetrigger', { detail: { id } }));
+    return;
+  }
+  
   const addLinkButton = target.closest('.add-link-button');
 
   if (addLinkButton) {
@@ -117,7 +126,7 @@ function _handleCurrentViewInteraction(event) {
     nodus.dispatchEvent(new CustomEvent('addlinktrigger', { detail: { id } }));
     return;
   }
-  
+
   const isRadio = target.matches('input[name="nodus-linked-node-select"]');
   const span = target.closest('.linked-node-item');
 
