@@ -6,89 +6,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GRAPH</title>
   <link rel="stylesheet" href="app.css">
-  <!-- CSS for other modules will be added here later -->
+  <script type="module" src="app.js"></script>
 </head>
 
-<body hidden> <!-- hidden until app.js shows it -->
+<body hidden>
   <header id="headus">
-    <datalist id="nodes-datalist"></datalist>
+    <datalist id="names"></datalist>
 
-    <div class="header-group">
-      <button id="add-node-button">Add Node</button>
-      <input type="search" id="query-input" list="nodes-datalist" placeholder="Find or create a node...">
+    <div class="group">
+      <button id="add-node">Add Node</button>
+      <input type="search" id="query" list="names" placeholder="Find or create a node...">
     </div>
 
-    <div class="header-group">
-      <div id="title-logo">
-        <h1 id="app-title">GRAPH</h1>
-        <img src="graph-title-logo.svg" alt="graph app logo with letter nodes and arrows connecting them">
-      </div>
-      <button id="menu-button">Menu</button>
+    <div class="group">
+      <h1>GRAPH</h1>
+      <img src="logo.svg" alt="graph app logo with letter nodes and arrows connecting them">
+      <button id="open-menu">Menu</button>
     </div>
   </header>
 
   <main>
-    <section id="nodus-section">
-      <!-- Controls for which article view to show -->
-      <input type="radio" name="nodus-view" id="nodus-view-current" class="view-toggle">
-      <input type="radio" name="nodus-view" id="nodus-view-many" class="view-toggle">
-      <input type="radio" name="nodus-view" id="nodus-view-message" class="view-toggle">
-
-      <article id="nodus-current" class="view">
-        <template id="node-current-template">
-          <div class="node-current-content" data-id>
-            <div class="node-current-header">
-              <h2 data-name></h2>
-              <div class="node-actions">
-                <button class="edit-node-button">Edit Node</button>
-                <button class="delete-node-button">Delete Node</button>
-                <button class="add-link-button">Add Link</button>
+    <section id="nodus">
+      <form>
+        <input type="radio" name="nodes" value="current">
+        <input type="radio" name="nodes" value="many">
+        <input type="radio" name="nodes" value="none">
+  
+        <article id="current-node" class="view">
+          <header>
+            <button class="edit-node-button">Edit Node</button>
+            <button class="delete-node-button">Delete Node</button>
+            <button class="add-link-button">Add Link</button>
+          </header>
+          <h2 data-name></h2>
+          <p data-description></p>
+          <div class="linked-nodes-list-container">
+            <input type="checkbox" id="linked-nodes-toggle" class="view-toggle">
+            <label for="linked-nodes-toggle" hidden></label>
+            <p class="no-links-message">No links to other nodes yet.</p>
+            <ul class="linked-nodes-list">
+              <!-- Radio buttons will be inserted here by nodus.js -->
+            </ul>
+          </div>
+          <!-- Content for a single "current" node -->
+          <template id="linked-node-item-template">
+            <li>
+              <label>
+                <input type="radio" name="nodus-linked-node-select" class="view-toggle">
+                <span class="linked-node-item" data-id data-direction></span>
+              </label>
+            </li>
+          </template>
+        </article>
+  
+        <article id="nodus-many" class="view">
+          <template id="node-card-template">
+            <div class="node-card">
+              <div class="node-card-main">
+                <h3 data-name></h3>
+                <p data-description></p>
+              </div>
+              <div class="node-card-aside">
+                <button class="goto-node-button" data-id>Go to Node</button>
+                <div class="link-counts">
+                  <span class="incoming" title="Incoming Links" data-incoming></span>
+                  <span class="outgoing" title="Outgoing Links" data-outgoing></span>
+                </div>
               </div>
             </div>
-            <p data-description></p>
-            <div class="linked-nodes-list-container">
-              <input type="checkbox" id="linked-nodes-toggle" class="view-toggle">
-              <label for="linked-nodes-toggle" hidden></label>
-              <p class="no-links-message">No links to other nodes yet.</p>
-              <ul class="linked-nodes-list">
-                <!-- Radio buttons will be inserted here by nodus.js -->
-              </ul>
-            </div>
-          </div>
-        </template>
-        <!-- Content for a single "current" node -->
-        <template id="linked-node-item-template">
-          <li>
-            <label>
-              <input type="radio" name="nodus-linked-node-select" class="view-toggle">
-              <span class="linked-node-item" data-id data-direction></span>
-            </label>
-          </li>
-        </template>
-      </article>
-
-      <article id="nodus-many" class="view">
-        <template id="node-card-template">
-          <div class="node-card">
-            <div class="node-card-main">
-              <h3 data-name></h3>
-              <p data-description></p>
-            </div>
-            <div class="node-card-aside">
-              <button class="goto-node-button" data-id>Go to Node</button>
-              <div class="link-counts">
-                <span class="incoming" title="Incoming Links" data-incoming></span>
-                <span class="outgoing" title="Outgoing Links" data-outgoing></span>
-              </div>
-            </div>
-          </div>
-        </template>
-        <!-- Content for a list of many nodes -->
-      </article>
-
-      <article id="nodus-message" class="view">
-        <p>No nodes in the graph. Add some using the 'Add Node' button in the top left corner.</p>
-      </article>
+          </template>
+          <!-- Content for a list of many nodes -->
+        </article>
+  
+        <article id="nodus-message" class="view">
+          <p>No nodes in the graph. Add some using the 'Add Node' button in the top left corner.</p>
+        </article>
+      </form>
     </section>
 
     <div id="splitter"></div>
@@ -231,9 +224,6 @@
 
     <!-- Other dialogs ... -->
   </div>
-
-  <!-- Script: Module-based architecture -->
-  <script src="app.js" type="module"></script>
 </body>
 
 </html>

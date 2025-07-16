@@ -1,12 +1,11 @@
-import { graphus } from './graphus.js';
-import { headus } from './headus.js';
-import { nodus } from './nodus.js';
-import { linkus } from './linkus.js';
-import { dialogus } from './dialogus.js';
+import { graphus } from './js/graphus.js';
+import { headus } from './js/headus.js';
+import { nodus } from './js/nodus.js';
+import { linkus } from './js/linkus.js';
+import { dialogus } from './js/dialogus.js';
 
-const version = '1.0.0'; // Example version for splash screen later
+const version = '0.0.1';
 
-// --- App Entry Point ---
 addCustomListeners();
 init();
 
