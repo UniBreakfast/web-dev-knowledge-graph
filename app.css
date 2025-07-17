@@ -93,3 +93,10 @@ main {
   content: '⇄ ';
   color: var(--link-two-way);
 }
+
+[type="checkbox"]:not(:checked) + .view,
+[type="checkbox"]:checked + .view + .view,
+ul.view:empty,
+ul.view:not(:empty) + .view {
+  display: none;
+}
