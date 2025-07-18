@@ -97,6 +97,7 @@ main {
 [type="checkbox"]:not(:checked) + .view,
 [type="checkbox"]:checked + .view + .view,
 ul.view:empty,
-ul.view:not(:empty) + .view {
+ul.view:not(:empty) + .view,
+.view:has([data-required]:empty) {
   display: none;
 }

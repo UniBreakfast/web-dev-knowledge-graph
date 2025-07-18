@@ -86,51 +86,53 @@
     <div id="splitter"></div>
 
     <section id="linkus">
-      <input type="checkbox" name="related">
+      <form action="javascript:">
+        <input type="checkbox" name="related">
 
-      <aside id="related" class="view">
-        <ul class="links view">
-          <template>
-            <li class="link">
-              <details>
-                <summary>
-                  <header>
-                    <button value="edit">Edit Link</button>
-                    <button class="delete">Delete Link</button>
-                  </header>
+        <aside id="related" class="view">
+          <ul class="links view">
+            <template>
+              <li class="link">
+                <details>
+                  <summary>
+                    <header>
+                      <button value="edit">Edit Link</button>
+                      <button class="delete">Delete Link</button>
+                    </header>
 
-                  <h3 class="name">node.name</h3>
-                  <p class="desecription">node.description</p>
-                </summary>
+                    <h3 class="name">node.name</h3>
+                    <p class="desecription">node.description</p>
+                  </summary>
 
-                <button value="goto" data-id="node.id">Go to Node</button>
+                  <button value="goto" data-id="node.id">Go to Node</button>
+                  <p class="description"></p>
+                </details>
+              </li>
+            </template>
+          </ul>
+          <p class="view">No links with the current node yet. Add some using the 'Add Link' button on the left.</p>
+        </aside>
+
+        <aside id="unrelated" class="view">
+          <ul class="links view">
+            <template>
+              <li class="link">
+                <header>
+                  <button value="goto" data-id="link.id">Go to Link</button>
+                </header>
+
+                <h3 class="names">
+                  <output class="from">node.name</output>
+                  <output class="to">node.name</output>
+                </h3>
+
                 <p class="description"></p>
-              </details>
-            </li>
-          </template>
-        </ul>
-        <p class="view">No links with the current node yet. Add some using the 'Add Link' button on the left.</p>
-      </aside>
-
-      <aside id="unrelated" class="view">
-        <ul class="links view">
-          <template>
-            <li class="link">
-              <header>
-                <button value="goto" data-id="link.id">Go to Link</button>
-              </header>
-
-              <h3 class="names">
-                <output class="from">node.name</output>
-                <output class="to">node.name</output>
-              </h3>
-
-              <p class="description"></p>
-            </li>
-          </template>
-        </ul>
-        <p class="view">No links in the graph yet.</p>
-      </aside>
+              </li>
+            </template>
+          </ul>
+          <p class="view">No links in the graph yet.</p>
+        </aside>
+      </form>
     </section>
   </main>
 
@@ -140,28 +142,34 @@
         <h2>New Node</h2>
 
         <label class="field">
-          <div>Name</div>
+          <span>Name</span>
           <input type="search" name="name" list="names" placeholder="Unique node name" required>
         </label>
 
         <label class="field">
-          <div>Description</div>
+          <span>Description</span>
           <textarea name="description" placeholder="Optional node description..."></textarea>
         </label>
 
         <footer>
           <button value="add">Add</button>
-          <button type="reset" value="close">Cancel</button>
+          <button>Cancel</button>
         </footer>
       </form>
     </dialog>
 
     <dialog id="inform">
       <form method="dialog">
-        <h2 data-title></h2>
-        <p data-text></p>
+        <h2>
+          <output name="title">title</output>
+        </h2>
+
+        <p>
+          <output name="text">text</output>
+        </p>
+
         <footer>
-          <button value="ok" class="close">OK</button>
+          <button>OK</button>
         </footer>
       </form>
     </dialog>
@@ -169,56 +177,70 @@
     <dialog id="new-link">
       <form method="dialog">
         <h2>New Link</h2>
-        <div class="link-fields">
-          <label>
-            From
-            <input type="text" name="from" list="nodes-datalist" required placeholder="Name of existing node">
-          </label>
-          <button type="button" class="swap-button" title="Swap Directions">⇅</button>
-          <label>
-            To
-            <input type="text" name="to" list="nodes-datalist" required placeholder="Name of existing node">
-          </label>
-        </div>
+
         <label>
-          Description
+          <span>From</span>
+          <input type="search" name="from" list="names" placeholder="Name of existing node" required>
+        </label>
+
+        <button type="button" value="swap" title="Swap names to change direction">⇅</button>
+
+        <label>
+          <span>To</span>
+          <input type="search" name="to" list="names" placeholder="Name of existing node" required>
+        </label>
+
+        <label>
+          <span>Description</span>
           <textarea name="description" placeholder="Optional details about the relationship..."></textarea>
         </label>
+
         <footer>
-          <button type="reset" value="cancel" class="close">Cancel</button>
-          <button type="submit" value="add">Add</button>
+          <button value="add">Add</button>
+          <button>Cancel</button>
         </footer>
       </form>
     </dialog>
 
     <dialog id="delete-node">
       <form method="dialog">
+        <input type="hidden" name="id">
+
         <h2>Delete Node</h2>
+
         <p>
           Are you sure you want to permanently delete the node
           "<strong><output name="name"></output></strong>"?
-          This will also delete <strong><output name="linkCount"></output></strong>
-          link(s) connected to it. This action cannot be undone.
+          <span class="view">
+            This will also delete <strong><output name="count" data-required></output></strong>
+            link(s) connected to it.
+          </span>
+          This action cannot be undone.
         </p>
+
         <footer>
-          <button type="reset" value="cancel" class="close">Cancel</button>
-          <button type="submit" value="delete" class="destructive">Delete</button>
+          <button value="delete">Delete</button>
+          <button>Cancel</button>
         </footer>
       </form>
     </dialog>
 
     <dialog id="delete-link">
       <form method="dialog">
+        <input type="hidden" name="id">
+
         <h2>Delete Link</h2>
+
         <p>
           Are you sure you want to permanently delete the link from
-          "<strong><output name="fromName"></output></strong>" to
-          "<strong><output name="toName"></output></strong>"?
+          "<strong><output name="from"></output></strong>" to
+          "<strong><output name="to"></output></strong>"?
           This action cannot be undone.
         </p>
+
         <footer>
-          <button type="reset" value="cancel" class="close">Cancel</button>
-          <button type="submit" value="delete" class="destructive">Delete</button>
+          <button value="delete">Delete</button>
+          <button>Cancel</button>
         </footer>
       </form>
     </dialog>
