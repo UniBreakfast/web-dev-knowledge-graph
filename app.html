@@ -245,11 +245,123 @@
       </form>
     </dialog>
 
+    <dialog id="edit-node">
+      <form method="dialog">
+        <input type="hidden" name="id">
+
+        <h2>Edit Node</h2>
+
+        <label class="field">
+          <span>Name</span>
+          <input type="search" name="name" list="names" placeholder="Unique node name" required>
+        </label>
+
+        <label class="field">
+          <span>Description</span>
+          <textarea name="description" placeholder="Optional node description..."></textarea>
+        </label>
+
+        <footer>
+          <button value="update">Update</button>
+          <button>Cancel</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="edit-link">
+      <form method="dialog">
+        <input type="hidden" name="id">
+
+        <h2>Edit Link</h2>
+
+        <label>
+          <span>From</span>
+          <input type="search" name="from" list="names" placeholder="Name of existing node" required>
+        </label>
+
+        <button type="button" value="swap" title="Swap names to change direction">⇅</button>
+
+        <label>
+          <span>To</span>
+          <input type="search" name="to" list="names" placeholder="Name of existing node" required>
+        </label>
+
+        <label>
+          <span>Description</span>
+          <textarea name="description" placeholder="Optional details about the relationship..."></textarea>
+        </label>
+
+        <footer>
+          <button value="update">Update</button>
+          <button>Cancel</button>
+        </footer>
+      </form>
+    </dialog>
+
     <dialog id="menu">
       <!-- Menu Dialog Content -->
     </dialog>
 
-    <!-- Other dialogs ... -->
+    <dialog id="stats">
+      <form method="dialog">
+        <h2>Stats</h2>
+
+        <table>
+          <tbody>
+            <tr>
+              <td>Number of nodes</td>
+              <td><output name="nodes"></output></td>
+            </tr>
+            <tr>
+              <td>Number of links</td>
+              <td><output name="links"></output></td>
+            </tr>
+            <tr>
+              <td>Nodes without description</td>
+              <td><output name="empty"></output></td>
+            </tr>
+            <tr>
+              <td>Links without description</td>
+              <td><output name="simple"></output></td>
+            </tr>
+            <tr>
+              <td>Minimum links per node</td>
+              <td><output name="min"></output></td>
+            </tr>
+            <tr>
+              <td>Maximum links per node</td>
+              <td><output name="max"></output></td>
+            </tr>
+            <tr>
+              <td>Average links per node</td>
+              <td><output name="avg"></output></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <footer>
+          <button>Close</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="splash">
+      <form method="dialog">
+        <img src="logo.svg" alt="graph app logo with letter nodes and arrows connecting them">
+
+        <p>
+          Version: <output name="version"></output>
+        </p>
+
+        <p>
+          Licensed under the <a href="https://unlicense.org/">Unlicense</a>, the most free license there is.
+        </p>
+
+        <footer>
+          <button>Close</button>
+        </footer>
+      </form>
+    </dialog>
   </div>
 </body>
 
