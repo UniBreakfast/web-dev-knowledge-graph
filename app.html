@@ -5,18 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GRAPH</title>
-  <!-- <link rel="stylesheet" href="app.css"> -->
+  
+  <link rel="stylesheet" href="app.css">
   <script type="module" src="app.js"></script>
+  <script src="filler.js" defer></script>
 </head>
 
-<body !hidden>
+<body hidden>
   <header id="headus">
     <datalist id="names"></datalist>
 
-    <div class="group">
+    <form class="group">
       <button id="add-node">Add Node</button>
       <input type="search" id="query" list="names" placeholder="Find or create a node...">
-    </div>
+    </form>
 
     <div class="group">
       <h1>GRAPH</h1>
@@ -26,9 +28,11 @@
   </header>
 
   <main>
+    <input type="checkbox" id="left" hidden>
+    
     <section id="nodus">
       <form action="javascript:">
-        <input type="checkbox" name="current">
+        <input type="checkbox" name="current" hidden>
 
         <article id="current" class="view">
           <input type="hidden" name="id">
@@ -50,11 +54,11 @@
           <ul class="view" id="linked">
             <template>
               <li class="node.direction">
-                <label class="button">
-                  <input type="radio" name="selected" value="node.id">
+                <label class="view button">
+                  <input type="radio" name="selected" value="node.id" hidden>
                   <output>node.name</output>
                 </label>
-                <button value="goto" data-id="node.id">node.name</button>
+                <button class="view" value="goto" data-id="node.id">node.name</button>
               </li>
             </template>
           </ul>
@@ -81,19 +85,21 @@
           <p class="view">No nodes in the graph. Add some using the 'Add Node' button in the top left corner.</p>
         </article>
       </form>
+      <label for="left"></label>
     </section>
 
     <div id="splitter"></div>
 
     <section id="linkus">
+      <label for="left"></label>
       <form action="javascript:">
-        <input type="checkbox" name="related">
+        <input type="checkbox" name="related" hidden>
 
         <aside id="related" class="view">
           <ul class="links view">
             <template>
               <li class="link">
-                <details>
+                <details class="link.direction">
                   <summary>
                     <header>
                       <button value="edit">Edit Link</button>
@@ -105,7 +111,7 @@
                   </summary>
 
                   <button value="goto" data-id="node.id">Go to Node</button>
-                  <p class="description"></p>
+                  <p class="description">node.description</p>
                 </details>
               </li>
             </template>
@@ -158,22 +164,6 @@
       </form>
     </dialog>
 
-    <dialog id="inform">
-      <form method="dialog">
-        <h2>
-          <output name="title">title</output>
-        </h2>
-
-        <p>
-          <output name="text">text</output>
-        </p>
-
-        <footer>
-          <button>OK</button>
-        </footer>
-      </form>
-    </dialog>
-
     <dialog id="new-link">
       <form method="dialog">
         <h2>New Link</h2>
@@ -197,49 +187,6 @@
 
         <footer>
           <button value="add">Add</button>
-          <button>Cancel</button>
-        </footer>
-      </form>
-    </dialog>
-
-    <dialog id="delete-node">
-      <form method="dialog">
-        <input type="hidden" name="id">
-
-        <h2>Delete Node</h2>
-
-        <p>
-          Are you sure you want to permanently delete the node
-          "<strong><output name="name"></output></strong>"?
-          <span class="view">
-            This will also delete <strong><output name="count" data-required></output></strong>
-            link(s) connected to it.
-          </span>
-          This action cannot be undone.
-        </p>
-
-        <footer>
-          <button value="delete">Delete</button>
-          <button>Cancel</button>
-        </footer>
-      </form>
-    </dialog>
-
-    <dialog id="delete-link">
-      <form method="dialog">
-        <input type="hidden" name="id">
-
-        <h2>Delete Link</h2>
-
-        <p>
-          Are you sure you want to permanently delete the link from
-          "<strong><output name="from"></output></strong>" to
-          "<strong><output name="to"></output></strong>"?
-          This action cannot be undone.
-        </p>
-
-        <footer>
-          <button value="delete">Delete</button>
           <button>Cancel</button>
         </footer>
       </form>
@@ -294,6 +241,65 @@
         <footer>
           <button value="update">Update</button>
           <button>Cancel</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="delete-node">
+      <form method="dialog">
+        <input type="hidden" name="id">
+
+        <h2>Delete Node</h2>
+
+        <p>
+          Are you sure you want to permanently delete the node
+          "<strong><output name="name"></output></strong>"?
+          <span class="view">
+            This will also delete <strong><output name="count" data-required></output></strong>
+            link(s) connected to it.
+          </span>
+          This action cannot be undone.
+        </p>
+
+        <footer>
+          <button value="delete">Delete</button>
+          <button>Cancel</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="delete-link">
+      <form method="dialog">
+        <input type="hidden" name="id">
+
+        <h2>Delete Link</h2>
+
+        <p>
+          Are you sure you want to permanently delete the link from
+          "<strong><output name="from"></output></strong>" to
+          "<strong><output name="to"></output></strong>"?
+          This action cannot be undone.
+        </p>
+
+        <footer>
+          <button value="delete">Delete</button>
+          <button>Cancel</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="inform">
+      <form method="dialog">
+        <h2>
+          <output name="title">title</output>
+        </h2>
+
+        <p>
+          <output name="text">text</output>
+        </p>
+
+        <footer>
+          <button>OK</button>
         </footer>
       </form>
     </dialog>

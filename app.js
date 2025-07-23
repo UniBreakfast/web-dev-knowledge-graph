@@ -6,8 +6,8 @@ import { dialogus } from './js/dialogus.js';
 
 const version = '0.0.1';
 
-addCustomListeners();
-init();
+// addCustomListeners();
+// init();
 
 function isFirstRun() {
   return localStorage.getItem('graph_app_data') === null;

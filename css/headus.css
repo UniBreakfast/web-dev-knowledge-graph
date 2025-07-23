@@ -1,33 +1,26 @@
-/* Header Styles */
 #headus {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: calc(var(--spacing-unit) * 2);
-  background-color: var(--panel-background);
-  border-bottom: 1px solid var(--border-divider);
   flex-shrink: 0;
-  
-  .header-group {
+  padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
+  gap: var(--spacing-unit);
+
+  .group {
+    flex-grow: 1;
     display: flex;
     align-items: center;
-    gap: calc(var(--spacing-unit) * 2);
-  }
-  
-  #query-input {
-    width: 30vw; /* Takes up significant space */
+    gap: var(--spacing-unit);
+
+    &:is(form) {
+      flex-grow: 4;
+    }
   }
 
-  #title-logo {
-    position: relative; /* Contain the absolutely positioned h1 */
+  #query {
+    flex-grow: 1;
   }
 
-  #title-logo img {
-    height: 50px; /* Give the SVG a defined height */
-    vertical-align: middle; /* Helps align with the button */
-  }
-
-  #app-title {
+  h1 {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -38,12 +31,26 @@
     white-space: nowrap;
     border-width: 0;
   }
+
+  img {
+    height: 80px;
+    display: block;
+    flex-grow: 1;
+  }
 }
 
-/* Responsive wrap for header */
+/* Adaptive wrap for header */
 @media (max-width: 800px) {
   #headus {
     flex-direction: column-reverse;
-    gap: var(--spacing-unit);
+    gap: calc(var(--spacing-unit) * 2);
+
+    .group {
+      width: 100%;
+    }
+
+    img {
+      height: 50px;
+    }
   }
 }
