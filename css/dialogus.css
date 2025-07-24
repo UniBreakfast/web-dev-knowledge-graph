@@ -1,11 +1,17 @@
 #dialogus {
   dialog {
+    margin: auto;
+    
     width: min(1000px, 85vw);
     height: 70vh;
     border: 1px solid var(--border-divider);
     border-radius: var(--border-radius);
     padding: 0;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    label:has(textarea) {
+      flex-grow: 1;
+    }
   }
 
   dialog::backdrop {

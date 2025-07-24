@@ -96,3 +96,16 @@ lForm.related.checked = true;
   items = Array.from({ length: Math.random() * 14 }).fill().map(buildItem);
   linkList.replaceChildren(...items);
 }
+
+const [newNodeDialog, newLinkDialog, editNodeDialog, editLinkDialog, deleteNodeDialog, deleteLinkDialog, informDialog, menuDialog, statsDialog, splashDialog] = document.querySelectorAll('dialog');
+
+newNodeDialog.showModal();
+newLinkDialog.showModal();
+editNodeDialog.showModal();
+editLinkDialog.showModal();
+deleteNodeDialog.showModal();
+deleteLinkDialog.showModal();
+informDialog.showModal();
+menuDialog.showModal();
+statsDialog.showModal();
+splashDialog.showModal();

@@ -303,11 +303,7 @@
         </footer>
       </form>
     </dialog>
-
-    <dialog id="menu">
-      <!-- Menu Dialog Content -->
-    </dialog>
-
+    
     <dialog id="stats">
       <form method="dialog">
         <h2>Stats</h2>
@@ -344,6 +340,59 @@
             </tr>
           </tbody>
         </table>
+
+        <footer>
+          <button>Close</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="menu">
+      <form method="dialog">
+        <h2>Menu</h2>
+
+        <ul>
+          <li>
+            <button value="all">Show all nodes and links</button>
+          </li>
+          <li>
+            <button value="export">Export GRAPH to JSON</button>
+          </li>
+          <li>
+            <button value="import">Import GRAPH from JSON</button>
+          </li>
+          <li>
+            <button value="stats">Show stats</button>
+          </li>
+          <li>
+            <button value="about">About</button>
+          </li>
+          <li>
+            <button value="descriptionless">
+              <output name="descriptionless">Nodes and Links without description</output>
+            </button>
+          </li>
+          <li>
+            <button value="least">
+              <output name="least">Least linked nodes</output>
+            </button>
+          </li>
+          <li>
+            <button value="most">
+              <output name="most">Most linked nodes</output>
+            </button>
+          </li>
+          <li>
+            <button value="random-node">
+              <output name="rnode">Random node</output>
+            </button>
+          </li>
+          <li>
+            <button value="random-link">
+              <output name="rlink">Random link</output>
+            </button>
+          </li>
+        </ul>
 
         <footer>
           <button>Close</button>
