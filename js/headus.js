@@ -4,7 +4,7 @@ let elements = {};
 
 Object.assign(headus, {
   init() {
-    _initElements();
+    locateElements();
     // elements.addNodeButton.addEventListener('click', _handleAddNodeClick);
   },
 
@@ -18,7 +18,7 @@ Object.assign(headus, {
   },
 });
 
-function _initElements() {
+function locateElements() {
   elements.datalist = document.getElementById('names');
   elements.queryInput = document.getElementById('query-input');
   elements.addNodeButton = document.getElementById('add-node-button');

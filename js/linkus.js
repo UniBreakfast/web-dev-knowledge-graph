@@ -4,7 +4,7 @@ let elements = {};
 
 Object.assign(linkus, {
   init() {
-    _initElements();
+    locateElements();
     // elements.relatedContainer.addEventListener('click', _handleRelatedLinkClick);
   },
 
@@ -24,37 +24,34 @@ Object.assign(linkus, {
   },
 
   showMany(links) {
-    if (!links?.length) {
-      elements.viewMessageRadio.checked = true;
-      return;
-    }
-
-    const cards = links.map(_populateLinkCard);
-    // elements.unrelatedContainer.replaceChildren(...cards);
-    // elements.viewUnrelatedRadio.checked = true;
+    const { form, unrelatedList } = elements;
+    const linkItems = links.map(buildUnrelatedItem);
+    
+    form.related.checked = false;
+    unrelatedList.replaceChildren(...linkItems);
   },
 });
 
-function _initElements() {
-  elements.viewUnrelatedRadio = document.getElementById('linkus-view-unrelated');
-  elements.viewMessageRadio = document.getElementById('linkus-view-message');
-  elements.unrelatedContainer = document.getElementById('linkus-unrelated');
-  elements.linkCardTemplate = document.getElementById('link-card-template');
-  elements.viewRelatedRadio = document.getElementById('linkus-view-related');
+function locateElements() {
+  elements.section = document.getElementById('linkus');
+  elements.form = elements.section.querySelector('form');
+  elements.unrelatedList = document.querySelector('#unrelated>.links');
+  elements.unrelatedItem = elements.unrelatedList.querySelector('template')
+    .content.firstElementChild;
   elements.relatedContainer = document.getElementById('linkus-related');
   elements.linkRelatedTemplate = document.getElementById('link-related-template');
 }
 
-function _populateLinkCard(link) {
-  // const cardClone = elements.linkCardTemplate.content.cloneNode(true);
-  // const card = cardClone.querySelector('.link-card');
-  // card.dataset.fromId = link.from.id;
-  // card.dataset.toId = link.to.id;
+function buildUnrelatedItem(link) {
+  const item = elements.unrelatedItem.cloneNode(true);
+  const [btn, from, to, description] = item.querySelectorAll('button, .from, .to, .description');
 
-  // card.querySelector('[data-names]').textContent = `${link.from.name} → ${link.to.name}`;
-  // card.querySelector('[data-description]').textContent = link.description || 'No description.';
+  btn.dataset.id = link.from.id + '_' + link.to.id;
+  from.value = link.from.name;
+  to.value = link.to.name;
+  description.innerText = link.description || 'No description.';
 
-  // return cardClone;
+  return item;
 }
 
 function _populateRelatedLink(link, currentId) {

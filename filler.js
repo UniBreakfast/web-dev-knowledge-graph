@@ -57,7 +57,7 @@ lForm = document.querySelector('#linkus form');
   // nodeList.replaceChildren(...items);
 }
 
-lForm.related.checked = true;
+// lForm.related.checked = true;
 
 { // related
   linkList = related.querySelector('.links');
@@ -80,7 +80,7 @@ lForm.related.checked = true;
 
 { // unrelated
   linkList = unrelated.querySelector('.links');
-  liTemplate = unrelated.querySelector('template').content.cloneNode(true);
+  // liTemplate = unrelated.querySelector('template').content.cloneNode(true);
 
   buildItem = () => {
     item = liTemplate.cloneNode(true);
@@ -93,8 +93,8 @@ lForm.related.checked = true;
     return item;
   }
   
-  items = Array.from({ length: Math.random() * 14 }).fill().map(buildItem);
-  linkList.replaceChildren(...items);
+  // items = Array.from({ length: Math.random() * 14 }).fill().map(buildItem);
+  // linkList.replaceChildren(...items);
 }
 
 const [newNodeDialog, newLinkDialog, editNodeDialog, editLinkDialog, deleteNodeDialog, deleteLinkDialog, informDialog, menuDialog, statsDialog, splashDialog] = document.querySelectorAll('dialog');

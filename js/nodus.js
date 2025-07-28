@@ -28,11 +28,11 @@ Object.assign(nodus, {
   },
 
   showMany(nodes) {
-    elements.currentBox.checked = false;
-
+    const { form, nodeList } = elements;
     const nodeItems = nodes.map(buildNodeItem);
-
-    elements.nodeList.replaceChildren(...nodeItems);
+    
+    form.current.checked = false;
+    nodeList.replaceChildren(...nodeItems);
   },
 
   getCurrentId() {
@@ -43,12 +43,14 @@ Object.assign(nodus, {
 });
 
 function locateElements() {
-  elements.currentBox = document.getElementById('current');
+  elements.section = document.getElementById('nodus');
+  elements.form = elements.section.querySelector('form');
   elements.currentContainer = document.getElementById('nodus-current');
   elements.nodeCurrentTemplate = document.getElementById('node-current-template');
   elements.linkedNodeItemTemplate = document.getElementById('linked-node-item-template');
   elements.nodeList = document.getElementById('nodes');
-  elements.nodeItem = elements.nodeList.querySelector('template').content.firstElementChild;
+  elements.nodeItem = elements.nodeList.querySelector('template')
+    .content.firstElementChild;
 }
 
 function buildNodeItem(node) {

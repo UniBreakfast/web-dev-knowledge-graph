@@ -10,7 +10,7 @@ Object.assign(graphus, {
       // or clear localStorage, but for now, we'll just stop.
       return;
     }
-    _setGraphData(data);
+    setGraphData(data);
 
     const detail = {
       names: this.getNodeNames(),
@@ -56,20 +56,20 @@ Object.assign(graphus, {
   },
 
   isNameTaken(name) {
-    const data = _getGraphData();
+    const data = getGraphData();
     if (!data?.nodes) return false;
     const trimmedName = name.trim();
     return Object.values(data.nodes).some(nodeData => Object.keys(nodeData)[0] === trimmedName);
   },
 
   doesLinkExist(fromId, toId) {
-    const data = _getGraphData();
+    const data = getGraphData();
     if (!data?.links) return false;
     return `${fromId}_${toId}` in data.links;
   },
 
   getIdByName(name) {
-    const data = _getGraphData();
+    const data = getGraphData();
     if (!data?.nodes) return null;
 
     const entry = Object.entries(data.nodes).find(([, nodeData]) =>
@@ -80,13 +80,13 @@ Object.assign(graphus, {
   },
 
   getNameById(id) {
-    const data = _getGraphData();
+    const data = getGraphData();
     const node = data?.nodes?.[id];
     return node ? Object.keys(node)[0] : null;
   },
 
   getNodeById(id) {
-    const data = _getGraphData();
+    const data = getGraphData();
     if (!data?.nodes?.[id]) return null;
 
     const [[name, description]] = Object.entries(data.nodes[id]);
@@ -120,7 +120,7 @@ Object.assign(graphus, {
   },
 
   getLinksById(id1, id2) {
-    const data = _getGraphData();
+    const data = getGraphData();
     if (!data?.links) return [];
 
     const linkEntries = Object.entries(data.links);
@@ -154,13 +154,13 @@ Object.assign(graphus, {
   },
 
   getNodeNames() {
-    const data = _getGraphData();
+    const data = getGraphData();
     if (!data?.nodes) return [];
     return Object.values(data.nodes).map(node => Object.keys(node)[0]);
   },
 
   getNodes(filter) {
-    const data = _getGraphData();
+    const data = getGraphData();
     if (!data?.nodes) return [];
 
     const allNodes = Object.entries(data.nodes).map(([id, nodeData]) => {
@@ -180,7 +180,7 @@ Object.assign(graphus, {
   },
 
   getLinks(filter) {
-    const data = _getGraphData();
+    const data = getGraphData();
     if (!data?.links) return [];
 
     const allLinks = Object.entries(data.links).map(([linkId, description]) => {
@@ -199,7 +199,7 @@ Object.assign(graphus, {
   },
 
   addNode(name, description = '') {
-    const data = _getGraphData();
+    const data = getGraphData();
     const trimmedName = name.trim();
     if (!trimmedName || this.isNameTaken(trimmedName)) {
       console.error("Attempted to add node with invalid or duplicate name.");
@@ -217,11 +217,11 @@ Object.assign(graphus, {
       name: trimmedName,
       description: description.trim(),
     };
-    _saveAndDispatch(data, change);
+    saveAndDispatch(data, change);
   },
 
   addLink(fromId, toId, description = '') {
-    const data = _getGraphData();
+    const data = getGraphData();
     if (this.doesLinkExist(fromId, toId)) {
       console.error("Attempted to add a link that already exists.");
       return;
@@ -235,11 +235,11 @@ Object.assign(graphus, {
       id: { from: fromId, to: toId },
       description: description.trim(),
     };
-    _saveAndDispatch(data, change);
+    saveAndDispatch(data, change);
   },
 
   deleteNode(id) {
-    const data = _getGraphData();
+    const data = getGraphData();
     const nodeToDelete = data.nodes[id];
     if (!nodeToDelete) {
       console.error(`Attempted to delete non-existent node with id: ${id}`);
@@ -272,11 +272,11 @@ Object.assign(graphus, {
         return { from, to };
       }),
     };
-    _saveAndDispatch(data, change);
+    saveAndDispatch(data, change);
   },
 
   deleteLink(from, to) {
-    const data = _getGraphData();
+    const data = getGraphData();
     const linkId = `${from}_${to}`;
 
     if (!data.links.hasOwnProperty(linkId)) {
@@ -291,23 +291,22 @@ Object.assign(graphus, {
       action: 'delete',
       id: { from, to },
     };
-    _saveAndDispatch(data, change);
+    saveAndDispatch(data, change);
   },
 });
 
-// --- Private Helper Functions (hoisted) ---
-function _getGraphData() {
+function getGraphData() {
   const data = localStorage.getItem(STORAGE_KEY);
   return data ? JSON.parse(data) : null;
 }
 
-function _setGraphData(data) {
+function setGraphData(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-function _saveAndDispatch(data, change) {
+function saveAndDispatch(data, change) {
   data.version++;
-  _setGraphData(data);
+  setGraphData(data);
   const event = new CustomEvent('graphupdated', { detail: { change } });
   graphus.dispatchEvent(event);
 }
