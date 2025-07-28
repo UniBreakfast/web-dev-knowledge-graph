@@ -4,10 +4,13 @@ import { nodus } from './js/nodus.js';
 import { linkus } from './js/linkus.js';
 import { dialogus } from './js/dialogus.js';
 
+const EXAMPLE_FILE = 'example-graph.json';
+const LS_KEY = 'graph_app_data';
+
 const version = '0.0.1';
 
-// addCustomListeners();
-// init();
+addCustomListeners();
+initApp();
 
 function isFirstRun() {
   return localStorage.getItem('graph_app_data') === null;
@@ -16,39 +19,42 @@ function isFirstRun() {
 function showBody() {
   document.body.hidden = false;
 }
-
-async function init() {
+async function initApp() {
   const firstRun = isFirstRun();
   let data;
 
   if (firstRun) {
-    const response = await fetch('example-graph.json');
-    data = await response.json();
+    data = await getExampleData();
   } else {
     try {
-      const storedData = JSON.parse(localStorage.getItem('graph_app_data'));
-      if (graphus.isValidGraph(storedData)) {
-        data = storedData;
-      } else {
-        throw new Error("Invalid data in localStorage.");
-      }
+      const storedData = getLSData();
+      if (graphus.isValidGraph(storedData)) data = storedData; 
+      else throw new Error("Invalid data in localStorage.");
     } catch (e) {
       console.error(e.message, "Falling back to example graph.");
-      const response = await fetch('example-graph.json');
-      data = await response.json();
+      data = await getExampleData();
     }
   }
 
-  // Init all modules in order as per requirements
   headus.init();
   nodus.init();
   linkus.init();
   dialogus.init();
-  graphus.init(data); // This triggers the 'graphloaded' event
+  graphus.init(data);
 
   if (firstRun) {
-    // dialogus.open('splash', { version, canClose: true });
+    dialogus.open('splash', { version, canClose: true });
   }
+}
+
+function getLSData() {
+  return JSON.parse(localStorage.getItem(LS_KEY));
+}
+
+async function getExampleData() {
+  const response = await fetch(EXAMPLE_FILE);
+  const data = await response.json();
+  return data;
 }
 
 function addCustomListeners() {

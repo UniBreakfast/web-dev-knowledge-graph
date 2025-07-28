@@ -72,13 +72,13 @@
                 <header>
                   <button value="goto" data-id="node.id">Go to Node</button>
                   <div class="group">
-                    <output class="incoming" title="Incoming Links"></output>
-                    <output class="outgoing" title="Outgoing Links"></output>
+                    <output class="incoming" title="Incoming Links">node.linkCount.incoming</output>
+                    <output class="outgoing" title="Outgoing Links">node.linkCount.outgoing</output>
                   </div>
                 </header>
 
-                <h3 class="name"></h3>
-                <p class="description"></p>
+                <h3 class="name">node.name</h3>
+                <p class="description">node.description</p>
               </li>
             </template>
           </ul>
@@ -149,7 +149,7 @@
 
         <label class="field">
           <span>Name</span>
-          <input type="search" name="name" list="names" placeholder="Unique node name" required>
+          <input type="search" name="name" list="names" placeholder="Unique node name">
         </label>
 
         <label class="field">
@@ -170,14 +170,14 @@
 
         <label>
           <span>From</span>
-          <input type="search" name="from" list="names" placeholder="Name of existing node" required>
+          <input type="search" name="from" list="names" placeholder="Name of existing node">
         </label>
 
         <button type="button" value="swap" title="Swap names to change direction">⇅</button>
 
         <label>
           <span>To</span>
-          <input type="search" name="to" list="names" placeholder="Name of existing node" required>
+          <input type="search" name="to" list="names" placeholder="Name of existing node">
         </label>
 
         <label>
@@ -200,7 +200,7 @@
 
         <label class="field">
           <span>Name</span>
-          <input type="search" name="name" list="names" placeholder="Unique node name" required>
+          <input type="search" name="name" list="names" placeholder="Unique node name">
         </label>
 
         <label class="field">
@@ -223,14 +223,14 @@
 
         <label>
           <span>From</span>
-          <input type="search" name="from" list="names" placeholder="Name of existing node" required>
+          <input type="search" name="from" list="names" placeholder="Name of existing node">
         </label>
 
         <button type="button" value="swap" title="Swap names to change direction">⇅</button>
 
         <label>
           <span>To</span>
-          <input type="search" name="to" list="names" placeholder="Name of existing node" required>
+          <input type="search" name="to" list="names" placeholder="Name of existing node">
         </label>
 
         <label>
@@ -303,7 +303,7 @@
         </footer>
       </form>
     </dialog>
-    
+
     <dialog id="stats">
       <form method="dialog">
         <h2>Stats</h2>

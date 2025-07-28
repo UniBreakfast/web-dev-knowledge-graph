@@ -5,7 +5,7 @@ let elements = {};
 Object.assign(linkus, {
   init() {
     _initElements();
-    elements.relatedContainer.addEventListener('click', _handleRelatedLinkClick);
+    // elements.relatedContainer.addEventListener('click', _handleRelatedLinkClick);
   },
 
   showTwin(links, currentId) {
@@ -30,8 +30,8 @@ Object.assign(linkus, {
     }
 
     const cards = links.map(_populateLinkCard);
-    elements.unrelatedContainer.replaceChildren(...cards);
-    elements.viewUnrelatedRadio.checked = true;
+    // elements.unrelatedContainer.replaceChildren(...cards);
+    // elements.viewUnrelatedRadio.checked = true;
   },
 });
 
@@ -46,15 +46,15 @@ function _initElements() {
 }
 
 function _populateLinkCard(link) {
-  const cardClone = elements.linkCardTemplate.content.cloneNode(true);
-  const card = cardClone.querySelector('.link-card');
-  card.dataset.fromId = link.from.id;
-  card.dataset.toId = link.to.id;
+  // const cardClone = elements.linkCardTemplate.content.cloneNode(true);
+  // const card = cardClone.querySelector('.link-card');
+  // card.dataset.fromId = link.from.id;
+  // card.dataset.toId = link.to.id;
 
-  card.querySelector('[data-names]').textContent = `${link.from.name} → ${link.to.name}`;
-  card.querySelector('[data-description]').textContent = link.description || 'No description.';
+  // card.querySelector('[data-names]').textContent = `${link.from.name} → ${link.to.name}`;
+  // card.querySelector('[data-description]').textContent = link.description || 'No description.';
 
-  return cardClone;
+  // return cardClone;
 }
 
 function _populateRelatedLink(link, currentId) {

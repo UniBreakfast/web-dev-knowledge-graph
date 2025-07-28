@@ -5,20 +5,20 @@ const elements = {};
 Object.assign(dialogus, {
   init() {
     elements.newNodeDialog = document.getElementById('new-node-dialog');
-    elements.newNodeForm = elements.newNodeDialog.querySelector('form');
+    // elements.newNodeForm = elements.newNodeDialog.querySelector('form');
     elements.informDialog = document.getElementById('inform-dialog');
-    elements.informTitle = elements.informDialog.querySelector('[data-title]');
-    elements.informText = elements.informDialog.querySelector('[data-text]');
+    // elements.informTitle = elements.informDialog.querySelector('[data-title]');
+    // elements.informText = elements.informDialog.querySelector('[data-text]');
     elements.newLinkDialog = document.getElementById('new-link-dialog');
-    elements.newLinkForm = elements.newLinkDialog.querySelector('form');
-    elements.newLinkDialog.querySelector('.swap-button').addEventListener('click', () => {
-      const {from, to} = elements.newLinkForm.elements;
-      [from.value, to.value] = [to.value, from.value];
-    });
+    // elements.newLinkForm = elements.newLinkDialog.querySelector('form');
+    // elements.newLinkDialog.querySelector('.swap-button').addEventListener('click', () => {
+    //   const {from, to} = elements.newLinkForm.elements;
+    //   [from.value, to.value] = [to.value, from.value];
+    // });
     elements.deleteNodeDialog = document.getElementById('delete-node-dialog');
-    elements.deleteNodeForm = elements.deleteNodeDialog.querySelector('form');
+    // elements.deleteNodeForm = elements.deleteNodeDialog.querySelector('form');
     elements.deleteLinkDialog = document.getElementById('delete-link-dialog');
-    elements.deleteLinkForm = elements.deleteLinkDialog.querySelector('form');
+    // elements.deleteLinkForm = elements.deleteLinkDialog.querySelector('form');
   },
 
   open(name, data) {

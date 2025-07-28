@@ -4,10 +4,10 @@ let elements = {};
 
 Object.assign(nodus, {
   init() {
-    _initElements();
-    elements.manyContainer.addEventListener('click', _handleNodusClick);
-    elements.currentContainer.addEventListener('click', _handleCurrentViewInteraction);
-    elements.currentContainer.addEventListener('change', _handleCurrentViewInteraction);
+    locateElements();
+    // elements.manyContainer.addEventListener('click', _handleNodusClick);
+    // elements.currentContainer.addEventListener('click', _handleCurrentViewInteraction);
+    // elements.currentContainer.addEventListener('change', _handleCurrentViewInteraction);
   },
 
   showOne(node, selectedId) {
@@ -28,14 +28,11 @@ Object.assign(nodus, {
   },
 
   showMany(nodes) {
-    if (!nodes?.length) {
-      elements.viewMessageRadio.checked = true;
-      return;
-    }
+    elements.currentBox.checked = false;
 
-    const cards = nodes.map(_populateNodeCard);
-    elements.manyContainer.replaceChildren(...cards);
-    elements.viewManyRadio.checked = true;
+    const nodeItems = nodes.map(buildNodeItem);
+
+    elements.nodeList.replaceChildren(...nodeItems);
   },
 
   getCurrentId() {
@@ -45,28 +42,27 @@ Object.assign(nodus, {
   },
 });
 
-function _initElements() {
-  elements.viewManyRadio = document.getElementById('nodus-view-many');
-  elements.viewMessageRadio = document.getElementById('nodus-view-message');
-  elements.manyContainer = document.getElementById('nodus-many');
-  elements.nodeCardTemplate = document.getElementById('node-card-template');
-  elements.viewCurrentRadio = document.getElementById('nodus-view-current');
+function locateElements() {
+  elements.currentBox = document.getElementById('current');
   elements.currentContainer = document.getElementById('nodus-current');
   elements.nodeCurrentTemplate = document.getElementById('node-current-template');
   elements.linkedNodeItemTemplate = document.getElementById('linked-node-item-template');
+  elements.nodeList = document.getElementById('nodes');
+  elements.nodeItem = elements.nodeList.querySelector('template').content.firstElementChild;
 }
 
-function _populateNodeCard(node) {
-  const cardClone = elements.nodeCardTemplate.content.cloneNode(true);
-  const card = cardClone.querySelector('.node-card');
-  
-  card.dataset.id = node.id;
-  card.querySelector('[data-name]').textContent = node.name;
-  card.querySelector('[data-description]').textContent = node.description || 'No description.';
-  card.querySelector('[data-incoming]').textContent = node.linkCount.incoming;
-  card.querySelector('[data-outgoing]').textContent = node.linkCount.outgoing;
+function buildNodeItem(node) {
+  const item = elements.nodeItem.cloneNode(true);
+  const [btn, incoming, outgoing, name, description] = 
+    item.querySelectorAll('button, .incoming, .outgoing, .name, .description');
 
-  return cardClone;
+  btn.dataset.id = node.id;
+  incoming.value = node.linkCount.incoming;
+  outgoing.value = node.linkCount.outgoing;
+  name.innerText = node.name;
+  description.innerText = node.description || 'No description.';
+
+  return item;
 }
 
 function _populateCurrentNode(node) {

@@ -2,7 +2,7 @@
   dialog {
     margin: auto;
     
-    width: min(1000px, 85vw);
+    width: min(800px, 85vw);
     height: 70vh;
     border: 1px solid var(--border-divider);
     border-radius: var(--border-radius);
@@ -63,10 +63,13 @@
     flex-shrink: 0;
   }
 
-  #inform-dialog,
-  #delete-node-dialog,
-  #delete-link-dialog {
-    height: auto;
+  #inform,
+  #delete-node,
+  #delete-link,
+  #stats,
+  #menu,
+  #splash {
+    height: max-content;
     max-height: 70vh;
   }
 
@@ -80,11 +83,14 @@
     flex-grow: 1;
   }
 
-  dialog .swap-button {
-    height: 44px;
-    /* Align with input height + padding */
-    flex-shrink: 0;
-    padding: 0 var(--spacing-unit);
+  button {
+    &[value=swap] {
+      width: max-content;
+      align-self: center;
+      padding-inline: calc(var(--spacing-unit) * 2);
+      margin-bottom: calc(var(--spacing-unit) * -2);
+      z-index: 1;
+    }
   }
 
   dialog footer button.destructive {

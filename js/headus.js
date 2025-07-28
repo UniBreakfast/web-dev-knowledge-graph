@@ -5,7 +5,7 @@ let elements = {};
 Object.assign(headus, {
   init() {
     _initElements();
-    elements.addNodeButton.addEventListener('click', _handleAddNodeClick);
+    // elements.addNodeButton.addEventListener('click', _handleAddNodeClick);
   },
 
   listNodes(names) {
@@ -19,7 +19,7 @@ Object.assign(headus, {
 });
 
 function _initElements() {
-  elements.datalist = document.getElementById('nodes-datalist');
+  elements.datalist = document.getElementById('names');
   elements.queryInput = document.getElementById('query-input');
   elements.addNodeButton = document.getElementById('add-node-button');
 }

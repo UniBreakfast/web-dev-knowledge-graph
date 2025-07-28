@@ -51,10 +51,10 @@ main {
 
 section {
   width: 50%;
-  padding: calc(var(--spacing-unit) * 2);
   overflow-y: auto;
 
   form {
+    padding: calc(var(--spacing-unit) * 2);
     background-color: var(--panel-background);
     overflow: auto;
   }
@@ -65,7 +65,7 @@ ul {
 }
 
 #splitter {
-  width: 1px;
+  width: 3px;
   background-color: var(--border-divider);
   cursor: col-resize;
   flex-shrink: 0;

@@ -3,7 +3,7 @@ document.body.hidden = false;
 nForm = document.querySelector('#nodus form');
 lForm = document.querySelector('#linkus form');
 
-nForm.current.checked = true;
+// nForm.current.checked = true;
 
 { // current
   nForm.name.value = 'They shall in all Cases, except Treason, Felony and Breach of the Person attainted'.split(' ').slice(0, Math.random() * 14 + 1).join(' ');
@@ -35,7 +35,7 @@ nForm.current.checked = true;
 
 { // many
   nodeList = document.querySelector('#nodes');
-  liTemplate = nodeList.querySelector('template').content.firstElementChild;
+  // liTemplate = nodeList.querySelector('template').content.firstElementChild;
 
   text = "To establish an uniform Rule of Naturalization, and uniform Laws on the Application of the Legislature, or of his Death, Resignation, or otherwise, during the Recess of the Independence of the United States, at the time of the most numerous Branch of the State where the said Crimes shall have Power To lay and collect Taxes, Duties, Imposts and Excises, to pay the Debts and provide for the same Term, be elected, as follows. The Judges, both of the United States, and between a State, or with a foreign Power, or engage in War, unless actually invaded, or in such Manner as the Legislature of the Government of the United States, directed to the State having Jurisdiction of the Crime. The House of Representatives shall immediately chuse by Ballot one of them as may be employed in the Case of the Removal of the Vice President, declaring what Officer shall then act as President, and such Trial shall be held in the Case of Removal, Death, Resignation or Inability, both of the Union, suppress Insurrections and repel Invasions. All Debts contracted and Engagements entered into, before the Adoption of this Constitution between the States now existing shall think proper to admit, shall not be diminished during the Period for which he shall be chosen. Which Day shall be divided as equally as may be chosen every second Year. But when not committed within any State, the Trial shall be at such Place or Places as the Congress may by general Laws prescribe the Manner in which he shall have been created, or the Emoluments whereof shall have been encreased during such time. The Ratification of the Conventions of nine States shall be necessary to a Choice. The judicial Power of the United States shall guarantee to every State shall be the same overt Act, or on Confession in open Court. In all Cases affecting Ambassadors, other public Ministers and Consuls, and those in which the two Houses shall deem it necessary, shall propose Amendments to this Constitution, or, on the subject of Bankruptcies throughout the United States, directed to the Year one thousand eight hundred and eight shall in any Department or Officer thereof. He shall receive Ambassadors and other public Ministers. The Number of Representatives shall immediately chuse by Ballot one of them as may be into three Classes. And if Vacancies happen by Resignation, or otherwise, during the Life of the Person having the greatest Number of Votes of the Union, suppress Insurrections and repel Invasions. Which Day shall be at such Place or Places as the Congress may by Law, provide for the Government and Regulation of Commerce or Revenue to the Ports of one State over those of another: nor shall Vessels bound to, or from, one State, be obliged to enter, clear, or pay Duties in another. To define and punish Piracies and Felonies committed on the Execution of his Office, he shall exercise the Office of President of the Senate. Provided that no Amendment which may be included within this Union, according to their respective Writings and Discoveries. A quorum for this Purpose shall consist of a Member or Members from two thirds of the Senate shall, in the Presence of the Officers, and the Authority of the Militia of the several State Legislatures, and all Treaties made, or which shall be by Jury. A quorum for this Purpose shall consist of a Member or Members from two thirds of the Senate and House of Representatives shall be the same State claiming Lands under Grants of different States, and between a State, or the Citizens thereof, and foreign States, Citizens or Subjects. Nor any State be formed by the Junction of two thirds of the several States, and the Electors shall be valid to all Intents and Purposes, as Part of this Constitution, when ratified by the Legislatures of the Fourteenth Amendment."
 
@@ -52,9 +52,9 @@ nForm.current.checked = true;
     return item;
   }
 
-  items = Array.from({ length: Math.random() * 12 }).fill().map(buildItem);
+  // items = Array.from({ length: Math.random() * 12 }).fill().map(buildItem);
 
-  nodeList.replaceChildren(...items);
+  // nodeList.replaceChildren(...items);
 }
 
 lForm.related.checked = true;
@@ -99,13 +99,13 @@ lForm.related.checked = true;
 
 const [newNodeDialog, newLinkDialog, editNodeDialog, editLinkDialog, deleteNodeDialog, deleteLinkDialog, informDialog, menuDialog, statsDialog, splashDialog] = document.querySelectorAll('dialog');
 
-newNodeDialog.showModal();
-newLinkDialog.showModal();
-editNodeDialog.showModal();
-editLinkDialog.showModal();
-deleteNodeDialog.showModal();
-deleteLinkDialog.showModal();
-informDialog.showModal();
-menuDialog.showModal();
-statsDialog.showModal();
-splashDialog.showModal();
+// newNodeDialog.showModal();
+// newLinkDialog.showModal();
+// editNodeDialog.showModal();
+// editLinkDialog.showModal();
+// deleteNodeDialog.showModal();
+// deleteLinkDialog.showModal();
+// informDialog.showModal();
+// menuDialog.showModal();
+// statsDialog.showModal();
+// splashDialog.showModal();
