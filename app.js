@@ -4,10 +4,9 @@ import { nodus } from './js/nodus.js';
 import { linkus } from './js/linkus.js';
 import { dialogus } from './js/dialogus.js';
 
-const EXAMPLE_FILE = 'example-graph.json';
-const LS_KEY = 'graph_app_data';
-
-const version = '0.0.1';
+const EXAMPLE_PATH = 'example-graph.json';
+const STORAGE_KEY = 'graph_app_data';
+const VERSION = '0.0.1';
 
 addCustomListeners();
 initApp();
@@ -19,19 +18,24 @@ function isFirstRun() {
 function showBody() {
   document.body.hidden = false;
 }
+
 async function initApp() {
   const firstRun = isFirstRun();
   let data;
 
   if (firstRun) {
     data = await getExampleData();
+
   } else {
     try {
       const storedData = getLSData();
+
       if (graphus.isValidGraph(storedData)) data = storedData; 
       else throw new Error("Invalid data in localStorage.");
+
     } catch (e) {
       console.error(e.message, "Falling back to example graph.");
+
       data = await getExampleData();
     }
   }
@@ -43,16 +47,16 @@ async function initApp() {
   graphus.init(data);
 
   if (firstRun) {
-    dialogus.open('splash', { version, canClose: true });
+    dialogus.open('splash', { version: VERSION, canClose: true });
   }
 }
 
 function getLSData() {
-  return JSON.parse(localStorage.getItem(LS_KEY));
+  return JSON.parse(localStorage.getItem(STORAGE_KEY));
 }
 
 async function getExampleData() {
-  const response = await fetch(EXAMPLE_FILE);
+  const response = await fetch(EXAMPLE_PATH);
   const data = await response.json();
   return data;
 }
@@ -68,9 +72,11 @@ function addCustomListeners() {
 function listenForGraphusEvents() {
   graphus.addEventListener('graphloaded', (event) => {
     const { nodes, links, names } = event.detail;
+
     headus.listNodes(names);
     nodus.showMany(nodes);
     linkus.showMany(links);
+    
     showBody();
   });
 
@@ -125,6 +131,19 @@ function listenForHeadusEvents() {
     }
 
     dialogus.open('add node', data);
+  });
+
+  headus.addEventListener('menutrigger', () => {
+    const stats = graphus.getStats();
+    const counts = {
+      descriptionless: stats.descriptionless,
+      linksPerNode: stats.linksPerNode.count,
+      present: {
+        nodes: !!stats.nodes,
+        links: !!stats.links,
+      },
+    }
+    dialogus.open('menu', { counts, canClose: true });
   });
 }
 

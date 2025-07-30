@@ -5,7 +5,12 @@ let elements = {};
 Object.assign(headus, {
   init() {
     locateElements();
-    // elements.addNodeButton.addEventListener('click', _handleAddNodeClick);
+    
+    const { form, menuBtn } = elements;
+
+    menuBtn.addEventListener('click', () => {
+      headus.dispatchEvent(new CustomEvent('menutrigger'));
+    });
   },
 
   listNodes(names) {
@@ -20,8 +25,8 @@ Object.assign(headus, {
 
 function locateElements() {
   elements.datalist = document.getElementById('names');
-  elements.queryInput = document.getElementById('query-input');
-  elements.addNodeButton = document.getElementById('add-node-button');
+  elements.form = document.querySelector('form');
+  elements.menuBtn = document.getElementById('open-menu');
 }
 
 function _handleAddNodeClick() {

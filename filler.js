@@ -1,4 +1,4 @@
-document.body.hidden = false;
+// document.body.hidden = false;
 
 nForm = document.querySelector('#nodus form');
 lForm = document.querySelector('#linkus form');

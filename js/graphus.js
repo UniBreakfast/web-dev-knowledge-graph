@@ -194,8 +194,60 @@ Object.assign(graphus, {
     });
 
     if (!filter) return allLinks;
-    
+
     return allLinks.filter(filter);
+  },
+  /* This function (method) should return an object with the following properties:
+  
+  {
+    nodes: non-negative integer,
+    links: non-negative integer,
+    descriptionless: {
+      nodes: non-negative integer,
+      links: non-negative integer
+    },
+    linksPerNode: {
+      min: non-negative integer,
+      max: non-negative integer,
+      avg: non-negative integer,
+      count: { // number of nodes with that min/max links
+        min: non-negative integer,
+        max: non-negative integer
+      }
+    },
+  } */
+  getStats() {
+    const data = getGraphData();
+
+    const nodes = Object.keys(data.nodes).length;
+    const links = Object.keys(data.links).length;
+    const hasNoDescription = node => !Object.values(node)[0];
+    const descriptionless = {
+      nodes: Object.values(data.nodes).filter(hasNoDescription).length,
+      links: Object.values(data.links).filter(link => !link).length,
+    }
+    const linkCount = Object.fromEntries(
+      Object.keys(data.nodes).map(id => [id, 0])
+    );
+
+    Object.keys(data.links).forEach(linkId => {
+      const [fromId, toId] = linkId.split('_');
+      linkCount[fromId]++;
+      linkCount[toId]++;
+    });
+
+    const min = Math.min(...Object.values(linkCount));
+    const max = Math.max(...Object.values(linkCount));
+    const avg = Object.values(linkCount).reduce((a, b) => a + b) / nodes;
+    const count = {
+      min: Object.values(linkCount)
+        .filter(count => count === min).length,
+      max: Object.values(linkCount)
+        .filter(count => count === max).length,
+    }
+    const linksPerNode = { min, max, avg, count };
+
+    return { nodes, links, descriptionless, linksPerNode };
   },
 
   addNode(name, description = '') {
@@ -209,7 +261,7 @@ Object.assign(graphus, {
     const newId = data.nextId;
     data.nodes[newId] = { [trimmedName]: description.trim() };
     data.nextId++;
-    
+
     const change = {
       type: 'node',
       action: 'add',
@@ -261,7 +313,7 @@ Object.assign(graphus, {
     for (const linkId of linksToDelete) {
       delete data.links[linkId];
     }
-    
+
     const change = {
       type: 'node',
       action: 'delete',
