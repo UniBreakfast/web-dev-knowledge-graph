@@ -79,8 +79,8 @@ function locateElements() {
 }
 
 function showMenu({ counts }) {
-  const { descriptionless } = counts;
-  {
+  const { descriptionless, present, linksPerNode } = counts;
+  { // Update descriptionless labels
     let label = '';
 
     if (descriptionless.nodes) label += 'Node';
@@ -91,8 +91,40 @@ function showMenu({ counts }) {
     if (!descriptionless.nodes && !descriptionless.links) label += 'No nodes or links';
     label += ' without a description';
     elements.menuForm.descriptionless.value = label;
+    elements.menuForm.descriptionless.closest('button').disabled = label.startsWith('No');
   }
+  { // Update least linked labels
+    let label = present.nodes ? 'L' : 'No l';
 
+    label += 'east linked node';
+
+    if (linksPerNode.min > 1) label += 's';
+    
+    elements.menuForm.least.value = label;
+    elements.menuForm.least.closest('button').disabled = label.startsWith('No');
+  }
+  { // Update most linked labels
+    let label = present.nodes ? 'M' : 'No m';
+
+    label += 'ost linked node';
+
+    if (linksPerNode.max > 1) label += 's';
+    
+    elements.menuForm.most.value = label;
+    elements.menuForm.most.closest('button').disabled = label.startsWith('No');
+  }
+  { // Update random node label
+    let label = present.nodes ? 'Random node' : 'No nodes';
+
+    elements.menuForm.rnode.value = label;
+    elements.menuForm.rnode.closest('button').disabled = label.startsWith('No');
+  }
+  { // Update random link label
+    let label = present.links ? 'Random link' : 'No links';
+
+    elements.menuForm.rlink.value = label;
+    elements.menuForm.rlink.closest('button').disabled = label.startsWith('No');
+  }
   elements.menuDialog.showModal();
 }
 
