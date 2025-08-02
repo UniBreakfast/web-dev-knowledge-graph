@@ -18,7 +18,7 @@
 
     <form class="group">
       <button id="add-node">Add Node</button>
-      <input type="search" id="query" list="names" placeholder="Find or create a node...">
+      <input type="search" name="query" list="names" placeholder="Find or create a node...">
     </form>
 
     <div class="group">
@@ -354,7 +354,9 @@
 
         <ul>
           <li>
-            <button value="all">Show all nodes and links</button>
+            <button value="all">
+              <output name="all">Show all nodes and links</output>
+            </button>
           </li>
           <li>
             <button value="export">Export GRAPH to JSON</button>

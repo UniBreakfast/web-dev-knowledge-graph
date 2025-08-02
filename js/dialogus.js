@@ -5,11 +5,8 @@ const elements = {};
 Object.assign(dialogus, {
   init() {
     locateElements();
-    elements.newNodeDialog = document.getElementById('new-node-dialog');
-    // elements.newNodeForm = elements.newNodeDialog.querySelector('form');
-    elements.informDialog = document.getElementById('inform-dialog');
-    // elements.informTitle = elements.informDialog.querySelector('[data-title]');
-    // elements.informText = elements.informDialog.querySelector('[data-text]');
+    addListeners();
+    
     elements.newLinkDialog = document.getElementById('new-link-dialog');
     // elements.newLinkForm = elements.newLinkDialog.querySelector('form');
     // elements.newLinkDialog.querySelector('.swap-button').addEventListener('click', () => {
@@ -26,10 +23,10 @@ Object.assign(dialogus, {
     console.log('Dialogus: Opening dialog:', name, data); // Keep for debugging
     switch (name) {
       case 'add node':
-        _openNewNodeDialog(data);
+        showNewNodeDialog(data);
         break;
       case 'inform':
-        _openInformDialog(data);
+        showInformer(data);
         break;
       case 'add link':
         _openNewLinkDialog(data);
@@ -74,12 +71,42 @@ Object.assign(dialogus, {
 });
 
 function locateElements() {
+  elements.newNodeDialog = document.getElementById('new-node');
+  elements.newNodeForm = elements.newNodeDialog.querySelector('form');
   elements.menuDialog = document.getElementById('menu');
   elements.menuForm = elements.menuDialog.querySelector('form');
+  elements.informDialog = document.getElementById('inform');
+  elements.informForm = elements.informDialog.querySelector('form');
+}
+
+function addListeners() {
+  const { newNodeForm } = elements;
+
+  newNodeForm.addEventListener('submit', handleNewNodeSubmit);
+
+  function handleNewNodeSubmit(event) {
+    if (!event.submitter.value) return;
+
+    event.preventDefault();
+    
+    if (event.submitter.value === 'add') {
+      const name = newNodeForm.name.value.trim();
+      const description = newNodeForm.description.value.trim();
+      const detail = { name, description};
+      const event = new CustomEvent('addnodetrigger', { detail} );
+
+      dialogus.dispatchEvent(event);
+    }
+  }
 }
 
 function showMenu({ counts }) {
   const { descriptionless, present, linksPerNode } = counts;
+  { // Update show all label
+    let label = present.nodes ? 'Show all nodes and links' : 'No nodes or links';
+    elements.menuForm.all.value = label;
+    elements.menuForm.all.closest('button').disabled = label.startsWith('No');
+  }
   { // Update descriptionless labels
     let label = '';
 
@@ -128,41 +155,19 @@ function showMenu({ counts }) {
   elements.menuDialog.showModal();
 }
 
-function _openNewNodeDialog(data) {
+function showNewNodeDialog({name = ''}) {
   elements.newNodeForm.reset();
-
-  if (data?.name) {
-    elements.newNodeForm.elements.name.value = data.name;
-  }
-
-  const handleFormSubmit = (event) => {
-    // Prevent default form submission which reloads the page
-    event.preventDefault();
-    const submitter = event.submitter;
-
-    if (submitter?.value === 'add') {
-      const detail = {
-        name: elements.newNodeForm.elements.name.value.trim(),
-        description: elements.newNodeForm.elements.description.value.trim(),
-      };
-      dialogus.dispatchEvent(new CustomEvent('addnodetrigger', { detail }));
-    } else {
-      // Any other submission (like 'cancel' or hitting Esc) just closes
-      dialogus.close('add node');
-    }
-  };
-
-  // The 'close' event on a dialog fires when Esc is pressed.
-  // The 'submit' event fires when a submit button is clicked.
-  // We use { once: true } to auto-cleanup the listener after it runs.
-  elements.newNodeDialog.addEventListener('submit', handleFormSubmit, { once: true });
+  elements.newNodeForm.name.value = name;
   elements.newNodeDialog.showModal();
 }
 
-function _openInformDialog(data) {
-  elements.informTitle.textContent = data.title || 'Information';
-  elements.informText.textContent = data.text || 'An unspecified event occurred.';
-  elements.informDialog.showModal();
+function showInformer(data) {
+  const {informDialog, informForm} = elements;
+  
+  informForm.title.value = data.title || 'Information';
+  informForm.text.value = data.text || 'An unspecified event occurred.';
+  
+  informDialog.showModal();
 }
 
 function _openNewLinkDialog(data) {

@@ -57,9 +57,12 @@ Object.assign(graphus, {
 
   isNameTaken(name) {
     const data = getGraphData();
+
     if (!data?.nodes) return false;
-    const trimmedName = name.trim();
-    return Object.values(data.nodes).some(nodeData => Object.keys(nodeData)[0] === trimmedName);
+
+    const hasThatName = node => Object.keys(node)[0] === name;
+    
+    return Object.values(data.nodes).some(hasThatName);
   },
 
   doesLinkExist(fromId, toId) {
@@ -252,23 +255,25 @@ Object.assign(graphus, {
 
   addNode(name, description = '') {
     const data = getGraphData();
-    const trimmedName = name.trim();
-    if (!trimmedName || this.isNameTaken(trimmedName)) {
+    
+    name = name.trim();
+    description = description.trim();
+
+    if (!name || this.isNameTaken(name)) {
       console.error("Attempted to add node with invalid or duplicate name.");
       return;
     }
 
-    const newId = data.nextId;
-    data.nodes[newId] = { [trimmedName]: description.trim() };
-    data.nextId++;
+    const id = data.nextId++;
+    const node = { [name]: description };
+
+    data.nodes[id] = node;
 
     const change = {
-      type: 'node',
-      action: 'add',
-      id: newId,
-      name: trimmedName,
-      description: description.trim(),
+      type: 'node', action: 'add',
+      id, name, description,
     };
+
     saveAndDispatch(data, change);
   },
 
@@ -358,7 +363,11 @@ function setGraphData(data) {
 
 function saveAndDispatch(data, change) {
   data.version++;
+
   setGraphData(data);
-  const event = new CustomEvent('graphupdated', { detail: { change } });
+
+  const detail = { change };
+  const event = new CustomEvent('graphupdated', { detail });
+  
   graphus.dispatchEvent(event);
 }

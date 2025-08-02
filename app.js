@@ -30,7 +30,7 @@ async function initApp() {
     try {
       const storedData = getLSData();
 
-      if (graphus.isValidGraph(storedData)) data = storedData; 
+      if (graphus.isValidGraph(storedData)) data = storedData;
       else throw new Error("Invalid data in localStorage.");
 
     } catch (e) {
@@ -70,17 +70,21 @@ function addCustomListeners() {
 }
 
 function listenForGraphusEvents() {
-  graphus.addEventListener('graphloaded', (event) => {
+  graphus.addEventListener('graphloaded', handleLoad);
+
+  graphus.addEventListener('graphupdated', handleUpdate);
+
+  function handleLoad(event) {
     const { nodes, links, names } = event.detail;
 
     headus.listNodes(names);
     nodus.showMany(nodes);
     linkus.showMany(links);
-    
-    showBody();
-  });
 
-  graphus.addEventListener('graphupdated', (event) => {
+    showBody();
+  }
+
+  function handleUpdate(event) {
     const { change } = event.detail;
 
     if (change.type === 'node' && change.action === 'add') {
@@ -115,20 +119,15 @@ function listenForGraphusEvents() {
         changeCurrentNodeBy({ id: currentId });
       }
     }
-  });
+  }
 }
 
 function listenForHeadusEvents() {
   headus.addEventListener('addnodetrigger', event => {
-    const detail = event.detail;
+    const { name = '' } = event.detail;
     const data = { canClose: true };
 
-    // Per requirements, only pre-fill name if it's provided and NOT taken
-    if (detail?.name) {
-      if (!graphus.isNameTaken(detail.name)) {
-        data.name = detail.name;
-      }
-    }
+    if (name && !graphus.isNameTaken(name)) data.name = name;
 
     dialogus.open('add node', data);
   });
@@ -186,22 +185,7 @@ function listenForLinkusEvents() {
 }
 
 function listenForDialogusEvents() {
-  dialogus.addEventListener('addnodetrigger', event => {
-    const { name, description } = event.detail;
-
-    if (!name) {
-      dialogus.open('inform', { title: 'Name required', text: 'Node name cannot be empty or empty-like.', canClose: true });
-      return;
-    }
-
-    if (graphus.isNameTaken(name)) {
-      dialogus.open('inform', { title: 'Name taken', text: 'There\'s already a node named ' + name + '. Try another name.', canClose: true });
-      return;
-    }
-
-    dialogus.close('add node');
-    graphus.addNode(name, description);
-  });
+  dialogus.addEventListener('addnodetrigger', handleAddNode);
 
   dialogus.addEventListener('addlinktrigger', event => {
     const { link } = event.detail;
@@ -237,11 +221,28 @@ function listenForDialogusEvents() {
   dialogus.addEventListener('deletenodetrigger', event => {
     graphus.deleteNode(event.detail.id);
   });
-  
+
   dialogus.addEventListener('deletelinktrigger', event => {
     const { id } = event.detail;
     graphus.deleteLink(id.from, id.to);
   });
+
+  function handleAddNode(event) {
+    const { name, description } = event.detail;
+
+    if (!name) {
+      dialogus.open('inform', { title: 'Name required', text: 'Node name cannot be empty or empty-like.', canClose: true });
+      return;
+    }
+
+    if (graphus.isNameTaken(name)) {
+      dialogus.open('inform', { title: 'Name taken', text: 'There\'s already a node named "' + name + '". Try another name.', canClose: true });
+      return;
+    }
+
+    dialogus.close('add node');
+    graphus.addNode(name, description);
+  }
 }
 
 function changeCurrentNodeBy({ id, name, select }, silent) {

@@ -5,19 +5,14 @@ let elements = {};
 Object.assign(headus, {
   init() {
     locateElements();
-    
-    const { form, menuBtn } = elements;
-
-    menuBtn.addEventListener('click', () => {
-      headus.dispatchEvent(new CustomEvent('menutrigger'));
-    });
+    addListeners();
   },
 
   listNodes(names) {
     const options = names.map(name => new Option(name));
     elements.datalist.replaceChildren(...options);
   },
-  
+
   enlistNode(name) {
     elements.datalist.append(new Option(name));
   },
@@ -29,11 +24,24 @@ function locateElements() {
   elements.menuBtn = document.getElementById('open-menu');
 }
 
-function _handleAddNodeClick() {
-  const name = elements.queryInput.value.trim();
-  const detail = {};
-  if (name) {
-    detail.name = name;
-  }
-  headus.dispatchEvent(new CustomEvent('addnodetrigger', { detail }));
+function addListeners() {
+  const { form, menuBtn } = elements;
+
+  form.addEventListener('submit', handleSubmit);
+
+  menuBtn.addEventListener('click', handleClick);
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  
+  const name = elements.form.query.value.trim();
+  const detail = { name };
+  const event = new CustomEvent('addnodetrigger', { detail });
+
+  headus.dispatchEvent(event);
+}
+
+function handleClick() {
+  headus.dispatchEvent(new CustomEvent('menutrigger'));
 }
