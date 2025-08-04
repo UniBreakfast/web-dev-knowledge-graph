@@ -5,26 +5,23 @@ let elements = {};
 Object.assign(nodus, {
   init() {
     locateElements();
+    addListeners();
     // elements.manyContainer.addEventListener('click', _handleNodusClick);
     // elements.currentContainer.addEventListener('click', _handleCurrentViewInteraction);
     // elements.currentContainer.addEventListener('change', _handleCurrentViewInteraction);
   },
 
   showOne(node, selectedId) {
-    const view = _populateCurrentNode(node);
-    elements.currentContainer.replaceChildren(view);
+    const { id, name, description } = node;
+    const { form, linkedList } = elements;
+    const linkedItems = node.linkedNodes.map(buildLinkedItem);
 
-    const linkedNodesList = elements.currentContainer.querySelector('.linked-nodes-list');
-    const hasLinks = node.linksToNodes?.length > 0;
-
-    elements.currentContainer.querySelector('#linked-nodes-toggle').checked = hasLinks;
-
-    if (hasLinks) {
-      const items = node.linksToNodes.map(linkedNode => _populateLinkedNodeItem(linkedNode, selectedId));
-      linkedNodesList.replaceChildren(...items);
-    }
-
-    elements.viewCurrentRadio.checked = true;
+    form.current.checked = true;
+    form.name.value = name;
+    form.description.value = description;
+    form.id.value = id;
+    form.selected.value = selectedId;
+    linkedList.replaceChildren(...linkedItems);
   },
 
   showMany(nodes) {
@@ -45,12 +42,44 @@ Object.assign(nodus, {
 function locateElements() {
   elements.section = document.getElementById('nodus');
   elements.form = elements.section.querySelector('form');
-  elements.currentContainer = document.getElementById('nodus-current');
-  elements.nodeCurrentTemplate = document.getElementById('node-current-template');
-  elements.linkedNodeItemTemplate = document.getElementById('linked-node-item-template');
+  elements.linkedList = document.getElementById('linked');
+  elements.linkedItem = elements.linkedList.querySelector('template')
+    .content.firstElementChild;
   elements.nodeList = document.getElementById('nodes');
   elements.nodeItem = elements.nodeList.querySelector('template')
     .content.firstElementChild;
+}
+
+function addListeners() {
+  const {form} = elements;
+
+  form.addEventListener('submit', handleSubmit);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+
+  const btn = event.submitter;
+  
+  switch (btn.value) {
+    case 'goto':
+      const id = +btn.dataset.id;
+      const detail = { id };
+      const event = new CustomEvent('gotonodetrigger', { detail });
+
+      nodus.dispatchEvent(event);
+      break;
+
+  }
+}
+
+function buildLinkedItem(node) {
+  const item = elements.linkedItem.cloneNode(true);
+  const {direction} = node;
+
+  item.className = direction;
+  
+  return item;
 }
 
 function buildNodeItem(node) {
@@ -65,17 +94,6 @@ function buildNodeItem(node) {
   description.innerText = node.description || 'No description.';
 
   return item;
-}
-
-function _populateCurrentNode(node) {
-  const viewClone = elements.nodeCurrentTemplate.content.cloneNode(true);
-  const view = viewClone.querySelector('.node-current-content');
-  
-  view.dataset.id = node.id;
-  view.querySelector('[data-name]').textContent = node.name;
-  view.querySelector('[data-description]').textContent = node.description || 'No description.';
-
-  return viewClone;
 }
 
 function _populateLinkedNodeItem(linkedNode, selectedId) {

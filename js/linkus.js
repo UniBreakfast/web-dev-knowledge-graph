@@ -10,7 +10,7 @@ Object.assign(linkus, {
 
   showTwin(links, currentId) {
     if (!links?.length) {
-      elements.viewMessageRadio.checked = true;
+      // elements.viewMessageRadio.checked = true;
       // Later we'll add logic to show a more specific message
       return;
     }
