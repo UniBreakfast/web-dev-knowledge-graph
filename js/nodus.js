@@ -14,7 +14,7 @@ Object.assign(nodus, {
   showOne(node, selectedId) {
     const { id, name, description } = node;
     const { form, linkedList } = elements;
-    const linkedItems = node.linkedNodes.map(buildLinkedItem);
+    const linkedItems = node.linksToNodes.map(buildLinkedItem);
 
     form.current.checked = true;
     form.name.value = name;
@@ -75,9 +75,13 @@ function handleSubmit(event) {
 
 function buildLinkedItem(node) {
   const item = elements.linkedItem.cloneNode(true);
-  const {direction} = node;
+  const [radio, nameOut, btn] = item.querySelectorAll('input, output, button');
+  const {id, name, direction} = node;
 
   item.className = direction;
+  radio.value = id;
+  nameOut.value = name;
+  btn.dataset.id = id;
   
   return item;
 }
