@@ -6,9 +6,6 @@ Object.assign(nodus, {
   init() {
     locateElements();
     addListeners();
-    // elements.manyContainer.addEventListener('click', _handleNodusClick);
-    // elements.currentContainer.addEventListener('click', _handleCurrentViewInteraction);
-    // elements.currentContainer.addEventListener('change', _handleCurrentViewInteraction);
   },
 
   showOne(node, selectedId) {

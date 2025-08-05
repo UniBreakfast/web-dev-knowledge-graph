@@ -106,11 +106,11 @@
                   <summary>
                     <header>
                       <button value="edit">Edit Link</button>
-                      <button class="delete">Delete Link</button>
+                      <button value="delete">Delete Link</button>
                     </header>
 
                     <h3 class="name">node.name</h3>
-                    <p class="desecription">node.description</p>
+                    <p class="description">node.description</p>
                   </summary>
 
                   <button value="goto" data-id="node.id">Go to Node</button>
@@ -119,7 +119,10 @@
               </li>
             </template>
           </ul>
-          <p class="view">No links with the current node yet. Add some using the 'Add Link' button on the left.</p>
+
+          <p class="view">
+            No links with the current node yet. Add some using the 'Add Link' button on the left.
+          </p>
         </aside>
 
         <aside id="unrelated" class="view">

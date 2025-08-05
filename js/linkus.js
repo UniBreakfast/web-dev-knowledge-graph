@@ -5,22 +5,15 @@ let elements = {};
 Object.assign(linkus, {
   init() {
     locateElements();
-    // elements.relatedContainer.addEventListener('click', _handleRelatedLinkClick);
+    addListeners();
   },
 
   showTwin(links, currentId) {
-    if (!links?.length) {
-      // elements.viewMessageRadio.checked = true;
-      // Later we'll add logic to show a more specific message
-      return;
-    }
+    const { form, relatedList } = elements;
+    const linkItems = links.map(link => buildRelatedItem(link, currentId));
 
-    const cards = links.map(link => _populateRelatedLink(link, currentId));
-    // Sort to show outgoing links first
-    cards.sort(a => a.querySelector('[data-direction="incoming"]') ? 1 : -1);
-
-    elements.relatedContainer.replaceChildren(...cards);
-    elements.viewRelatedRadio.checked = true;
+    form.related.checked = true;
+    relatedList.replaceChildren(...linkItems);
   },
 
   showMany(links) {
@@ -35,11 +28,30 @@ Object.assign(linkus, {
 function locateElements() {
   elements.section = document.getElementById('linkus');
   elements.form = elements.section.querySelector('form');
+  elements.relatedList = document.querySelector('#related>.links');
+  elements.relatedItem = elements.relatedList.querySelector('template')
+    .content.firstElementChild;
   elements.unrelatedList = document.querySelector('#unrelated>.links');
   elements.unrelatedItem = elements.unrelatedList.querySelector('template')
     .content.firstElementChild;
-  elements.relatedContainer = document.getElementById('linkus-related');
-  elements.linkRelatedTemplate = document.getElementById('link-related-template');
+}
+
+function addListeners() {
+}
+
+function buildRelatedItem(link, currentId) {
+  const item = elements.relatedItem.cloneNode(true);
+  const {direction, description, node} = link;
+  const [details, h3, p1, btn, p2] = 
+    item.querySelectorAll('details, .name, .description, [value=goto]');
+
+  details.className = direction;
+  h3.innerText = node.name;
+  p1.innerText = description || 'No link description.';
+  btn.dataset.id = node.id;
+  p2.innerText = node.description || 'No node description.';
+
+  return item;
 }
 
 function buildUnrelatedItem(link) {
